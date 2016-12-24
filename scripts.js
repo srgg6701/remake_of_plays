@@ -197,7 +197,7 @@ var $dynamicContent = $("#dynamicContent"),
     AppRouter = Backbone.Router.extend({
     routes: {
         "": "initView",
-        "enter_to_secondary": "buildSecondary",
+        "enter_to_secondary/:urlTitle": "buildSecondary",
         "enter_to_plays": "enterToPlays"
     },
     initView: function () {
@@ -225,9 +225,10 @@ var $dynamicContent = $("#dynamicContent"),
         // Получить оба ready_prime_block через каждый из экземпляров, сложить их в массив и внести в prime_wrapper.
 
     },
-    buildSecondary: function () {
+    buildSecondary: function (urlTitle) {
+        console.log(urlTitle);
         console.log("Xmarine" in window);
-        console.log("black_parody" in window);
+        console.log("Black_parody" in window);
         // Пробег по ключам. Если нет в window, вызвать getData и checkJsonData и определить window[key].
     },
     enterToPlays: function () {
