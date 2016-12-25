@@ -1,0 +1,5 @@
+1. Сделать urlTitle со значением "Xmarine" и "Black_parody";
+2. Сделать makeReadyTemplates (makeReadyPrimeBlocks) в представление;
+	Для функции, вызываемой при входе в Secondary:
+3. Определить данные через модель;
+4. Заполнить шаблон этими данными и вставить в $dynamicContent через представление.

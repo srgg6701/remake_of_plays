@@ -2,7 +2,7 @@
   "Black_parody": {
     "onTheBeginning": {
       "header": "Black parody",
-      "playsTitle": "black_parody",
+      "playsTitle": "Black_parody",
       "imgOnPrimary": "<img src=\"images/on_the_beginning/evil_eyes.jpg\">",
       "images": ["<img src=\"images/on_the_beginning/img1.jpg\">",
         "<img src=\"images/on_the_beginning/img2.jpg\">"],
