@@ -253,10 +253,11 @@ var $dynamicContent = $("#dynamicContent"),
                     ).done(
                         // Заполнить шаблон этими данными и вставить в область динамически генерируемого контента
                         function (beginData) {
-                            console.log('beginData', beginData);
+                            //console.log(secondary);
+                           // console.log('beginData', beginData);
                             // Заполнить шаблон данными и загрузить через экземпляр view
                             //var choicedPlaysView = makeReadyTemplate(secondary, beginData);
-                            //var ready_secondary = choicedPlaysView.render(secondary, beginData);
+                            //var ready_secondary = choicedPlaysView.render(secondary, beginData); // возвращает this.ready_element
                             //$dynamicContent.html(ready_secondary);
                         }
                     );
