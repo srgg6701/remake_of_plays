@@ -123,7 +123,7 @@ var playsModel = Backbone.Model.extend(
                 defer = $.Deferred();
             getData(key);  // Получает данные из json (асинхронно) и сохраняет в window[key]
             checkJsonData(key).then( // Проверка наличия этих данных, затем -
-                function (play_object) { // из defer.resolve, что вызывается в checkJsonData.
+                function (play_object) { // данная функция - это defer.resolve, вызываемая в теле checkJsonData
                     _this.beginData = play_object["onTheBeginning"];
                     defer.resolve(_this.beginData);
                 },
@@ -145,13 +145,13 @@ var playsModel = Backbone.Model.extend(
 
 var makeReadyTemplate = Backbone.View.extend(
     {
-        initialize: function (prime_block, beginData) {
-            this.render(prime_block, beginData);
+        initialize: function (templ, data) {
+            this.render(templ, data);
         },
-        render: function (prime_block, beginData) {
-            this.ready_prime_block = _.template(prime_block)(beginData);
-            //console.log(_this.defaults.ready_prime_block ); // Здесь есть Xmarine и Black_parody
-            return this.ready_prime_block;
+        render: function (templ, data) {
+            this.ready_element = _.template(templ)(data); // templ = prime_block снаружи этой функции
+            // this.ready_element - готовый prime_block
+            return this.ready_element;
         }
     }
 );
@@ -180,9 +180,9 @@ var $dynamicContent = $("#dynamicContent"),
                 this.entersToSecondary(event);
             }.bind(this));*/
         },
-        render: function (ready_prime_blockXm, ready_prime_blockBp, prime_wrapper) {
+        render: function (ready_prime_block_xm, ready_prime_block_p, prime_wrapper) {
             //console.log('Rendered!');
-            var ready_prime_wrapper = _.template(prime_wrapper)({ Xmarine_block: ready_prime_blockXm, Black_parody_block: ready_prime_blockBp });
+            var ready_prime_wrapper = _.template(prime_wrapper)({ Xmarine_block: ready_prime_block_xm, Black_parody_block: ready_prime_block_p });
             // console.log('ready_prime_wrapper',ready_prime_wrapper);
             // Вложить prime_wrapper в область динамически генерируемого контента
             // увеличить высотку prime_wrapper:
@@ -207,8 +207,8 @@ var $dynamicContent = $("#dynamicContent"),
             $.when(getTemplate(file_path + "prime_block.html"),
                 getTemplate(file_path + "prime_wrapper.html")
             ).done(function (prime_block, prime_wrapper) {
-                var xmarineModel = new playsModel(), // checkJsonData runs asynchronously
-                black_parodyModel = new playsModel();  // checkJsonData runs asynchronousl
+                var xmarineModel = new playsModel("Xmarine"), // checkJsonData runs asynchronously
+                black_parodyModel = new playsModel("Black_parody");  // checkJsonData runs asynchronousl
                  //console.groupCollapsed('checkTemplates');
                 //console.log('xmarineModel, black_parodyModel', { xmarineModel: xmarineModel, black_parodyModel: black_parodyModel });
                 //console.groupEnd();
@@ -225,7 +225,7 @@ var $dynamicContent = $("#dynamicContent"),
                     console.groupCollapsed('XmarineTmpl,  Black_parodyTmpl');
                     console.log({ xmarineView: xmarineView, black_parodyView: black_parodyView });
                     console.groupEnd();
-                    default_view.render(xmarineView.ready_prime_block, black_parodyView.ready_prime_block, prime_wrapper); //для того, чтобы заполнить prime_wrapper готовыми блоками, вставить
+                    default_view.render(xmarineView.ready_element, black_parodyView.ready_element, prime_wrapper); //для того, чтобы заполнить prime_wrapper готовыми блоками, вставить
                     // его в область динамически генерируемого контента и развернуть:
                     //default_view.render(xmarineView, black_parodyView, prime_wrapper);
                 });
@@ -236,14 +236,30 @@ var $dynamicContent = $("#dynamicContent"),
         },
         buildSecondary: function (urlTitle) {
             console.log(urlTitle);
-            $.when(getTemplate("templates/secondary/secondary")).done(
+            $.when(getTemplate("templates/secondary/secondary.html")).done(
                 // Определить, какой window[key]
                 // заполнить шаблон соответствующими данными
-                function (urlTitle) {
-                    var beginData = "";
-                    var xmarineModel = new playsModel("Xmarine"), // checkJsonData runs asynchronously
-                        black_parodyModel = new playsModel("Black_parody");
+                function (secondary) {
+                    //var xmarineModel = new playsModel("Xmarine"), // checkJsonData runs asynchronously
+                       // black_parodyModel = new playsModel("Black_parody");
                     // Через model определить данные для шаблона Secondary
+                    var choicedPlaysModel = new playsModel(urlTitle);
+                    /*
+                    *    $.when(
+                     choicedPlaysModel.getTemplatesContents(urlTitle)
+                     ).done(
+                     function (beginData) {
+                     console.log(beginData);
+                     // Заполнить шаблон данными и загрузить через экземпляр view
+                     var choicedPlaysView = makeReadyTemplate(secondary, beginData);
+                     //var ready_secondary = choicedPlaysView.render(secondary, beginData);
+                     //$dynamicContent.html(ready_secondary);
+                     }
+                     );
+                    *
+                    * */
+
+
                     // Через view заполнить шаблон данными и вставить в dynamicContent
 
 

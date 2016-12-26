@@ -1,0 +1,31 @@
+#secondaryDiv {
+    width: 100%;
+    overflow: auto;
+}
+
+#secondaryDiv > div {
+    float: left;
+    border: 1px solid;
+    margin-left: 1%;
+}
+
+#left {
+    width: 24%;
+}
+
+#middle {
+    width: 46%;
+}
+
+#right {
+    width: 25%;
+}
+
+.preview {
+    margin-top: 4px;
+    margin-bottom: 0;
+    font-size: 16px;
+    padding: 11px;
+    border: 1px solid mediumvioletred;
+    font-family: "Microsoft YaHei UI";
+}
