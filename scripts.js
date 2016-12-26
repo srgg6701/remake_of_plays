@@ -256,9 +256,9 @@ var $dynamicContent = $("#dynamicContent"),
                             //console.log(secondary);
                            // console.log('beginData', beginData);
                             // Заполнить шаблон данными и загрузить через экземпляр view
-                            //var choicedPlaysView = makeReadyTemplate(secondary, beginData);
-                            //var ready_secondary = choicedPlaysView.render(secondary, beginData); // возвращает this.ready_element
-                            //$dynamicContent.html(ready_secondary);
+                            var choicedPlaysView =  new makeReadyTemplate(secondary, beginData);
+                            var ready_secondary = choicedPlaysView.render(secondary, beginData); // возвращает this.ready_element
+                            $dynamicContent.html(ready_secondary);
                         }
                     );
                     /*  *

@@ -10,22 +10,48 @@
 }
 
 #left {
-    width: 24%;
+    width: 16%;
+}
+
+#left > img {
+    margin-top: 2%;
+    margin-left: 2%;
+    width: 96%;
 }
 
 #middle {
-    width: 46%;
+    width: 54%;
+}
+
+#middle > * {
+    border: 1px solid;
+    width: 96%;
+    margin-left: 2%;
+}
+
+#middle > #bigImage > img {
+    width: 100%;
 }
 
 #right {
-    width: 25%;
+    width: 24%;
 }
 
-.preview {
-    margin-top: 4px;
-    margin-bottom: 0;
+#right > div {
+    margin: 1%;
+    border: 1px solid;
     font-size: 16px;
-    padding: 11px;
-    border: 1px solid mediumvioletred;
     font-family: "Microsoft YaHei UI";
+}
+
+#preview {
+    padding: 7px;
+}
+
+#explain {
+    padding: 7px;
+}
+
+#right #gateImage > img {
+    width: 100%;
 }
