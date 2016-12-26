@@ -69,24 +69,23 @@ function checkJsonData(key) {
 }
 
 
-
 function checkReadyPrimeBlocks(xmarineModel, black_parodyModel) {
     var cnt = 0, defer = $.Deferred(), checkBlocks = setInterval(
         function () {
             cnt++;
             // проверить, что 2 prime_block, и оба заполнены данными
-                if ((xmarineModel.ready_prime_block) && (black_parodyModel.ready_prime_block)) {
-                    if (
-                        (xmarineModel.ready_prime_block != "") &&
-                        (black_parodyModel.ready_prime_block != "")
-                    ) {
-                        //console.log(xmarineModel.defaults.ready_prime_block);
-                        //console.log(black_parodyModel.defaults.ready_prime_block);
-                        defer.resolve("Попали.");
-                        clearInterval(checkBlocks);
-                    }
-
+            if ((xmarineModel.ready_prime_block) && (black_parodyModel.ready_prime_block)) {
+                if (
+                    (xmarineModel.ready_prime_block != "") &&
+                    (black_parodyModel.ready_prime_block != "")
+                ) {
+                    //console.log(xmarineModel.defaults.ready_prime_block);
+                    //console.log(black_parodyModel.defaults.ready_prime_block);
+                    defer.resolve("Попали.");
+                    clearInterval(checkBlocks);
                 }
+
+            }
 
             else {
                 if (cnt = 5) {
@@ -124,8 +123,9 @@ var playsModel = Backbone.Model.extend(
             getData(key);  // Получает данные из json (асинхронно) и сохраняет в window[key]
             checkJsonData(key).then( // Проверка наличия этих данных, затем -
                 function (play_object) { // данная функция - это defer.resolve, вызываемая в теле checkJsonData
-                    _this.beginData = play_object["onTheBeginning"];
-                    defer.resolve(_this.beginData);
+                    _this.set('beginData', play_object["onTheBeginning"]);
+                    console.log('getTemplatesContents result, get model data: ', _this.get('beginData'));
+                    defer.resolve(_this.get('beginData'));
                 },
                 function (mes) {
                     console.log(mes);
@@ -162,12 +162,12 @@ var $dynamicContent = $("#dynamicContent"),
     },
     defaultView = Backbone.View.extend({
         /*  events:{
-            "click #dynamicContent": function(){
-                 console.log('Body clicked');
-             "entersToSecondary"
-             "click": function(){
-                 console.log('Body clicked');
-             }
+         "click #dynamicContent": function(){
+         console.log('Body clicked');
+         "entersToSecondary"
+         "click": function(){
+         console.log('Body clicked');
+         }
          },
          el: '#main',*/
         entersToSecondary: function (event) {
@@ -177,12 +177,15 @@ var $dynamicContent = $("#dynamicContent"),
             //console.log('defaultView');
             showLoading();
             /*$dynamicContent.on('click', '.entersToSecondary', function(event){
-                this.entersToSecondary(event);
-            }.bind(this));*/
+             this.entersToSecondary(event);
+             }.bind(this));*/
         },
         render: function (ready_prime_block_xm, ready_prime_block_p, prime_wrapper) {
             //console.log('Rendered!');
-            var ready_prime_wrapper = _.template(prime_wrapper)({ Xmarine_block: ready_prime_block_xm, Black_parody_block: ready_prime_block_p });
+            var ready_prime_wrapper = _.template(prime_wrapper)({
+                Xmarine_block: ready_prime_block_xm,
+                Black_parody_block: ready_prime_block_p
+            });
             // console.log('ready_prime_wrapper',ready_prime_wrapper);
             // Вложить prime_wrapper в область динамически генерируемого контента
             // увеличить высотку prime_wrapper:
@@ -203,13 +206,13 @@ var $dynamicContent = $("#dynamicContent"),
             "enter_to_plays": "enterToPlays"
         },
         initView: function () {
-            var file_path = "templates/primary/", prime_blocks = { prime_blocks: [] };
+            var file_path = "templates/primary/", prime_blocks = {prime_blocks: []};
             $.when(getTemplate(file_path + "prime_block.html"),
                 getTemplate(file_path + "prime_wrapper.html")
             ).done(function (prime_block, prime_wrapper) {
                 var xmarineModel = new playsModel("Xmarine"), // checkJsonData runs asynchronously
-                black_parodyModel = new playsModel("Black_parody");  // checkJsonData runs asynchronousl
-                 //console.groupCollapsed('checkTemplates');
+                    black_parodyModel = new playsModel("Black_parody");  // checkJsonData runs asynchronousl
+                //console.groupCollapsed('checkTemplates');
                 //console.log('xmarineModel, black_parodyModel', { xmarineModel: xmarineModel, black_parodyModel: black_parodyModel });
                 //console.groupEnd();
                 $.when(
@@ -223,7 +226,7 @@ var $dynamicContent = $("#dynamicContent"),
                     var xmarineView = new makeReadyTemplate(prime_block, beginDataXm),
                         black_parodyView = new makeReadyTemplate(prime_block, beginDataBp);
                     console.groupCollapsed('XmarineTmpl,  Black_parodyTmpl');
-                    console.log({ xmarineView: xmarineView, black_parodyView: black_parodyView });
+                    console.log({xmarineView: xmarineView, black_parodyView: black_parodyView});
                     console.groupEnd();
                     default_view.render(xmarineView.ready_element, black_parodyView.ready_element, prime_wrapper); //для того, чтобы заполнить prime_wrapper готовыми блоками, вставить
                     // его в область динамически генерируемого контента и развернуть:
@@ -241,23 +244,24 @@ var $dynamicContent = $("#dynamicContent"),
                 // заполнить шаблон соответствующими данными
                 function (secondary) {
                     //var xmarineModel = new playsModel("Xmarine"), // checkJsonData runs asynchronously
-                       // black_parodyModel = new playsModel("Black_parody");
+                    // black_parodyModel = new playsModel("Black_parody");
                     // Через model определить данные для шаблона Secondary
                     var choicedPlaysModel = new playsModel(urlTitle);
-                    /*
-                    *    $.when(
-                     choicedPlaysModel.getTemplatesContents(urlTitle)
-                     ).done(
-                     function (beginData) {
-                     console.log(beginData);
-                     // Заполнить шаблон данными и загрузить через экземпляр view
-                     var choicedPlaysView = makeReadyTemplate(secondary, beginData);
-                     //var ready_secondary = choicedPlaysView.render(secondary, beginData);
-                     //$dynamicContent.html(ready_secondary);
-                     }
-                     );
-                    *
-                    * */
+                    $.when(
+                        // определить данные
+                        choicedPlaysModel.getTemplatesContents(urlTitle)
+                    ).done(
+                        // Заполнить шаблон этими данными и вставить в область динамически генерируемого контента
+                        function (beginData) {
+                            console.log('beginData', beginData);
+                            // Заполнить шаблон данными и загрузить через экземпляр view
+                            //var choicedPlaysView = makeReadyTemplate(secondary, beginData);
+                            //var ready_secondary = choicedPlaysView.render(secondary, beginData);
+                            //$dynamicContent.html(ready_secondary);
+                        }
+                    );
+                    /*  *
+                     * */
 
 
                     // Через view заполнить шаблон данными и вставить в dynamicContent
