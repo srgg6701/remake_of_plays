@@ -263,11 +263,14 @@ var $dynamicContent = $("#dynamicContent"),
                             var choicedPlaysView =  new makeReadyTemplate(secondary, beginData);
                             var ready_secondary = choicedPlaysView.render(secondary, beginData); // возвращает this.ready_element
                             $dynamicContent.html(ready_secondary);
+                            for (var cnt=0; cnt < beginData["images"].length; cnt++) {
+                                $("#left").append(beginData["images"][cnt]);
+                            }
                             $dynamicContent.on("click", "#openGateButton", function(event) {
                                 this.setAttribute("disabled", "true");
                                 replaceImage("<img src='images/on_the_beginning/openned_gate.jpg'>", $("#gateImage"));
                             });
-                            
+                            //var beginImages = document.getElementById("left").getElementsByTagName("img");
                         }
                     );
                     /*  *
