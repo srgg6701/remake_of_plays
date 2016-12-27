@@ -10,7 +10,7 @@
 }
 
 #left {
-    width: 16%;
+    width: 12%;
 }
 
 #left > img {
@@ -20,11 +20,17 @@
 }
 
 #middle {
-    width: 54%;
+    width: 57%;
 }
 
-#middle > * {
+#middle > h3 {
     border: 1px solid;
+    width: 42%;
+    font-size: 22px;
+    margin-left: 35%;
+}
+
+#middle > div {
     width: 96%;
     margin-left: 2%;
 }
@@ -52,6 +58,28 @@
     padding: 7px;
 }
 
+#forButtons button {
+    font-size: 16px;
+    padding: 6px;
+}
+
+#choicePlay  {
+    border: 1px solid;
+    /*margin: 3%; */
+    overflow: auto;
+}
+
+#choicePlay > button {
+    margin-left: 7%;
+}
+
+#openGateButton {
+    margin-left: 18%;
+    margin-top: 8%;
+    margin-bottom: 4%;
+}
+
 #right #gateImage > img {
-    width: 100%;
+    width: 60%;
+    margin: 4% 20%;
 }

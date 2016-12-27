@@ -99,6 +99,10 @@ function checkReadyPrimeBlocks(xmarineModel, black_parodyModel) {
     return defer.promise();
 }
 
+function replaceImage(img, place) {
+    place.html(img);
+}
+
 var config = {
     viewInit: {
         file_names: ['Black_parody', 'Xmarine']
@@ -259,12 +263,15 @@ var $dynamicContent = $("#dynamicContent"),
                             var choicedPlaysView =  new makeReadyTemplate(secondary, beginData);
                             var ready_secondary = choicedPlaysView.render(secondary, beginData); // возвращает this.ready_element
                             $dynamicContent.html(ready_secondary);
+                            $dynamicContent.on("click", "#openGateButton", function(event) {
+                                this.setAttribute("disabled", "true");
+                                replaceImage("<img src='images/on_the_beginning/openned_gate.jpg'>", $("#gateImage"));
+                            });
+                            
                         }
                     );
                     /*  *
                      * */
-
-
                     // Через view заполнить шаблон данными и вставить в dynamicContent
 
 
