@@ -3,9 +3,9 @@
     "onTheBeginning": {
       "header": "Black parody",
       "playsTitle": "Black_parody",
-      "imgOnPrimary": "<img src=\"images/on_the_beginning/evil_eyes.jpg\">",
-      "images": ["<img src=\"images/on_the_beginning/img1.jpg\">",
-        "<img src=\"images/on_the_beginning/img2.jpg\">"],
+      "imgOnPrimary": "evil_eyes.jpg\">",
+      "images": ["img1.jpg\">",
+        "img2.jpg\""],
       "preview": "There is one dangerous mad psychopath among the characters. Some of the episodes are parody to \"Big Lebovsky\". They are similar to some of the episodes of this movie, but, in the same time they are much more serious and have completely other aftermath for the characters who got under hot hard hand of the psychopath."
     },
     "headerLogotip": "<img src=\"images/with_characters/header_black_parody.jpg\">",

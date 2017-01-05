@@ -1,90 +1,76 @@
+.collapsed{
+        height: 0;
+        overflow: hidden;
+}
+
 #prime_wrapper_div {
-    width: 94%;
-    margin-left: 3%;
-    margin-top: 2.5%;
     border: 2px solid;
     background-image: url("../images/textures/buket.jpg");
 }
 
-#prime_wrapper_div > p {
+#par {
     font-size: 20px;
     font-family: "Yu Gothic UI";
-    padding: 6px;
-    width: 67%;
-    /*border: 1px solid; */
-    margin-left: 12%;
-    margin-top: 1%;
-}
-
-#divInPrimary {
-    width: 96%;
-    margin-left: 2%;
-    margin-top: 1%;
-    margin-bottom: 0.5%;
-    overflow: auto;
+    /*padding: 6px;*/
+    border: 1px solid;
+    margin-top: 2%;
 }
 
 #divInPrimary > div {
-    width: 48%;
-    margin-left: 1%;
-    margin-bottom: 1%;
-    margin-top: 0.5%;
-    float: left;
     border: 2px solid steelblue;
     border-radius: 10px;
     background-color: lightcyan;
-    overflow: auto;
+}
+
+@media(min-width:993px){
+    #divInPrimary {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+    #divInPrimary > div {
+        width: calc(50% - 15px);
+    }
 }
 
 #divInPrimary > div > h2 {
-    margin-left: 9%;
-    margin-top: 2%;
-    width: 75%;
     border: 1px solid darkblue;
-    padding: 6px;
     font-size: 24px;
 }
-.mainPart {
-    overflow: auto;
-    border: 1px solid dodgerblue;
-    width: 97%;
-    margin-left: 2%;
-    margin-top: 1%;
-    margin-bottom: 2%;
+
+.imageTextEnter {
+    display: flex;
+    background-image: url(../images/on_the_beginning/devil.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* min-height: 500px; */
+    height: 0;
+    padding-bottom: 97%;
+
 }
 
-.mainPart > div {
-    margin-top: 1%;
-}
-
-.mainPart .image {
-    float: left;
-    width: 21%;
-    margin-left: 1%;
-    margin-bottom: 4%;
-}
-
-.image > img {
-    width: 100%;
-}
-
-.TextAndEnter {
-    float: left;
-    width: 70%;
-    margin-left: 1%;
-    margin-bottom: 2%;
-    border: 1px solid darkslategrey;
-    padding: 5px;
+@media(min-width:993px){
+    .image {
+        width: calc(30% - 7px);
+    }
+    .rightInBlock {
+        width: calc(70% - 10px);
+        border: 1px solid darkslategrey;
+    }
 }
 
 .preview {
     font-size: 18px;
+    padding: 6px;
 }
 
 .entersToSecondary {
     border: 1px solid;
-    font-size: 18px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    padding-left: 42%;
+    margin-bottom: 3%;
+    padding: 5px;
+}
+
+.entersToSecondary > a {
+    font-size: 20px;
 }

@@ -1,3 +1,12 @@
+body, body * {
+    box-sizing: border-box;
+}
+
+.row {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+/*
 #secondaryDiv {
     width: 100%;
     overflow: auto;
@@ -6,80 +15,32 @@
 #secondaryDiv > div {
     float: left;
     border: 1px solid;
-    margin-left: 1%;
+   margin-left: 1%;
 }
+*/
 
-#left {
-    width: 12%;
-}
-
-#left > img {
-    margin-top: 2%;
-    margin-left: 2%;
-    width: 96%;
-}
-
-#middle {
-    width: 57%;
+#secondaryDiv > div {
+    border: 1px solid;
 }
 
 #middle > h3 {
     border: 1px solid;
-    width: 42%;
     font-size: 22px;
-    margin-left: 35%;
-}
-
-#middle > div {
-    width: 96%;
-    margin-left: 2%;
-}
-
-#middle > #bigImage > img {
-    width: 100%;
-}
-
-#right {
-    width: 24%;
 }
 
 #right > div {
-    margin: 1%;
     border: 1px solid;
     font-size: 16px;
     font-family: "Microsoft YaHei UI";
 }
 
-#preview {
-    padding: 7px;
-}
-
-#explain {
-    padding: 7px;
-}
 
 #forButtons button {
     font-size: 16px;
-    padding: 6px;
 }
 
 #choicePlay  {
     border: 1px solid;
-    /*margin: 3%; */
-    overflow: auto;
 }
 
-#choicePlay > button {
-    margin-left: 7%;
-}
 
-#openGateButton {
-    margin-left: 18%;
-    margin-top: 8%;
-    margin-bottom: 4%;
-}
-
-#right #gateImage > img {
-    width: 60%;
-    margin: 4% 20%;
-}
