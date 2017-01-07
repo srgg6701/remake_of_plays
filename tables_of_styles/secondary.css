@@ -23,9 +23,17 @@ body, body * {
     border: 1px solid;
 }
 
+#left img {
+    width: 100%;
+}
+
 #middle h1 {
     border: 1px solid;
     font-size: 22px;
+}
+
+#middle img {
+    width: 100%;
 }
 
 #right > div {
@@ -52,4 +60,8 @@ body, body * {
     border: 1px solid;
 }
 
+#gateImage > img {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
 

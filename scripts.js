@@ -247,9 +247,6 @@ var $dynamicContent = $("#dynamicContent"),
                 // Определить, какой window[key]
                 // заполнить шаблон соответствующими данными
                 function (secondary) {
-                    //var xmarineModel = new playsModel("Xmarine"), // checkJsonData runs asynchronously
-                    // black_parodyModel = new playsModel("Black_parody");
-                    // Через model определить данные для шаблона Secondary
                     var choicedPlaysModel = new playsModel(urlTitle);
                     $.when(
                         // определить данные
@@ -257,32 +254,25 @@ var $dynamicContent = $("#dynamicContent"),
                     ).done(
                         // Заполнить шаблон этими данными и вставить в область динамически генерируемого контента
                         function (beginData) {
-                            //console.log(secondary);
-                           // console.log('beginData', beginData);
-                            // Заполнить шаблон данными и загрузить через экземпляр view
                             var choicedPlaysView =  new makeReadyTemplate(secondary, beginData);
                             var ready_secondary = choicedPlaysView.render(secondary, beginData); // возвращает this.ready_element
                             $dynamicContent.html(ready_secondary);
                             for (var cnt=0; cnt < beginData["images"].length; cnt++) {
-                                $("#left").append("<img class='col-md-12' src=\"images/on_the_beginning/"+beginData["images"][cnt]+">");
+                                $("#left").append("<img src=\"images/on_the_beginning/"+beginData["images"][cnt]+">");
                             }
                             $dynamicContent.on("click", "#openGateButton", function(event) {
                                 this.setAttribute("disabled", "true");
                                 replaceImage("<img src='images/on_the_beginning/openned_gate.jpg'>", $("#gateImage"));
+                                /* При наведении мыши в строку приходит url:
+                               * после цифр сразу /#enter_to_plays/:urlTitle.
+                                *
+                                * */
                             });
-                            //var beginImages = document.getElementById("left").getElementsByTagName("img");
                         }
                     );
-                    /*  *
-                     * */
-                    // Через view заполнить шаблон данными и вставить в dynamicContent
-
 
                 }
             );
-            //console.log(window["Xmarine"]);
-            // console.log(window["Black_parody"]);
-            // Пробег по ключам. Если нет в window, вызвать getData и checkJsonData и определить window[key].
         },
         enterToPlays: function () {
 
