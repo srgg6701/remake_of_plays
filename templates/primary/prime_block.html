@@ -5,17 +5,13 @@
                     <%=header%>
                 </h2>
             </div>
-            <div class="col-md-12 imageTextEnter">
-                <div class="rightInBlock">
-                    <div class="col-md-12">
-                        <p class="preview">
-                            <%=preview%>
-                        </p>
-                    </div>
-                    <div class="col-md-3 col-md-offset-2 entersToSecondary">
-                        <a href="#enter_to_secondary/<%=playsTitle%>">Enter</a>
-                    </div>
-                </div>
+            <div class="col-md-12 imageTextEnter image<%=playsTitle%>">
+                <!--<div class="rightInBlock col-md-12"></div> -->
+                    <a href="#enter_to_secondary/<%=playsTitle%>" class="textEnter">
+                            <p class="preview">
+                                <%=preview%>
+                            </p>
+                    </a>
             </div>
     </div>
 </script>

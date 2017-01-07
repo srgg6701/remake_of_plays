@@ -2,11 +2,13 @@
     <div id="secondaryDiv" class="row">
          <div id="left" class="col-md-1"></div>
          <div id="middle" class="col-md-8">
-              <h3> <%=header%> </h3>
-              <div id="bigImage">
-                   <%=images[0]%>
+              <div class="col-md-12">
+                   <h1> <%=header%> </h1>
               </div>
-            </div>
+              <div id="bigImage" class="col-md-12">
+                   <img class="col-md-12" src="../../images/on_the_beginning/<%=images[0]%>">
+              </div>
+         </div>
          <div id="right" class="col-md-3">
               <div id="preview" class="col-md-12"><%=preview%></div>
               <div id="explain" class="col-md-12">You may open the gate and pass in them to see the plays.</div>
@@ -17,7 +19,7 @@
                    </div>
                    <button id="openGateButton">Open gate and enter</button>
               </div>
-              <div id="gateImage"  class="col-md-12">
+              <div id="gateImage"  class="col-md-7 col-md-offset-2">
                    <img  class="col-md-12" src="../../images/on_the_beginning/closed_gate.jpg">
               </div>
          </div>

@@ -23,7 +23,7 @@ body, body * {
     border: 1px solid;
 }
 
-#middle > h3 {
+#middle h1 {
     border: 1px solid;
     font-size: 22px;
 }
@@ -34,6 +34,15 @@ body, body * {
     font-family: "Microsoft YaHei UI";
 }
 
+#preview {
+    padding: 6px;
+    font-size: 18px;
+}
+
+#explain {
+    padding: 8px;
+    font-size: 18px;
+}
 
 #forButtons button {
     font-size: 16px;

@@ -11,7 +11,6 @@
 #par {
     font-size: 20px;
     font-family: "Yu Gothic UI";
-    /*padding: 6px;*/
     border: 1px solid;
     margin-top: 2%;
 }
@@ -41,36 +40,52 @@
 
 .imageTextEnter {
     display: flex;
-    background-image: url(../images/on_the_beginning/devil.jpg);
+    /*background-image: url(../images/on_the_beginning/devil.jpg); */
     background-size: contain;
     background-repeat: no-repeat;
     /* min-height: 500px; */
     height: 0;
     padding-bottom: 97%;
+}
 
+.imageTextEnter > a {
+    background-color: rgba(255,255,255,0.35);
+    position: absolute;
+    padding: 20px;
+    text-decoration: none;
+    bottom: 20px;
+    left: 5%;
+    right: 5%;
+    font-size: 18px;
+}
+
+.imageXmarine {
+    background-image: url("../images/on_the_beginning/devil.jpg");
+}
+
+.imageBlack_parody {
+    background-image: url("../images/on_the_beginning/evil_eyes.jpg");
 }
 
 @media(min-width:993px){
     .image {
         width: calc(30% - 7px);
     }
-    .rightInBlock {
-        width: calc(70% - 10px);
+    .imageTextEnter {
+        /* width: calc(70% - 10px); */
         border: 1px solid darkslategrey;
     }
 }
-
+.imageTextEnter > a:hover {
+    background-color: #CED8F6;
+    text-decoration: underline;
+}
 .preview {
     font-size: 18px;
     padding: 6px;
 }
-
-.entersToSecondary {
-    border: 1px solid;
-    margin-bottom: 3%;
+#forButtons button {
+    font-size: 16px;
     padding: 5px;
 }
 
-.entersToSecondary > a {
-    font-size: 20px;
-}
