@@ -1,26 +1,23 @@
 <script type="text/template" id="left_section">
     <div id="secondaryDiv" class="row">
          <div id="left" class="col-md-1"></div>
-         <div id="middle" class="col-md-8">
-              <div class="col-md-12">
-                   <h1> <%=header%> </h1>
+         <div id="middle" class="col-md-7">
+              <div class="col-md-8 col-md-offset-2">
+                   <%=headerLogotip%>
               </div>
               <div id="bigImage" class="col-md-12">
                    <img src="../../images/on_the_beginning/<%=images[0]%>">
               </div>
          </div>
-         <div id="right" class="col-md-3">
+         <div id="right" class="col-md-4">
               <div id="preview" class="col-md-12"><%=preview%></div>
               <div id="explain" class="col-md-12">You may open the gate and pass in them to see the plays.</div>
-              <div id="forButtons" class="col-md-12">
-                   <div id="choicePlay"  class="col-md-12">
-                        <button class="choicePlay">X-marine</button>
-                        <button class="choicePlay">Black parody</button>
-                   </div>
-                   <button id="openGateButton">Open gate and enter</button>
+              <div id="enterButtons" class="col-md-12">
+                   <div class="col-md-5 choicePlay">X-marine</div>
+                   <div class="col-md-6 choicePlay">Black parody</div>
               </div>
-              <div id="gateImage"  class="col-md-7 col-md-offset-2">
-                   <img  class="col-md-12" src="../../images/on_the_beginning/closed_gate.jpg">
+              <div id="enter"  class="col-md-2 col-md-offset-5">
+                  <a href="#in_the_plays/<%=playsTitle%>">Enter</a> <!---->
               </div>
          </div>
     </div>

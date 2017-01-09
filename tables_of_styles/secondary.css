@@ -32,14 +32,15 @@ body, body * {
     font-size: 22px;
 }
 
-#middle img {
+#middle > div > img {
     width: 100%;
 }
 
 #right > div {
     border: 1px solid;
-    font-size: 16px;
+    font-size: 18px;
     font-family: "Microsoft YaHei UI";
+    margin-bottom: 2%;
 }
 
 #preview {
@@ -48,20 +49,34 @@ body, body * {
 }
 
 #explain {
-    padding: 8px;
-    font-size: 18px;
+    padding: 10px;
+    /* font-size: 18px; */
 }
 
-#forButtons button {
+#enterButtons div {
     font-size: 16px;
 }
 
-#choicePlay  {
+.choicePlay  {
     border: 1px solid;
+    box-shadow: 0 0 32px 0 rgba(0,0,0,0.7);
+    padding: 20px 60px;
+    position: relative;
+    top: 40%;
+    left: 5%;
+    border: none;
+    background-color: rgba(255,255,255,0.5);
+    margin-top: 10px;
+    margin-bottom: 11px;
 }
 
-#gateImage > img {
+#enter > a {
+    font-size: larger;
+}
+
+#gateDiv > img {
     margin-top: 5%;
     margin-bottom: 5%;
+    width: 100%
 }
 

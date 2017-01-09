@@ -206,8 +206,8 @@ var $dynamicContent = $("#dynamicContent"),
     AppRouter = Backbone.Router.extend({
         routes: {
             "": "initView",
-            "enter_to_secondary/:urlTitle": "buildSecondary",
-            "enter_to_plays": "enterToPlays"
+            "in_the_secondary/:urlTitle": "buildSecondary",
+            "in_the_plays/:urlTitle": "enterToPlays"
         },
         initView: function () {
             var file_path = "templates/primary/", prime_blocks = {prime_blocks: []};
@@ -242,7 +242,6 @@ var $dynamicContent = $("#dynamicContent"),
 
         },
         buildSecondary: function (urlTitle) {
-            console.log(urlTitle);
             $.when(getTemplate("templates/secondary/secondary.html")).done(
                 // Определить, какой window[key]
                 // заполнить шаблон соответствующими данными
@@ -260,12 +259,11 @@ var $dynamicContent = $("#dynamicContent"),
                             for (var cnt=0; cnt < beginData["images"].length; cnt++) {
                                 $("#left").append("<img src=\"images/on_the_beginning/"+beginData["images"][cnt]+">");
                             }
-                            $dynamicContent.on("click", "#openGateButton", function(event) {
+                            $dynamicContent.on("click", ".choicePlay", function(event) {
                                 this.setAttribute("disabled", "true");
-                                replaceImage("<img src='images/on_the_beginning/openned_gate.jpg'>", $("#gateImage"));
-                                /* При наведении мыши в строку приходит url:
-                               * после цифр сразу /#enter_to_plays/:urlTitle.
-                                *
+                                /* Вторая кнопка из пассивной делается активной;
+                               * устанавливаются цвета и значения переменных;
+                                * left заполняется новыми изображениями
                                 * */
                             });
                         }
