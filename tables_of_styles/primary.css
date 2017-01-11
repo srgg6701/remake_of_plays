@@ -72,7 +72,6 @@
         width: calc(30% - 7px);
     }
     .imageTextEnter {
-        /* width: calc(70% - 10px); */
         border: 1px solid darkslategrey;
     }
 }

@@ -119,8 +119,6 @@ var playsModel = Backbone.Model.extend(
          * @param key
          * @param prime_block
          */
-        initialize: function (key) {
-        },
         getTemplatesContents: function (key) {
             var _this = this,
                 defer = $.Deferred();
@@ -149,6 +147,29 @@ var playsModel = Backbone.Model.extend(
 
 var makeReadyTemplate = Backbone.View.extend(
     {
+        events: {
+            //В event входит иерархия элементов от явно указанного (dynamicContent) до самого вложенного
+            // в кликнутый элемент.
+            'click .choicePlay': function (event) {
+                var newUrlTitle;
+                console.log(this);
+                /*switch(this.innerText) {
+                    case "X-marine":
+                       newUrlTitle="Xmarine";
+                    break;
+                    case "Black parody":
+                        newUrlTitle = "Black_parody";
+                        break;
+                }
+                 location.href="in_the_secondary"+newUrlTitle;
+                 console.log('Clicked on el!', {'event.target': event.target, 'event.currentTarget':event.currentTarget});
+                */
+            }/*,
+             'click':function(){
+             console.log('Clicked on el!');
+             }*/
+        },
+        el: '#dynamicContent',
         initialize: function (templ, data) {
             this.render(templ, data);
         },
@@ -204,82 +225,83 @@ var $dynamicContent = $("#dynamicContent"),
     }),
     default_view = new defaultView(),
     AppRouter = Backbone.Router.extend({
-        routes: {
-            "": "initView",
-            "in_the_secondary/:urlTitle": "buildSecondary",
-            "in_the_plays/:urlTitle": "enterToPlays"
-        },
-        initView: function () {
-            var file_path = "templates/primary/", prime_blocks = {prime_blocks: []};
-            $.when(getTemplate(file_path + "prime_block.html"),
-                getTemplate(file_path + "prime_wrapper.html")
-            ).done(function (prime_block, prime_wrapper) {
-                var xmarineModel = new playsModel("Xmarine"), // checkJsonData runs asynchronously
-                    black_parodyModel = new playsModel("Black_parody");  // checkJsonData runs asynchronousl
-                //console.groupCollapsed('checkTemplates');
-                //console.log('xmarineModel, black_parodyModel', { xmarineModel: xmarineModel, black_parodyModel: black_parodyModel });
-                //console.groupEnd();
-                $.when(
-                    // getTemplatesContents извлекает данные из json-файлов для заполнения шаблонов этими данными и
-                    // проверяет, что эти данные получены
-                    xmarineModel.getTemplatesContents("Xmarine"),
-                    black_parodyModel.getTemplatesContents("Black_parody")
-                ).done(function (beginDataXm, beginDataBp) {
-                    // Эти экземпляры предназначены для того, чтобы заполнить каждый prime_block данными через
-                    // makeReadyTemplate
-                    var xmarineView = new makeReadyTemplate(prime_block, beginDataXm),
-                        black_parodyView = new makeReadyTemplate(prime_block, beginDataBp);
-                    console.groupCollapsed('XmarineTmpl,  Black_parodyTmpl');
-                    console.log({xmarineView: xmarineView, black_parodyView: black_parodyView});
-                    console.groupEnd();
-                    default_view.render(xmarineView.ready_element, black_parodyView.ready_element, prime_wrapper); //для того, чтобы заполнить prime_wrapper готовыми блоками, вставить
-                    // его в область динамически генерируемого контента и развернуть:
-                    //default_view.render(xmarineView, black_parodyView, prime_wrapper);
-                });
-
-            });
-            // Получить оба ready_prime_block через каждый из экземпляров, сложить их в массив и внести в prime_wrapper.
-
-        },
-        buildSecondary: function (urlTitle) {
-            $.when(getTemplate("templates/secondary/secondary.html")).done(
-                // Определить, какой window[key]
-                // заполнить шаблон соответствующими данными
-                function (secondary) {
-                    var choicedPlaysModel = new playsModel(urlTitle);
+            routes: {
+                "": "initView",
+                "in_the_secondary/:urlTitle": "buildSecondary",
+                "in_the_plays/:urlTitle/about_characters": "loadPlays",
+                "in_the_plays/:urlTitle/part:num": "choicePart"
+            },
+            initView: function () {
+                var file_path = "templates/primary/", prime_blocks = {prime_blocks: []};
+                $.when(getTemplate(file_path + "prime_block.html"),
+                    getTemplate(file_path + "prime_wrapper.html")
+                ).done(function (prime_block, prime_wrapper) {
+                    var xmarineModel = new playsModel("Xmarine"), // checkJsonData runs asynchronously
+                        black_parodyModel = new playsModel("Black_parody");  // checkJsonData runs asynchronousl
+                    //console.groupCollapsed('checkTemplates');
+                    //console.log('xmarineModel, black_parodyModel', { xmarineModel: xmarineModel, black_parodyModel: black_parodyModel });
+                    //console.groupEnd();
                     $.when(
-                        // определить данные
-                        choicedPlaysModel.getTemplatesContents(urlTitle)
-                    ).done(
-                        // Заполнить шаблон этими данными и вставить в область динамически генерируемого контента
-                        function (beginData) {
-                            var choicedPlaysView =  new makeReadyTemplate(secondary, beginData);
-                            var ready_secondary = choicedPlaysView.render(secondary, beginData); // возвращает this.ready_element
-                            $dynamicContent.html(ready_secondary);
-                            for (var cnt=0; cnt < beginData["images"].length; cnt++) {
-                                $("#left").append("<img src=\"images/on_the_beginning/"+beginData["images"][cnt]+">");
-                            }
-                            $dynamicContent.on("click", ".choicePlay", function(event) {
-                                this.setAttribute("disabled", "true");
-                                /* Вторая кнопка из пассивной делается активной;
-                               * устанавливаются цвета и значения переменных;
-                                * left заполняется новыми изображениями
-                                * */
+                        // getTemplatesContents извлекает данные из json-файлов для заполнения шаблонов этими данными и
+                        // проверяет, что эти данные получены
+                        xmarineModel.getTemplatesContents("Xmarine"),
+                        black_parodyModel.getTemplatesContents("Black_parody")
+                    ).done(function (beginDataXm, beginDataBp) {
+                        // Эти экземпляры предназначены для того, чтобы заполнить каждый prime_block данными через
+                        // makeReadyTemplate
+                        var xmarineView = new makeReadyTemplate(prime_block, beginDataXm),
+                            black_parodyView = new makeReadyTemplate(prime_block, beginDataBp);
+                        console.groupCollapsed('XmarineTmpl,  Black_parodyTmpl');
+                        console.log({xmarineView: xmarineView, black_parodyView: black_parodyView});
+                        console.groupEnd();
+                        default_view.render(xmarineView.ready_element, black_parodyView.ready_element, prime_wrapper); //для того, чтобы заполнить prime_wrapper готовыми блоками, вставить
+                        // его в область динамически генерируемого контента и развернуть:
+                        //default_view.render(xmarineView, black_parodyView, prime_wrapper);
+                    });
+
+                });
+                // Получить оба ready_prime_block через каждый из экземпляров, сложить их в массив и внести в prime_wrapper.
+
+            },
+            buildSecondary: function (urlTitle) {
+                $.when(getTemplate("templates/secondary/secondary.html")).done(
+                    // Определить, какой window[key]
+                    // заполнить шаблон соответствующими данными
+                    function (secondary) {
+                        var choicedPlaysModel = new playsModel(urlTitle);
+                        $.when(
+                            // определить данные
+                            choicedPlaysModel.getTemplatesContents(urlTitle)
+                        ).done(
+                            // Заполнить шаблон этими данными и вставить в область динамически генерируемого контента
+                            function (beginData) {
+                                var choicedPlaysView = new makeReadyTemplate(secondary, beginData);
+                                var ready_secondary = choicedPlaysView.render(secondary, beginData); // возвращает this.ready_element
+                                $dynamicContent.html(ready_secondary);
+                                for (var cnt = 0; cnt < beginData["images"].length; cnt++) {
+                                    $("#left").append("<img src=\"images/on_the_beginning/" + beginData["images"][cnt] + ">");
+                                }
+                                /*var choicePlay = $(".choicePlay");
+                                 $("").click = function () {
+
+                                 };
+                                $dynamicContent.on("click", ".choicePlay", function(event) {
+                                 this.setAttribute("disabled", "true");
+                                 console.log();
+                                 Вторая кнопка из пассивной делается активной;
+                                 * устанавливаются цвета и значения переменных;
+                                 * left заполняется новыми изображениями
+                                 * */
                             });
-                        }
-                    );
+                    }
+                );
 
-                }
-            );
-        },
-        enterToPlays: function () {
+            },
+            loadPlays: function (urlTitle) {
 
+            }
         }
-
-        //
-
-    });
-
+    );
 var appRouter = new AppRouter();
 Backbone.history.start();
 
