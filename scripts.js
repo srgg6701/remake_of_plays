@@ -111,9 +111,6 @@ var config = {
 
 var playsModel = Backbone.Model.extend(
     {
-        defaults: {
-            "ready_prime_block": ""
-        },
         /**
          * "Xmarine", prime_block
          * @param key
@@ -125,7 +122,7 @@ var playsModel = Backbone.Model.extend(
             getData(key);  // Получает данные из json (асинхронно) и сохраняет в window[key]
             checkJsonData(key).then( // Проверка наличия этих данных, затем -
                 function (play_object) { // данная функция - это defer.resolve, вызываемая в теле checkJsonData
-                    _this.set('beginData', play_object["onTheBeginning"]);
+                    _this.set('plays_object', play_object);
                     console.log('getTemplatesContents result, get model data: ', _this.get('beginData'));
                     defer.resolve(_this.get('beginData'));
                 },
@@ -135,13 +132,6 @@ var playsModel = Backbone.Model.extend(
             );
             return defer.promise();
         }
-        /**
-         * Эта функция каждые 100 милисекунд проверяет, имеет ли window[key] значение, отличное от
-         * undefined. Если есть, то текущий экземпляр playsModel получает поле play_object с таким
-         * значением, как window[key] (определенным объектом), и проверка прекращается.
-         * Если cnt = 50, то проверка так же прерывается.
-         */
-
     }
 );
 
@@ -152,7 +142,6 @@ var makeReadyTemplate = Backbone.View.extend(
             // в кликнутый элемент.
             'click .choicePlay': function (event) {
                 var newUrlTitle;
-                console.log(this);
                 /*switch(this.innerText) {
                     case "X-marine":
                        newUrlTitle="Xmarine";
@@ -246,11 +235,11 @@ var $dynamicContent = $("#dynamicContent"),
                         // проверяет, что эти данные получены
                         xmarineModel.getTemplatesContents("Xmarine"),
                         black_parodyModel.getTemplatesContents("Black_parody")
-                    ).done(function (beginDataXm, beginDataBp) {
+                    ).done(function (playsObjectXm, playsObjectBp) {
                         // Эти экземпляры предназначены для того, чтобы заполнить каждый prime_block данными через
                         // makeReadyTemplate
-                        var xmarineView = new makeReadyTemplate(prime_block, beginDataXm),
-                            black_parodyView = new makeReadyTemplate(prime_block, beginDataBp);
+                        var xmarineView = new makeReadyTemplate(prime_block, playsObjectXm),
+                            black_parodyView = new makeReadyTemplate(prime_block, playsObjectBp);
                         console.groupCollapsed('XmarineTmpl,  Black_parodyTmpl');
                         console.log({xmarineView: xmarineView, black_parodyView: black_parodyView});
                         console.groupEnd();
@@ -269,17 +258,17 @@ var $dynamicContent = $("#dynamicContent"),
                     // заполнить шаблон соответствующими данными
                     function (secondary) {
                         var choicedPlaysModel = new playsModel(urlTitle);
-                        $.when(
+                        $.when( // Может быть, поменять этот метод на что-то другое.
                             // определить данные
                             choicedPlaysModel.getTemplatesContents(urlTitle)
                         ).done(
                             // Заполнить шаблон этими данными и вставить в область динамически генерируемого контента
-                            function (beginData) {
-                                var choicedPlaysView = new makeReadyTemplate(secondary, beginData);
-                                var ready_secondary = choicedPlaysView.render(secondary, beginData); // возвращает this.ready_element
+                            function (playsObject) {
+                                var choicedPlaysView = new makeReadyTemplate(secondary, playsObject["on_the_beginning"]);
+                                var ready_secondary = choicedPlaysView.render(secondary, playsObject["on_the_beginning"]); // возвращает this.ready_element
                                 $dynamicContent.html(ready_secondary);
-                                for (var cnt = 0; cnt < beginData["images"].length; cnt++) {
-                                    $("#left").append("<img src=\"images/on_the_beginning/" + beginData["images"][cnt] + ">");
+                                for (var cnt = 0; cnt < playsObject["on_the_beginning"]["images"].length; cnt++) {
+                                    $("#left").append("<img src=\"images/on_the_beginning/" + playsObject["on_the_beginning"]["images"][cnt] + ">");
                                 }
                                 /*var choicePlay = $(".choicePlay");
                                  $("").click = function () {
