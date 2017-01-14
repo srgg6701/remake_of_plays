@@ -158,7 +158,10 @@ var settingColors = Backbone.View.extend(
                 ['removeClass']("backgroundFor" + otherUrlTitle)
                 .addClass("backgroundFor" + urlTitle);
             for(var c= 0, l = secondElems.length; c < l; c++){
-               // console.log($("#"+secondElems[c]));
+               console.log($("#"+secondElems[c]));
+                var elem = $("#"+secondElems[c]);
+                elem.removeClass("second"+otherUrlTitle);
+                elem.addClass("second"+urlTitle);
             }
         },
         paintInPlays: function(urlTitle, otherUrlTitle){
@@ -246,10 +249,13 @@ var $dynamicContent = $("#dynamicContent"),
                                 for (var cnt = 0; cnt < arrayImages.length; cnt++) {
                                     $("#left").append("<img src=\"images/onTheBeginning/" + arrayImages[cnt] + ">");
                                 }
+                                console.log($("#preview"));
+                                console.log($("#preview")[0]);
+                                if($("#preview")[0]!==undefined){
+                                    defineClassNames(urlTitle);
+                                }
+
                             });
-                        console.log($("#preview"));
-                        console.log($("#preview")[0]);
-                        defineClassNames(urlTitle);
                     }
                 );
             },
