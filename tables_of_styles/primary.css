@@ -40,7 +40,7 @@
 
 .imageTextEnter {
     display: flex;
-    /*background-image: url(../images/on_the_beginning/devil.jpg); */
+    /*background-image: url(../images/onTheBeginning/devil.jpg); */
     background-size: contain;
     background-repeat: no-repeat;
     /* min-height: 500px; */
@@ -60,11 +60,11 @@
 }
 
 .imageXmarine {
-    background-image: url("../images/on_the_beginning/devil.jpg");
+    background-image: url("../images/onTheBeginning/devil.jpg");
 }
 
 .imageBlack_parody {
-    background-image: url("../images/on_the_beginning/evil_eyes.jpg");
+    background-image: url("../images/onTheBeginning/evil_eyes.jpg");
 }
 
 @media(min-width:993px){
@@ -72,6 +72,7 @@
         width: calc(30% - 7px);
     }
     .imageTextEnter {
+        /* width: calc(70% - 10px); */
         border: 1px solid darkslategrey;
     }
 }

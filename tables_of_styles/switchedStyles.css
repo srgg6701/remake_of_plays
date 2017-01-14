@@ -1,9 +1,20 @@
-#backgroundForXmarine {
-    background-image: url("../../images/textures/waterdrops.jpg");
+.backgroundForXmarine {
+    background-image: url("../images/textures/waterdrops.jpg");
 }
-#backgroundForBlack_parody {
-    background-image: url("../../images/textures/texture.jpg");
+.backgroundForBlack_parody {
+    background-image: url("../images/textures/texture.jpg");
 }
+
+.previwXmarine {
+    background-color: rgba(0.1, 0.4, 0.6, 0.2);
+    color: darkblue;
+}
+
+.explainXmarine {
+    background-color: rgba(0.1, 0.4, 0.6, 0.2);
+    color: darkblue;
+}
+
 .contentListForXmarine {
     border-color: #345693;
     background-color: rgba(0, 087, 990, 0.30);
@@ -14,14 +25,7 @@
     background-color: rgba(25, 12, 90, 0.25);
     color: lightsteelblue;
 }
-.unclickedButton_Xmarine_choiced {
-    background-color: darkviolet;
-    color: lightblue;
-}
-.unclickedButton_Black_parody_choiced {
-    background-color: lightblue;
-    color: darkviolet;
-}
+
 .paintedReplicsOfAuthor_Xmarine {
     border: 3px dashed darkviolet;
     border-radius: 4px;

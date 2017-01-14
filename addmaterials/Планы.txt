@@ -1,15 +1,39 @@
-При клике по кнопке:
-Переустанавливается urlTitle в url;
-Вызов функции setColors с urlTitle:
--------------------------------------------------------------------------------------------
-Определяются html-элементы, стили которых должны измениться.
-В зависимости от значения urlTitle элементы получают значения стилей из одного или другого 
-набора значений.
---------------------------------------------------------------------------------------------
-Вызов setComponentsOnSecondary:
----------------------------------------------------------------------------------------------
-То, что уже было в коде для получения, заполнения и вставки в dynamicContent Secondary:
-Извлекается шаблон secondary.html;
-Если нет данных, то данные извлекаются;
-шаблон заполняется данными (в зависимости от значения urlTitle) и вставляется в dynamicContent.
------------------------------------------------------------------------------------------------
+1. Сделать urlTitle со значением "Xmarine" и "Black_parody";
+2. Сделать makeReadyTemplates (makeReadyPrimeBlocks) в представление;
+	Для функции, вызываемой при входе в Secondary:
+3. Определить данные через модель;
+4. Заполнить шаблон этими данными и вставить в $dynamicContent через представление.
+
+
+Regex
+
+Hide network messages
+All
+Errors
+Warnings
+Info
+Logs
+Debug
+Handled
+?
+scripts.js:129 getTemplatesContents result, get model data:  
+Object {header: "Cabalistic bewitching hero", playsTitle: "Xmarine", imgOnPrimary: "JudyHelenCassandra.jpg"", images: Array[4], preview: "The plays are about a magic hero who was somebody …cial scientist not like all the other scientists."…}
+scripts.js:147 Clicked on el! 
+Object
+event.target
+:
+div.col-md-5.choicePlay
+this
+:
+n
+__proto__
+:
+Object
+var xbtn=$('div.choicePlay').eq(0);
+undefined
+xbtn
+[div.col-md-5.choicePlay]
+xbtn[0].innerHTML;
+"X-marine"
+xbtn.text()
+"X-marine"

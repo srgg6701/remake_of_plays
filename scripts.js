@@ -54,8 +54,6 @@ function checkJsonData(key) {
         if (window[key]) {
             // this передан через .bind
             this.play_object = window[key]; // (xmarineModel | black_parodyModel).play_object
-            //console.log(_this.play_object);
-            //defer.resolve(_this.play_object);
             defer.resolve(this.play_object);
             clearInterval(sttm);
         }
@@ -68,41 +66,6 @@ function checkJsonData(key) {
     return defer.promise();
 }
 
-
-function checkReadyPrimeBlocks(xmarineModel, black_parodyModel) {
-    var cnt = 0, defer = $.Deferred(), checkBlocks = setInterval(
-        function () {
-            cnt++;
-            // проверить, что 2 prime_block, и оба заполнены данными
-            if ((xmarineModel.ready_prime_block) && (black_parodyModel.ready_prime_block)) {
-                if (
-                    (xmarineModel.ready_prime_block != "") &&
-                    (black_parodyModel.ready_prime_block != "")
-                ) {
-                    //console.log(xmarineModel.defaults.ready_prime_block);
-                    //console.log(black_parodyModel.defaults.ready_prime_block);
-                    defer.resolve("Попали.");
-                    clearInterval(checkBlocks);
-                }
-
-            }
-
-            else {
-                if (cnt = 5) {
-                    defer.reject("Пока не попали.");
-                    clearInterval(checkBlocks);
-                }
-            }
-        },
-        60
-    );
-    return defer.promise();
-}
-
-function replaceImage(img, place) {
-    place.html(img);
-}
-
 var config = {
     viewInit: {
         file_names: ['Black_parody', 'Xmarine']
@@ -111,6 +74,9 @@ var config = {
 
 var playsModel = Backbone.Model.extend(
     {
+        defaults: {
+            "ready_prime_block": ""
+        },
         /**
          * "Xmarine", prime_block
          * @param key
@@ -122,9 +88,8 @@ var playsModel = Backbone.Model.extend(
             getData(key);  // Получает данные из json (асинхронно) и сохраняет в window[key]
             checkJsonData(key).then( // Проверка наличия этих данных, затем -
                 function (play_object) { // данная функция - это defer.resolve, вызываемая в теле checkJsonData
-                    _this.set('plays_object', play_object);
-                    console.log('getTemplatesContents result, get model data: ', _this.get('beginData'));
-                    defer.resolve(_this.get('beginData'));
+                    _this.set('jsonData', play_object);
+                    defer.resolve(_this.get('jsonData'));
                 },
                 function (mes) {
                     console.log(mes);
@@ -142,21 +107,16 @@ var makeReadyTemplate = Backbone.View.extend(
             // в кликнутый элемент.
             'click .choicePlay': function (event) {
                 var newUrlTitle;
-                /*switch(this.innerText) {
+                switch (event.target.innerText) {
                     case "X-marine":
-                       newUrlTitle="Xmarine";
-                    break;
+                        urlTitle = "Xmarine";
+                        break;
                     case "Black parody":
-                        newUrlTitle = "Black_parody";
+                        urlTitle = "Black_parody";
                         break;
                 }
-                 location.href="in_the_secondary"+newUrlTitle;
-                 console.log('Clicked on el!', {'event.target': event.target, 'event.currentTarget':event.currentTarget});
-                */
-            }/*,
-             'click':function(){
-             console.log('Clicked on el!');
-             }*/
+                location.href = "#in_the_secondary/" + urlTitle;
+            }
         },
         el: '#dynamicContent',
         initialize: function (templ, data) {
@@ -170,39 +130,43 @@ var makeReadyTemplate = Backbone.View.extend(
     }
 );
 
+var settingColors = Backbone.View.extend(
+    {
+        el: '#dynamicContent',
+        paintSecondary: function(urlTitle, otherUrlTitle, secondElems) {
+           var bodyClassList = $("body")[0].classList;
+            console.log(bodyClassList);
+            if(bodyClassList.contains("backgroundFor" + otherUrlTitle)){
+                bodyClassList.remove("backgroundFor" + otherUrlTitle);
+            }
+            if(!(bodyClassList.contains("backgroundFor" + urlTitle))) {
+                bodyClassList.add("backgroundFor" + urlTitle);
+            }
+        },
+        paintInPlays: function(urlTitle, otherUrlTitle){
+
+        }
+    }
+);
+
 var $dynamicContent = $("#dynamicContent"),
     showLoading = function () {
         $dynamicContent.html('<h2>Loading...</h2>');
     },
     defaultView = Backbone.View.extend({
-        /*  events:{
-         "click #dynamicContent": function(){
-         console.log('Body clicked');
-         "entersToSecondary"
-         "click": function(){
-         console.log('Body clicked');
-         }
-         },
-         el: '#main',*/
         entersToSecondary: function (event) {
-            console.log('entersToSecondary', event);
         },
         initialize: function () {
-            //console.log('defaultView');
             showLoading();
             /*$dynamicContent.on('click', '.entersToSecondary', function(event){
              this.entersToSecondary(event);
              }.bind(this));*/
         },
         render: function (ready_prime_block_xm, ready_prime_block_p, prime_wrapper) {
-            //console.log('Rendered!');
             var ready_prime_wrapper = _.template(prime_wrapper)({
                 Xmarine_block: ready_prime_block_xm,
                 Black_parody_block: ready_prime_block_p
             });
-            // console.log('ready_prime_wrapper',ready_prime_wrapper);
-            // Вложить prime_wrapper в область динамически генерируемого контента
-            // увеличить высотку prime_wrapper:
             $dynamicContent.html(ready_prime_wrapper);
             setTimeout(
                 function () {
@@ -227,22 +191,16 @@ var $dynamicContent = $("#dynamicContent"),
                 ).done(function (prime_block, prime_wrapper) {
                     var xmarineModel = new playsModel("Xmarine"), // checkJsonData runs asynchronously
                         black_parodyModel = new playsModel("Black_parody");  // checkJsonData runs asynchronousl
-                    //console.groupCollapsed('checkTemplates');
-                    //console.log('xmarineModel, black_parodyModel', { xmarineModel: xmarineModel, black_parodyModel: black_parodyModel });
-                    //console.groupEnd();
                     $.when(
                         // getTemplatesContents извлекает данные из json-файлов для заполнения шаблонов этими данными и
                         // проверяет, что эти данные получены
                         xmarineModel.getTemplatesContents("Xmarine"),
                         black_parodyModel.getTemplatesContents("Black_parody")
-                    ).done(function (playsObjectXm, playsObjectBp) {
+                    ).done(function (jsonDataXm, jsonDataBp) {
                         // Эти экземпляры предназначены для того, чтобы заполнить каждый prime_block данными через
                         // makeReadyTemplate
-                        var xmarineView = new makeReadyTemplate(prime_block, playsObjectXm),
-                            black_parodyView = new makeReadyTemplate(prime_block, playsObjectBp);
-                        console.groupCollapsed('XmarineTmpl,  Black_parodyTmpl');
-                        console.log({xmarineView: xmarineView, black_parodyView: black_parodyView});
-                        console.groupEnd();
+                        var xmarineView = new makeReadyTemplate(prime_block, jsonDataXm["onTheBeginning"]),
+                            black_parodyView = new makeReadyTemplate(prime_block, jsonDataBp["onTheBeginning"]);
                         default_view.render(xmarineView.ready_element, black_parodyView.ready_element, prime_wrapper); //для того, чтобы заполнить prime_wrapper готовыми блоками, вставить
                         // его в область динамически генерируемого контента и развернуть:
                         //default_view.render(xmarineView, black_parodyView, prime_wrapper);
@@ -253,41 +211,70 @@ var $dynamicContent = $("#dynamicContent"),
 
             },
             buildSecondary: function (urlTitle) {
+                console.log('buildSecondary, urlTitle=>', urlTitle);
+                var _defineClassNames = this.defineClassNames;
                 $.when(getTemplate("templates/secondary/secondary.html")).done(
                     // Определить, какой window[key]
                     // заполнить шаблон соответствующими данными
                     function (secondary) {
                         var choicedPlaysModel = new playsModel(urlTitle);
-                        $.when( // Может быть, поменять этот метод на что-то другое.
-                            // определить данные
-                            choicedPlaysModel.getTemplatesContents(urlTitle)
-                        ).done(
+                        // определить данные
+                        choicedPlaysModel.getTemplatesContents(urlTitle).then(
                             // Заполнить шаблон этими данными и вставить в область динамически генерируемого контента
-                            function (playsObject) {
-                                var choicedPlaysView = new makeReadyTemplate(secondary, playsObject["on_the_beginning"]);
-                                var ready_secondary = choicedPlaysView.render(secondary, playsObject["on_the_beginning"]); // возвращает this.ready_element
+                            function (jsonData) {
+                                var choicedPlaysView = new makeReadyTemplate(secondary, jsonData["onTheBeginning"]);
+                                var ready_secondary = choicedPlaysView.render(secondary, jsonData["onTheBeginning"]); // возвращает this.ready_element
                                 $dynamicContent.html(ready_secondary);
-                                for (var cnt = 0; cnt < playsObject["on_the_beginning"]["images"].length; cnt++) {
-                                    $("#left").append("<img src=\"images/on_the_beginning/" + playsObject["on_the_beginning"]["images"][cnt] + ">");
+                                var arrayImages = jsonData["onTheBeginning"]["images"];
+                                for (var cnt = 0; cnt < arrayImages.length; cnt++) {
+                                    $("#left").append("<img src=\"images/onTheBeginning/" + arrayImages[cnt] + ">");
                                 }
-                                /*var choicePlay = $(".choicePlay");
-                                 $("").click = function () {
-
-                                 };
-                                $dynamicContent.on("click", ".choicePlay", function(event) {
-                                 this.setAttribute("disabled", "true");
-                                 console.log();
-                                 Вторая кнопка из пассивной делается активной;
-                                 * устанавливаются цвета и значения переменных;
-                                 * left заполняется новыми изображениями
-                                 * */
                             });
+                        _defineClassNames(urlTitle);
                     }
                 );
 
             },
+            defineClassNames: function(urlTitle){
+                var otherUrlTitle;
+                switch(urlTitle){
+                    case "Xmarine":
+                        otherUrlTitle="Black_parody";
+                        break;
+                    case "Black_parody":
+                        otherUrlTitle="Xmarine";
+                        break;
+                }
+                var secondElems = {
+                    preview: $("#preview"),
+                    explain: $("#explain")
+                };
+                console.log("paintableObjects[key]: ", secondElems);
+                var choicedPlaysSettingColors = new settingColors(urlTitle, otherUrlTitle, secondElems);
+                choicedPlaysSettingColors.paintSecondary(urlTitle, otherUrlTitle, secondElems);
+            },
+            continueFilling: function(container, elems){
+                for(var c=1; c<elems.length; c++){
+                    container.append(elems[c]);
+                }
+            },
             loadPlays: function (urlTitle) {
-
+                var file_path = "templates/entered/";
+                $.when(getTemplate(file_path + "basement.html"),
+                    getTemplate(file_path + "about_characters.html")
+                ).done(function (basement, about_characters) {
+                    var choicedPlaysModel = new playsModel(urlTitle);
+                    choicedPlaysModel.getTemplatesContents(urlTitle).then(
+                        function(jsonData) {
+                            console.log(jsonData);
+                            var textAboutCharacters = jsonData["About characters"];
+                            var choicedPlaysView = new makeReadyTemplate(about_characters, textAboutCharacters),
+                            ready_about_characters = choicedPlaysView.render(about_characters, {"ffirstPg":textAboutCharacters[0]});
+                            //this.continueFilling($("#textAboutCharacters"), textAboutCharacters);
+                            $dynamicContent.html(ready_about_characters);
+                        }
+                    );
+                });
             }
         }
     );
