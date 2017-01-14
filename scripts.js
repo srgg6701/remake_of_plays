@@ -72,6 +72,25 @@ var config = {
     }
 };
 
+function defineClassNames(urlTitle){
+    var otherUrlTitle;
+    switch(urlTitle){
+        case "Xmarine":
+            otherUrlTitle="Black_parody";
+            break;
+        case "Black_parody":
+            otherUrlTitle="Xmarine";
+            break;
+    }
+    var choicedPlaysSettingColors = new settingColors(urlTitle, otherUrlTitle, ['preview','explain']);
+    //choicedPlaysSettingColors.paintSecondary(urlTitle, otherUrlTitle, ['preview','explain']);
+}
+function continueFilling(container, elems){
+    for(var c=1; c<elems.length; c++){
+        container.append(elems[c]);
+    }
+}
+
 var playsModel = Backbone.Model.extend(
     {
         defaults: {
@@ -133,14 +152,13 @@ var makeReadyTemplate = Backbone.View.extend(
 var settingColors = Backbone.View.extend(
     {
         el: '#dynamicContent',
-        paintSecondary: function(urlTitle, otherUrlTitle, secondElems) {
-           var bodyClassList = $("body")[0].classList;
-            console.log(bodyClassList);
-            if(bodyClassList.contains("backgroundFor" + otherUrlTitle)){
-                bodyClassList.remove("backgroundFor" + otherUrlTitle);
-            }
-            if(!(bodyClassList.contains("backgroundFor" + urlTitle))) {
-                bodyClassList.add("backgroundFor" + urlTitle);
+        // former paintSecondary:
+        initialize: function(urlTitle, otherUrlTitle, secondElems) {
+            $("body") // jQuery object, где HTML объект body представлен в поле с ключом 0
+                ['removeClass']("backgroundFor" + otherUrlTitle)
+                .addClass("backgroundFor" + urlTitle);
+            for(var c= 0, l = secondElems.length; c < l; c++){
+               // console.log($("#"+secondElems[c]));
             }
         },
         paintInPlays: function(urlTitle, otherUrlTitle){
@@ -212,7 +230,6 @@ var $dynamicContent = $("#dynamicContent"),
             },
             buildSecondary: function (urlTitle) {
                 console.log('buildSecondary, urlTitle=>', urlTitle);
-                var _defineClassNames = this.defineClassNames;
                 $.when(getTemplate("templates/secondary/secondary.html")).done(
                     // Определить, какой window[key]
                     // заполнить шаблон соответствующими данными
@@ -230,33 +247,11 @@ var $dynamicContent = $("#dynamicContent"),
                                     $("#left").append("<img src=\"images/onTheBeginning/" + arrayImages[cnt] + ">");
                                 }
                             });
-                        _defineClassNames(urlTitle);
+                        console.log($("#preview"));
+                        console.log($("#preview")[0]);
+                        defineClassNames(urlTitle);
                     }
                 );
-
-            },
-            defineClassNames: function(urlTitle){
-                var otherUrlTitle;
-                switch(urlTitle){
-                    case "Xmarine":
-                        otherUrlTitle="Black_parody";
-                        break;
-                    case "Black_parody":
-                        otherUrlTitle="Xmarine";
-                        break;
-                }
-                var secondElems = {
-                    preview: $("#preview"),
-                    explain: $("#explain")
-                };
-                console.log("paintableObjects[key]: ", secondElems);
-                var choicedPlaysSettingColors = new settingColors(urlTitle, otherUrlTitle, secondElems);
-                choicedPlaysSettingColors.paintSecondary(urlTitle, otherUrlTitle, secondElems);
-            },
-            continueFilling: function(container, elems){
-                for(var c=1; c<elems.length; c++){
-                    container.append(elems[c]);
-                }
             },
             loadPlays: function (urlTitle) {
                 var file_path = "templates/entered/";

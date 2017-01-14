@@ -5,14 +5,14 @@
     background-image: url("../images/textures/texture.jpg");
 }
 
-.previwXmarine {
+.secondXmarine {
     background-color: rgba(0.1, 0.4, 0.6, 0.2);
     color: darkblue;
 }
 
-.explainXmarine {
-    background-color: rgba(0.1, 0.4, 0.6, 0.2);
-    color: darkblue;
+.secondBlack_parody {
+    border-color: lavender;
+    color: lightsteelblue;
 }
 
 .contentListForXmarine {
