@@ -4,10 +4,24 @@
     margin-left: 1%;
 }
 
-#constantLinks > a {
+#linksSection > div {
+    margin-left: 5%;
+    margin-top: 8%;
+    border: 2px solid;
+}
+
+#linksSection > div > a {
     display: block;
     font-size: 24px;
     margin-left: 3%;
+}
+
+#constantLinks {
+    padding: 12px;
+}
+
+#parts {
+    padding: 14px;
 }
 
 #headerLogotip > img {

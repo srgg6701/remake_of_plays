@@ -142,6 +142,9 @@ var makeReadyView = Backbone.View.extend(
          */
         render: function (templ, data) {
             this.ready_element = _.template(templ)(data); // templ = prime_block снаружи этой функции
+            if("bigImage" in data) {
+                console.log(this.ready_element);
+            }
             return this;
         }
     }
@@ -156,7 +159,6 @@ var settingColors = Backbone.View.extend(
                 ['removeClass']("backgroundFor" + otherUrlTitle)
                 .addClass("backgroundFor" + urlTitle);
             for(var c= 0, l = secondElems.length; c < l; c++){
-               //console.log($("#"+secondElems[c]));
                 var elem = $("#"+secondElems[c]);
                 elem.removeClass("second"+otherUrlTitle);
                 elem.addClass("second"+urlTitle);
@@ -201,7 +203,7 @@ var $dynamicContent = $("#dynamicContent"),
                 "": "initView",
                 "in_the_secondary/:urlTitle": "buildSecondary",
                 "in_the_plays/:urlTitle/about_characters": "loadPlays",
-                "in_the_plays/:urlTitle/part:num": "choicePart"
+                "in_the_plays/:urlTitle/part_:num": "loadPart"
             },
             initView: function () {
                 var file_path = "templates/primary/", prime_blocks = {prime_blocks: []};
@@ -234,6 +236,7 @@ var $dynamicContent = $("#dynamicContent"),
                     // Определить, какой window[key]
                     // заполнить шаблон соответствующими данными
                     function (secondary) {
+                        //console.log(secondary);
                         var choicedPlaysModel = new playsModel(urlTitle);
                         // определить данные
                         choicedPlaysModel.getTemplatesContents(urlTitle).then(
@@ -246,8 +249,8 @@ var $dynamicContent = $("#dynamicContent"),
                                     "bigImage": jsonData["onTheBeginning"]["images"][0],
                                     "preview": jsonData["onTheBeginning"]["preview"],
                                     "playsTitle": urlTitle
-                                },
-                                ready_secondary = new makeReadyView(secondary, data);
+                                };
+                                var ready_secondary = new makeReadyView(secondary, data);
                                 // xfixme: optimize -- get rid of calling:
                                 //var ready_secondary = choicedPlaysView.render(secondary, jsonData["onTheBeginning"]); // возвращает this.ready_element
                                 $dynamicContent.html(ready_secondary.ready_element);
@@ -285,8 +288,15 @@ var $dynamicContent = $("#dynamicContent"),
                                 "ready_content": ready_about_characters
                             },
                             ready_basement = new makeReadyView(basement, basementData).ready_element;
-                            console.log(ready_basement);
                             $dynamicContent.html(ready_basement);
+                            for (var c= 0, l = jsonData["Parts"].length; c < l; c++) {
+                                var num = jsonData["Parts"][c]["number"],
+                                   //newPartLink = "<a href = '#in_the_plays/:urlTitle/part_:num'>Part "+num+"</a>";
+                                //newPartLink ="<a href='#in_the_plays/"+urlTitle+"'>Part "+num+"</a>";
+                                    // Должно быть:
+                                newPartLink = "<a href = '#in_the_plays/"+urlTitle+"/part_"+num+"'>Part "+num+"</a>";
+                                $("#parts").append(newPartLink);
+                            }
                             //, ready_about_characters = choicedPlaysView.render(about_characters, {"firstPg":textAboutCharacters[0]});
                             //this.continueFilling($("#textAboutCharacters"), textAboutCharacters);
                             // basement = choicedPlaysView.render(basement, jsonData, {"ready_content": ready_about_characters});
@@ -294,6 +304,9 @@ var $dynamicContent = $("#dynamicContent"),
                         }
                     );
                 });
+            },
+            "loadPart": function(){
+                $("#dynamicContent").html("<h2>LoadPart is called!</h2>");
             }
         }
     );
