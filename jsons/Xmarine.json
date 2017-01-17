@@ -2,7 +2,6 @@
   "Xmarine": {
     "onTheBeginning": {
       "header": "Cabalistic bewitching hero",
-      "playsTitle": "Xmarine",
       "imgOnPrimary": "JudyHelenCassandra.jpg\"",
       "images": [
         "<img src=\"images/onTheBeginning/possessions.jpg\">",
@@ -10,9 +9,11 @@
         "<img src=\"images/onTheBeginning/all_3.png\">",
         "<img src=\"images/onTheBeginning/fishes.jpg\">"
       ],
+      "playsTitle": "Xmarine",
       "preview": "The plays are about a magic hero who was somebody like a little cruise mermaid and later becomes a mysterious magic superhero. Also there are 3 girls who was percieved as human being, but later it turned out that they are girls-monsters and a special scientist not like all the other scientists.",
       "headerLogotip": "<img src=\"images/onTheBeginning/headerLogotipExd.jpg\">"
     },
+    "otherUrlTitle": "Black_parody",
     "About characters": [
       "There are the following characters in this play:",
       "3 friends: <b>Helen, Judy and Cassandra</b>;",

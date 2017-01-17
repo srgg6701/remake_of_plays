@@ -72,19 +72,6 @@ var config = {
     }
 };
 
-function defineClassNames(urlTitle){
-    var otherUrlTitle;
-    switch(urlTitle){
-        case "Xmarine":
-            otherUrlTitle="Black_parody";
-            break;
-        case "Black_parody":
-            otherUrlTitle="Xmarine";
-            break;
-    }
-    var choicedPlaysSettingColors = new settingColors(urlTitle, otherUrlTitle, ['preview','explain']);
-    //choicedPlaysSettingColors.paintSecondary(urlTitle, otherUrlTitle, ['preview','explain']);
-}
 function continueFilling(container, elems){
     for(var c=1; c<elems.length; c++){
         container.append(elems[c]);
@@ -265,7 +252,7 @@ var $dynamicContent = $("#dynamicContent"),
                                 //var ready_secondary = choicedPlaysView.render(secondary, jsonData["onTheBeginning"]); // возвращает this.ready_element
                                 $dynamicContent.html(ready_secondary.ready_element);
                                 if($("#preview")[0]!==undefined){
-                                    defineClassNames(urlTitle);
+                                    var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"], ['preview','explain']);
                                 }
 
                             });
@@ -293,7 +280,8 @@ var $dynamicContent = $("#dynamicContent"),
                                 {"firstPg":'<p>'+textAboutCharacters.join('</p><p>')+'</p>'}).ready_element,
                             basementData={
                                 "headerLogotip":jsonData["onTheBeginning"]["headerLogotip"],
-                                "playsTitle": urlTitle,
+                                "playsTitle": jsonData["onTheBeginning"]["playsTitle"],
+                                "otherUrlTitle": jsonData["otherUrlTitle"],
                                 "ready_content": ready_about_characters
                             },
                             ready_basement = new makeReadyView(basement, basementData).ready_element;
