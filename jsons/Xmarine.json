@@ -4,10 +4,11 @@
       "header": "Cabalistic bewitching hero",
       "playsTitle": "Xmarine",
       "imgOnPrimary": "JudyHelenCassandra.jpg\"",
-      "images": ["possessions.jpg\"",
-        "devil.jpg\"",
-        "fishes.jpg\"",
-        "^033ACAC36ACF8BFF5C4B8930EA783B39FF8AD3ED5A7E253331^pimgpsh_fullsize_distr.jpg\""
+      "images": [
+        "<img src=\"images/onTheBeginning/possessions.jpg\">",
+        "<img src=\"images/onTheBeginning/devil.jpg\">",
+        "<img src=\"images/onTheBeginning/all_3.png\">",
+        "<img src=\"images/onTheBeginning/fishes.jpg\">"
       ],
       "preview": "The plays are about a magic hero who was somebody like a little cruise mermaid and later becomes a mysterious magic superhero. Also there are 3 girls who was percieved as human being, but later it turned out that they are girls-monsters and a special scientist not like all the other scientists.",
       "headerLogotip": "<img src=\"images/onTheBeginning/headerLogotipExd.jpg\">"
@@ -4835,7 +4836,7 @@
           },
           {
             "image": [
-              "<img src=\"images/with_characters/pimgpsh_fullsize_distr.jpg\">"
+              "<img src=\"images/with_characters/Timothy_and_snake.jpg\">"
             ]
           },
           {
@@ -4882,12 +4883,12 @@
           },
           {
             "Timothy": [
-              "I'm really sorry, snake, but frankly I don't like it very much, because it is a little scary. Please, don't <span class=\"from_vocabulary\">opportune</span> at me and don't bite me! You are very beautiful snake with brilliant things on your body! I like them! Moreover I beleive that you are very smart snake. I don't have objections to this likeness, you may be in it if you like it. But I have not gotten used to communicate with snakes and be close to them. So they are associated with <span class=\"from_vocabulary\">hazard</span> in my awareness. Sorry me, dear magic snake! What else - I know usually people don't like snakes and afraid them. So I am not sure that it is<span class=\"from_vocabulary\">opportune</span> view for you to communicate with people. But I will get used soon."
+              "I'm really sorry, snake, but frankly I don't like it very much, because it is a little scary. Please, don't <span class=\"from_vocabulary\">take offense</span> at me and don't bite me! You are very beautiful snake with brilliant things on your body! I like them! Moreover I beleive that you are very smart snake. I don't have objections to this likeness, you may be in it if you like it. But I have not gotten used to communicate with snakes and be close to them. So they are associated with <span class=\"from_vocabulary\">hazard</span> in my awareness. Sorry me, dear magic snake! What else - I know usually people don't like snakes and afraid them. So I am not sure that it is<span class=\"from_vocabulary\">opportune</span> view for you to communicate with people. But I will get used soon."
             ]
           },
           {
             "Snake": [
-              "I know people don't like my natural view. So I decided to talk with you looking like a snake. I decided that it will be more <span class=\"from_vocabulary\">opportune</span> to talk with them in this view than in my natural view of Woman-devil. And because of I have conversation with such intelligent man as you I think it is not a wrong decision to talk to you choicing snake view. So, now we have to get close to the our topic. I would like to tell you about Beatrix, this girl whom I want you to adopt. And I would like to begin from the story of her early childhood. Unfortunately, it is not very pleasing. I hope you will not object if I tell it right now."
+              "Thank you. I know people don't like my natural view, but I am not only beautiful snake, I am not snake at all. I am very intelligent being and I don't intend to kill people who is not <span class=\"from_vocabulary\">perilous</span> for my life. So I decided to talk with you looking like a snake. I decided that it will be more <span class=\"from_vocabulary\">opportune</span> to talk with them in this view than in my natural view of Woman-devil. And because of I have conversation with such intelligent man as you I think it is not a wrong decision to talk to you choicing snake view. So, now we have to get close to the our topic. I would like to tell you about Beatrix, this girl whom I want you to adopt. And I would like to begin from the story of her early childhood. Unfortunately, it is not very pleasing. I hope you will not object if I tell it right now."
             ]
           },
           {
@@ -5786,11 +5787,10 @@
           {"Woman-devil": ["I am pleased very much. Thank you! Now I and Beatrix are leaving you. Wait a few minutes, please."]},
           {"Timothy": ["Of course. No problems."]},
           {"Author's words": ["Woman-devil and Beatrix left Timothy and Gloria and went behind one of the buildings near the place where they stayed with these peolpe."]},
-          {"Woman-devil": ["The first what I have to tell you is about our current connection. When you have some problems in your life which your parents will be not able to help you to solve according to your opinion you will have a possibility to write me about them. You will write a text on a sheet of paper and put it in a box which you see now in front of us. When you put sheets with information as text into this box I will be able to read it, but not from this box. Instead I will be able to read them as your thoughts. You will take this box with yourself when you and your parents leave me. Besides I can read not only those your thoughts which will be filled with upleasant <span class=\"from_vocabulary\">commotion</span>. Also you can just share your life with me. For example, about your adoptive grannyand your time which you have playing with her. I will be pleased to get positive information from you. You can pen me about your studying in the school if you like it and have deep positive impressions. If you feel <span class=\"from_vocabulary\">dissaray</span> you can <span class=\"from_vocabulary\">pen</span> me and tell about unpleasant event. I will help you with joy."]},
+          {"Woman-devil": ["The first what I have to tell you is about our current connection. When you have some problems in your life which your parents will be not able to help you to solve according to your opinion you will have a possibility to write me about them. You will write a text on a sheet of paper and put it in a box which you see now in front of us. When you put sheets with information as text into this box I will be able to read it, but not from this box. Instead I will be able to read them as your thoughts. You will take this box with yourself when you and your parents leave me. Besides I can read not only those your thoughts which will be filled with upleasant <span class=\"from_vocabulary\">commotion</span>. Also you can just share your life with me. For example, about your adoptive granny and your time which you have playing with her. I will be pleased to get positive information from you. You can pen me about your studying in the school if you like it and have deep positive impressions. If you feel <span class=\"from_vocabulary\">dissaray</span> you can <span class=\"from_vocabulary\">pen</span> me and tell about unpleasant event. I will help you with joy."]},
           {"Beatrix": ["Thank you very much, Lady Devil!"]},
           {"Woman-devil": ["Take the box, please."]},
-          {"Author's words": ["Beatrix <span class=\"from_vocabulary\">implemented</span> this requirement."]},
-          {"Author's words": ["Beatrix <span class=\"from_vocabulary\">carried out</span> the requirement. Woman-devil changed her view on her natural view."]},
+          {"Author's words": ["Beatrix <span class=\"from_vocabulary\">implemented</span> this requirement. Woman-devil changed her view on her natural view."]},
           {"Woman-devil": ["Now you may open your eyes."]},
           {"Author's words": ["Beatrix opened her eyes."]},
           {"Woman-devil": ["So, now we have to part completely. Lets hug once more."]},

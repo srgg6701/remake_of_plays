@@ -119,7 +119,7 @@ var playsModel = Backbone.Model.extend(
     }
 );
 
-var makeReadyTemplate = Backbone.View.extend(
+var makeReadyView = Backbone.View.extend(
     {
         events: {
             //В event входит иерархия элементов от явно указанного (dynamicContent) до самого вложенного
@@ -138,13 +138,24 @@ var makeReadyTemplate = Backbone.View.extend(
             }
         },
         el: '#dynamicContent',
+        ready_element: '', // should be an Array after render
+        /**
+         * @param templ -- HTML template
+         * @param data -- Array
+         * @returns {*}
+         */
         initialize: function (templ, data) {
+            //console.trace('makeReadyView.initialize, arguments=>', {templ:templ, data:data});
             this.render(templ, data);
         },
+        /**
+         * @param templ -- HTML template
+         * @param data -- Array
+         * @returns {*}
+         */
         render: function (templ, data) {
             this.ready_element = _.template(templ)(data); // templ = prime_block снаружи этой функции
-            // this.ready_element - готовый prime_block
-            return this.ready_element;
+            return this;
         }
     }
 );
@@ -158,7 +169,7 @@ var settingColors = Backbone.View.extend(
                 ['removeClass']("backgroundFor" + otherUrlTitle)
                 .addClass("backgroundFor" + urlTitle);
             for(var c= 0, l = secondElems.length; c < l; c++){
-               console.log($("#"+secondElems[c]));
+               //console.log($("#"+secondElems[c]));
                 var elem = $("#"+secondElems[c]);
                 elem.removeClass("second"+otherUrlTitle);
                 elem.addClass("second"+urlTitle);
@@ -219,9 +230,9 @@ var $dynamicContent = $("#dynamicContent"),
                         black_parodyModel.getTemplatesContents("Black_parody")
                     ).done(function (jsonDataXm, jsonDataBp) {
                         // Эти экземпляры предназначены для того, чтобы заполнить каждый prime_block данными через
-                        // makeReadyTemplate
-                        var xmarineView = new makeReadyTemplate(prime_block, jsonDataXm["onTheBeginning"]),
-                            black_parodyView = new makeReadyTemplate(prime_block, jsonDataBp["onTheBeginning"]);
+                        // makeReadyView
+                        var xmarineView = new makeReadyView(prime_block, jsonDataXm["onTheBeginning"]),
+                            black_parodyView = new makeReadyView(prime_block, jsonDataBp["onTheBeginning"]);
                         default_view.render(xmarineView.ready_element, black_parodyView.ready_element, prime_wrapper); //для того, чтобы заполнить prime_wrapper готовыми блоками, вставить
                         // его в область динамически генерируемого контента и развернуть:
                         //default_view.render(xmarineView, black_parodyView, prime_wrapper);
@@ -232,7 +243,6 @@ var $dynamicContent = $("#dynamicContent"),
 
             },
             buildSecondary: function (urlTitle) {
-                console.log('buildSecondary, urlTitle=>', urlTitle);
                 $.when(getTemplate("templates/secondary/secondary.html")).done(
                     // Определить, какой window[key]
                     // заполнить шаблон соответствующими данными
@@ -242,15 +252,18 @@ var $dynamicContent = $("#dynamicContent"),
                         choicedPlaysModel.getTemplatesContents(urlTitle).then(
                             // Заполнить шаблон этими данными и вставить в область динамически генерируемого контента
                             function (jsonData) {
-                                var choicedPlaysView = new makeReadyTemplate(secondary, jsonData["onTheBeginning"]);
-                                var ready_secondary = choicedPlaysView.render(secondary, jsonData["onTheBeginning"]); // возвращает this.ready_element
-                                $dynamicContent.html(ready_secondary);
-                                var arrayImages = jsonData["onTheBeginning"]["images"];
-                                for (var cnt = 0; cnt < arrayImages.length; cnt++) {
-                                    $("#left").append("<img src=\"images/onTheBeginning/" + arrayImages[cnt] + ">");
-                                }
-                                console.log($("#preview"));
-                                console.log($("#preview")[0]);
+                                var arrayImages = jsonData["onTheBeginning"]["images"].join(""),
+                                data = {
+                                    "arrayImages": arrayImages,
+                                    "headerLogotip": jsonData["onTheBeginning"]["headerLogotip"],
+                                    "bigImage": jsonData["onTheBeginning"]["images"][0],
+                                    "preview": jsonData["onTheBeginning"]["preview"],
+                                    "playsTitle": urlTitle
+                                },
+                                ready_secondary = new makeReadyView(secondary, data);
+                                // xfixme: optimize -- get rid of calling:
+                                //var ready_secondary = choicedPlaysView.render(secondary, jsonData["onTheBeginning"]); // возвращает this.ready_element
+                                $dynamicContent.html(ready_secondary.ready_element);
                                 if($("#preview")[0]!==undefined){
                                     defineClassNames(urlTitle);
                                 }
@@ -260,6 +273,7 @@ var $dynamicContent = $("#dynamicContent"),
                 );
             },
             loadPlays: function (urlTitle) {
+                console.trace('router: loadPlays');
                 var file_path = "templates/entered/";
                 $.when(getTemplate(file_path + "basement.html"),
                     getTemplate(file_path + "about_characters.html")
@@ -267,12 +281,28 @@ var $dynamicContent = $("#dynamicContent"),
                     var choicedPlaysModel = new playsModel(urlTitle);
                     choicedPlaysModel.getTemplatesContents(urlTitle).then(
                         function(jsonData) {
-                            console.log(jsonData);
-                            var textAboutCharacters = jsonData["About characters"];
-                            var choicedPlaysView = new makeReadyTemplate(about_characters, textAboutCharacters),
-                            ready_about_characters = choicedPlaysView.render(about_characters, {"ffirstPg":textAboutCharacters[0]});
+                            /*  0 "There are the following characters in this play:"
+                                1 "3 friends: <b>Helen, Judy and Cassandra</b>;"
+                                2 "<b>Beatrix</b> - Helen's water pet, a little cruise mermaid for an aquarium. But in reality she is a special scavenger and she must live in nature out of an aquarium to <span class="from_vocabulary">comply</span> her <span class="from_vocabulary">grander</span> mission"
+                                3 "<b>Christian</b> - a biologist who is in age of a little child, but he has already been allowed to work as a scientist, because he already understands enough to engage it. He was born with enough amount of knowledges and mental abilities to became a scientist just after he could to speak and move. Christian is learning <u>extra-decomposers</u>"
+                                4 "<u>Extra-decomposers</u> is a new live specie of scavengers which did not exist some times ago."
+                                5 "Also there is such character as Woman-devil. She is a devil,
+                            */
+                            var textAboutCharacters = jsonData["About characters"], // array was passed
+                                ready_about_characters = new makeReadyView(about_characters, 
+                                {"firstPg":'<p>'+textAboutCharacters.join('</p><p>')+'</p>'}).ready_element,
+                            basementData={
+                                "headerLogotip":jsonData["onTheBeginning"]["headerLogotip"],
+                                "playsTitle": urlTitle,
+                                "ready_content": ready_about_characters
+                            },
+                            ready_basement = new makeReadyView(basement, basementData).ready_element;
+                            console.log(ready_basement);
+                            $dynamicContent.html(ready_basement);
+                            //, ready_about_characters = choicedPlaysView.render(about_characters, {"firstPg":textAboutCharacters[0]});
                             //this.continueFilling($("#textAboutCharacters"), textAboutCharacters);
-                            $dynamicContent.html(ready_about_characters);
+                            // basement = choicedPlaysView.render(basement, jsonData, {"ready_content": ready_about_characters});
+                            //
                         }
                     );
                 });

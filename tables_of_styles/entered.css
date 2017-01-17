@@ -1,0 +1,25 @@
+
+#linksSection {
+    border: 2px solid;
+    margin-left: 1%;
+}
+
+#constantLinks > a {
+    display: block;
+    font-size: 24px;
+    margin-left: 3%;
+}
+
+#headerLogotip > img {
+    width: 100%;
+}
+
+ h1 {
+    margin-left: 9%;
+    font-size: 34px;
+ }
+
+#textAboutCharacters > p {
+    font-size: 22px;
+    margin-left: 6%;
+}
