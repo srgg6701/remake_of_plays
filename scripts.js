@@ -80,8 +80,8 @@ function continueFilling(container, elems){
 
 var playsModel = Backbone.Model.extend(
     {
-        defaults: {
-            "ready_prime_block": ""
+        initialize: function(urlTitle) {
+            this.getTemplatesContents(urlTitle);
         },
         /**
          * "Xmarine", prime_block
@@ -196,7 +196,7 @@ var $dynamicContent = $("#dynamicContent"),
     AppRouter = Backbone.Router.extend({
             routes: {
                 "": "initView",
-                "in_the_secondary/:urlTitle": "buildSecondary",
+                "in_the_secondary/:urlTitle": "loadSecondary",
                 "in_the_plays/:urlTitle/about_characters": "loadPlays",
                 "in_the_plays/:urlTitle/part_:num": "loadPart"
             },
@@ -208,13 +208,9 @@ var $dynamicContent = $("#dynamicContent"),
                     var xmarineModel = new playsModel("Xmarine"), // checkJsonData runs asynchronously
                         black_parodyModel = new playsModel("Black_parody");  // checkJsonData runs asynchronousl
                     $.when(
-                        // getTemplatesContents извлекает данные из json-файлов для заполнения шаблонов этими данными и
-                        // проверяет, что эти данные получены
                         xmarineModel.getTemplatesContents("Xmarine"),
                         black_parodyModel.getTemplatesContents("Black_parody")
                     ).done(function (jsonDataXm, jsonDataBp) {
-                        // Эти экземпляры предназначены для того, чтобы заполнить каждый prime_block данными через
-                        // makeReadyView
                         var xmarineView = new makeReadyView(prime_block, jsonDataXm["onTheBeginning"]),
                             black_parodyView = new makeReadyView(prime_block, jsonDataBp["onTheBeginning"]);
                         default_view.render(xmarineView.ready_element, black_parodyView.ready_element, prime_wrapper); //для того, чтобы заполнить prime_wrapper готовыми блоками, вставить
@@ -226,14 +222,32 @@ var $dynamicContent = $("#dynamicContent"),
                 // Получить оба ready_prime_block через каждый из экземпляров, сложить их в массив и внести в prime_wrapper.
 
             },
-            buildSecondary: function (urlTitle) {
+           loadSecondary: function (urlTitle) {
                 $.when(getTemplate("templates/secondary/secondary.html")).done(
                     // Определить, какой window[key]
                     // заполнить шаблон соответствующими данными
                     function (secondary) {
                         var choicedPlaysModel = new playsModel(urlTitle);
-                        // определить данные
-                        choicedPlaysModel.getTemplatesContents(urlTitle).then(
+                        $.when(choicedPlaysModel.getTemplatesContents(urlTitle)).done(
+                            function(jsonData){
+                                var arrayImages = jsonData["onTheBeginning"]["images"].join(""),
+                                data = {
+                                        "arrayImages": arrayImages,
+                                        "headerLogotip": jsonData["onTheBeginning"]["headerLogotip"],
+                                        "bigImage": jsonData["onTheBeginning"]["images"][0],
+                                        "preview": jsonData["onTheBeginning"]["preview"],
+                                        "playsTitle": urlTitle
+                                };
+                                var ready_secondary = new makeReadyView(secondary, data);
+                                $dynamicContent.html(ready_secondary.ready_element);
+                                if($("#preview")[0]!==undefined){
+                                    var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"], ['preview']);
+                                }
+                                // xfixme: optimize -- get rid of calling:
+                            }
+
+                        );
+                       /* choicedPlaysModel.getTemplatesContents(urlTitle).then(
                             // Заполнить шаблон этими данными и вставить в область динамически генерируемого контента
                             function (jsonData) {
                                 var arrayImages = jsonData["onTheBeginning"]["images"].join(""),
@@ -245,14 +259,14 @@ var $dynamicContent = $("#dynamicContent"),
                                     "playsTitle": urlTitle
                                 };
                                 var ready_secondary = new makeReadyView(secondary, data);
-                                // xfixme: optimize -- get rid of calling:
+
                                 //var ready_secondary = choicedPlaysView.render(secondary, jsonData["onTheBeginning"]); // возвращает this.ready_element
                                 $dynamicContent.html(ready_secondary.ready_element);
                                 if($("#preview")[0]!==undefined){
                                     var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"], ['preview']);
                                 }
 
-                            });
+                            });*/
                     }
                 );
             },
@@ -273,7 +287,7 @@ var $dynamicContent = $("#dynamicContent"),
                                 5 "Also there is such character as Woman-devil. She is a devil,
                             */
                             var textAboutCharacters = jsonData["About characters"], // array was passed
-                                ready_about_characters = new makeReadyView(about_characters, 
+                                ready_about_characters = new makeReadyView(about_characters,
                                 {"firstPg":'<p>'+textAboutCharacters.join('</p><p>')+'</p>'}).ready_element,
                             basementData={
                                 "headerLogotip":jsonData["onTheBeginning"]["headerLogotip"],
@@ -301,7 +315,11 @@ var $dynamicContent = $("#dynamicContent"),
                 });
             },
             "loadPart": function(){
-                $("#dynamicContent").html("<h2>LoadPart is called!</h2>");
+                $.when(getTemplate(file_path + "basement.html"),
+                    getTemplate(file_path + "episode.html")
+                ).done(function (basement, episode) {
+
+                });
             }
         }
     );
