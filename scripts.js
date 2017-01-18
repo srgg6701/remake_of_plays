@@ -81,8 +81,9 @@ function continueFilling(container, elems){
 var playsModel = Backbone.Model.extend(
     {
         initialize: function(urlTitle) {
-            this.getTemplatesContents(urlTitle);
+            this.promisedTemplate = this.getTemplatesContents(urlTitle);
         },
+        // will save promise
         /**
          * "Xmarine", prime_block
          * @param key
@@ -170,26 +171,8 @@ var $dynamicContent = $("#dynamicContent"),
         $dynamicContent.html('<h2>Loading...</h2>');
     },
     defaultView = Backbone.View.extend({
-        entersToSecondary: function (event) {
-        },
         initialize: function () {
             showLoading();
-            /*$dynamicContent.on('click', '.entersToSecondary', function(event){
-             this.entersToSecondary(event);
-             }.bind(this));*/
-        },
-        render: function (ready_prime_block_xm, ready_prime_block_p, prime_wrapper) {
-            var ready_prime_wrapper = _.template(prime_wrapper)({
-                Xmarine_block: ready_prime_block_xm,
-                Black_parody_block: ready_prime_block_p
-            });
-            $dynamicContent.html(ready_prime_wrapper);
-            setTimeout(
-                function () {
-                    $dynamicContent.find('>div').eq(0).slideDown(2000);
-                },
-                900
-            );
         }
     }),
     default_view = new defaultView(),
@@ -207,13 +190,28 @@ var $dynamicContent = $("#dynamicContent"),
                 ).done(function (prime_block, prime_wrapper) {
                     var xmarineModel = new playsModel("Xmarine"), // checkJsonData runs asynchronously
                         black_parodyModel = new playsModel("Black_parody");  // checkJsonData runs asynchronousl
+                    /*console.log('promisedTemplate=>', {
+                        'xmarineModel.promisedTemplate':xmarineModel.promisedTemplate
+                    });*/
                     $.when(
-                        xmarineModel.getTemplatesContents("Xmarine"),
-                        black_parodyModel.getTemplatesContents("Black_parody")
+                        // wait for promises to be fullfilled
+                        xmarineModel.promisedTemplate,
+                        black_parodyModel.promisedTemplate
                     ).done(function (jsonDataXm, jsonDataBp) {
+                        console.log('done', {jsonDataXm:jsonDataXm, jsonDataBp:jsonDataBp});
+                        console.log(xmarineModel["attributes"]);
                         var xmarineView = new makeReadyView(prime_block, jsonDataXm["onTheBeginning"]),
-                            black_parodyView = new makeReadyView(prime_block, jsonDataBp["onTheBeginning"]);
-                        default_view.render(xmarineView.ready_element, black_parodyView.ready_element, prime_wrapper); //для того, чтобы заполнить prime_wrapper готовыми блоками, вставить
+                            black_parodyView = new makeReadyView(prime_block, jsonDataBp["onTheBeginning"]),
+                            ready_prime_wrapper = new makeReadyView(prime_wrapper, {"Xmarine_block": xmarineView.ready_element,
+                            "Black_parody_block": black_parodyView.ready_element});
+                        $dynamicContent.html(ready_prime_wrapper.ready_element);
+                        setTimeout(
+                            function () {
+                                $dynamicContent.find('>div').eq(0).slideDown(2000);
+                            },
+                            900
+                        );
+                        //default_view.render(xmarineView.ready_element, black_parodyView.ready_element, prime_wrapper); //для того, чтобы заполнить prime_wrapper готовыми блоками, вставить
                         // его в область динамически генерируемого контента и развернуть:
                         //default_view.render(xmarineView, black_parodyView, prime_wrapper);
                     });
@@ -223,12 +221,12 @@ var $dynamicContent = $("#dynamicContent"),
 
             },
            loadSecondary: function (urlTitle) {
-                $.when(getTemplate("templates/secondary/secondary.html")).done(
+                getTemplate("templates/secondary/secondary.html").then(
                     // Определить, какой window[key]
                     // заполнить шаблон соответствующими данными
                     function (secondary) {
                         var choicedPlaysModel = new playsModel(urlTitle);
-                        $.when(choicedPlaysModel.getTemplatesContents(urlTitle)).done(
+                        choicedPlaysModel.getTemplatesContents(urlTitle).then(
                             function(jsonData){
                                 var arrayImages = jsonData["onTheBeginning"]["images"].join(""),
                                 data = {
@@ -247,26 +245,6 @@ var $dynamicContent = $("#dynamicContent"),
                             }
 
                         );
-                       /* choicedPlaysModel.getTemplatesContents(urlTitle).then(
-                            // Заполнить шаблон этими данными и вставить в область динамически генерируемого контента
-                            function (jsonData) {
-                                var arrayImages = jsonData["onTheBeginning"]["images"].join(""),
-                                data = {
-                                    "arrayImages": arrayImages,
-                                    "headerLogotip": jsonData["onTheBeginning"]["headerLogotip"],
-                                    "bigImage": jsonData["onTheBeginning"]["images"][0],
-                                    "preview": jsonData["onTheBeginning"]["preview"],
-                                    "playsTitle": urlTitle
-                                };
-                                var ready_secondary = new makeReadyView(secondary, data);
-
-                                //var ready_secondary = choicedPlaysView.render(secondary, jsonData["onTheBeginning"]); // возвращает this.ready_element
-                                $dynamicContent.html(ready_secondary.ready_element);
-                                if($("#preview")[0]!==undefined){
-                                    var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"], ['preview']);
-                                }
-
-                            });*/
                     }
                 );
             },

@@ -1,2 +1,2 @@
-1. Стили не действуют на элементы шаблона about_characters;
-2. Не подключается таблица.
+1. Как избавиться от xmarineModel.getTemplatesContents("Xmarine"),
+                        black_parodyModel.getTemplatesContents("Black_parody") ?
