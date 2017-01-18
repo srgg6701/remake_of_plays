@@ -142,9 +142,6 @@ var makeReadyView = Backbone.View.extend(
          */
         render: function (templ, data) {
             this.ready_element = _.template(templ)(data); // templ = prime_block снаружи этой функции
-            if("bigImage" in data) {
-                console.log(this.ready_element);
-            }
             return this;
         }
     }
@@ -158,14 +155,12 @@ var settingColors = Backbone.View.extend(
             $("body") // jQuery object, где HTML объект body представлен в поле с ключом 0
                 ['removeClass']("backgroundFor" + otherUrlTitle)
                 .addClass("backgroundFor" + urlTitle);
+            console.log(secondElems);
             for(var c= 0, l = secondElems.length; c < l; c++){
                 var elem = $("#"+secondElems[c]);
-                elem.removeClass("second"+otherUrlTitle);
-                elem.addClass("second"+urlTitle);
+                elem.removeClass(secondElems[c]+otherUrlTitle);
+                elem.addClass(secondElems[c]+urlTitle);
             }
-        },
-        paintInPlays: function(urlTitle, otherUrlTitle){
-
         }
     }
 );
@@ -236,7 +231,6 @@ var $dynamicContent = $("#dynamicContent"),
                     // Определить, какой window[key]
                     // заполнить шаблон соответствующими данными
                     function (secondary) {
-                        //console.log(secondary);
                         var choicedPlaysModel = new playsModel(urlTitle);
                         // определить данные
                         choicedPlaysModel.getTemplatesContents(urlTitle).then(
@@ -255,7 +249,7 @@ var $dynamicContent = $("#dynamicContent"),
                                 //var ready_secondary = choicedPlaysView.render(secondary, jsonData["onTheBeginning"]); // возвращает this.ready_element
                                 $dynamicContent.html(ready_secondary.ready_element);
                                 if($("#preview")[0]!==undefined){
-                                    var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"], ['preview','explain']);
+                                    var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"], ['preview']);
                                 }
 
                             });
@@ -291,11 +285,12 @@ var $dynamicContent = $("#dynamicContent"),
                             $dynamicContent.html(ready_basement);
                             for (var c= 0, l = jsonData["Parts"].length; c < l; c++) {
                                 var num = jsonData["Parts"][c]["number"],
-                                   //newPartLink = "<a href = '#in_the_plays/:urlTitle/part_:num'>Part "+num+"</a>";
-                                //newPartLink ="<a href='#in_the_plays/"+urlTitle+"'>Part "+num+"</a>";
-                                    // Должно быть:
                                 newPartLink = "<a href = '#in_the_plays/"+urlTitle+"/part_"+num+"'>Part "+num+"</a>";
                                 $("#parts").append(newPartLink);
+                            }
+                            console.log($("#changeable_content"));
+                            if($("#linksSection")[0]!==undefined){
+                                var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"], ['linksSection','about_characters_div']);
                             }
                             //, ready_about_characters = choicedPlaysView.render(about_characters, {"firstPg":textAboutCharacters[0]});
                             //this.continueFilling($("#textAboutCharacters"), textAboutCharacters);

@@ -6,10 +6,24 @@
                  <p><%=allocation_roles%></p>
              </div>
              <div id="chooseReplics">
-                  <a href="#">Paint by roles</a>
-                  <a href="#">Paint by term</a> 
-                  <div id="divForForm"></div>
-                  <p id="resultMessage"></p>
+                  <button>Paint by roles</button>
+                  <button>Paint by term</button>
+                  <div id="divForForms">
+                      <form>
+                          <div id='listOfCheckboxes'>
+                              <%=checkboxes%>
+                          </div>
+                          <button id='but'>Paint</button>
+                      </form>
+                      <form>
+                          <label for="firstNumber">Начать раскраску с реплики №</label>
+                          <input type="test" id="firstNumber">
+                          <label for="numberOfEverReplic">Далее раскрашивать каждую реплику №</label>
+                          <input type="test" id="numberOfEverReplic">
+                          <button>Paint</button>
+                      </form>
+                  </div>
+                  <div id="resultMessage"></div>
              </div>
              <div id="top_of_part">
                     <div>
@@ -25,8 +39,6 @@
                         <button type='button' id='paintWordsFromVocab'></button>
                     </div>  
              </div>
-             <div id="content_of_part">
-                // Совокупность дивов с репликами
-             </div>
+             <div id="content_of_part"></div>
         </div>
 </script>

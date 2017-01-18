@@ -1,27 +1,31 @@
 
 #linksSection {
-    border: 2px solid;
+    border-radius: 5px;
     margin-left: 1%;
 }
 
 #linksSection > div {
     margin-left: 5%;
-    margin-top: 8%;
-    border: 2px solid;
+    margin-top: 10%;
+    border-radius: 4px;
 }
 
 #linksSection > div > a {
     display: block;
     font-size: 24px;
-    margin-left: 3%;
+    margin-top: 5%;
 }
 
-#constantLinks {
-    padding: 12px;
+#constantLinks > a {
+    margin-left: 8%;
 }
 
 #parts {
-    padding: 14px;
+    margin-bottom: 15%;
+}
+
+#parts > a {
+    margin-left: 30%;
 }
 
 #headerLogotip > img {

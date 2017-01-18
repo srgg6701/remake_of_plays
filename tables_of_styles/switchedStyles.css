@@ -5,31 +5,49 @@
     background-image: url("../images/textures/texture.jpg");
 }
 
-.secondXmarine {
+.previewXmarine {
     background-color: rgba(100, 120, 208, 0.2);
     color: darkblue;
 }
 
-.secondBlack_parody {
+.previewBlack_parody {
     border-color: lavender;
     color: lightsteelblue;
 }
 
-.contentListForXmarine {
-    border-color: #345693;
-    background-color: rgba(0, 087, 990, 0.30);
-    color: darkblue;
+.linksSectionXmarine{
+    background-color: rgba(68, 129, 146, 0.4);
+    border-color: #0B0B61;
+    border-width: 3px;
+    border-style: solid;
 }
-.contentListForBlack_parody {
-    border-color: lightblue;
-    background-color: rgba(25, 12, 90, 0.25);
-    color: lightsteelblue;
+
+.linksSectionBlack_parody{
+    border-color: ivory;
+    border-width: 3px;
+    border-style: solid;
+}
+
+.linksSectionXmarine > div {
+    border: 1px solid blue;
+}
+
+.linksSectionBlack_parody > div {
+    background-color: cornsilk;
+}
+
+.about_characters_divXmarine * {
+    color: black;
+}
+
+.about_characters_divBlack_parody * {
+    color: lavenderblush;
 }
 
 .paintedReplicsOfAuthor_Xmarine {
     border: 3px dashed darkviolet;
     border-radius: 4px;
-    background-image: url("../../images/textures/buket.jpg");
+    background-image: url("../images/textures/buket.jpg");
 }
 .paintedReplicsOfAuthor_Xmarine > h4 {
     color: black;
@@ -38,12 +56,12 @@
     color: #0B0B61;
 }
 .paintedReplicsOfAuthor_Black_parody {
-    background-image: url("../../images/textures/background.jpg");
+    background-image: url("../images/textures/background.jpg");
     color: mediumvioletred;
     border: 1px solid;
 }
 .paintedReplicsOfHelen {
-    background-image: url("../../images/textures/calm_water3.jpg");
+    background-image: url("../images/textures/calm_water3.jpg");
     border: 3px solid mediumblue; !important;
     color: darkmagenta;
 }
@@ -54,7 +72,7 @@
     text-decoration: underline;
 }
 .paintedReplicsOfJudy {
-    background-image: url("../../images/textures/mist.jpg");
+    background-image: url("../images/textures/mist.jpg");
     border: 3px solid mediumblue; !important;
     color: darkblue;
 }
@@ -65,7 +83,7 @@
     text-decoration: underline;
 }
 .paintedReplicsOfCassandra {
-    background-image: url("../../images/textures/ocean.jpg");
+    background-image: url("../images/textures/ocean.jpg");
     border: 3px solid mediumblue; !important;
     color: darkblue;
 }
@@ -79,12 +97,12 @@
     color: whitesmoke;
 }
 .paintedReplicsOfChristian {
-    background-image: url("../../images/textures/gold.jpg");
+    background-image: url("../images/textures/gold.jpg");
     border: 3px solid saddlebrown; !important;
     color: #61210B;
 }
 .paintedReplicsOfBeatrix {
-    background-image: url("../../images/textures/fony_117.jpg");
+    background-image: url("../images/textures/fony_117.jpg");
     border: 3px solid #0B0B61; !important;
     color: lightcyan;
 }
@@ -95,7 +113,7 @@
     text-decoration: underline;
 }
 .paintedReplicsOfMrsJakins {
-    background-image: url("../../images/textures/pink_paper.jpg");
+    background-image: url("../images/textures/pink_paper.jpg");
     border: 3px solid darkblue; !important;
     color: darkviolet;
 }
@@ -110,7 +128,7 @@
     color: darkslateblue;
 }
 .paintedReplicsOfWomanDevil {
-    background-image: url("../../images/textures/bumaga_texture_101.jpg");
+    background-image: url("../images/textures/bumaga_texture_101.jpg");
     border: 3px solid firebrick; !important;
     color: black;
 }
@@ -155,27 +173,27 @@
     color: darkslategrey;
 }
 .paintedReplicsOfTimothy {
-    background-image: url("../../images/textures/buket2.jpg");
+    background-image: url("../images/textures/buket2.jpg");
     border: 3px solid seagreen; !important;
     color: lightyellow;
 }
 .paintedReplicsOfGloria {
-    background-image: url("../../images/textures/gold.jpg");
+    background-image: url("../images/textures/gold.jpg");
     color: #61210B;
     border: 3px solid saddlebrown;
 }
 .paintedReplicsOfQuentin {
-    background-image: url("../../images/textures/peacock.jpg");
+    background-image: url("../images/textures/peacock.jpg");
     border: 3px solid darkslategray; !important;
     color: lightpink;
 }
 .paintedReplicsOfSophie {
-    background-image: url("../../images/textures/images4.jpg");
+    background-image: url("../images/textures/images4.jpg");
     border: 3px solid lightpink; !important;
     color: lightyellow;
 }
 .paintedReplicsOfNick {
-    background-image: url("../../images/textures/green_marble.jpg");
+    background-image: url("../images/textures/green_marble.jpg");
     color: aliceblue;
 }
 .paintedReplicsOf1 {
@@ -208,7 +226,7 @@
     padding: 4px;
 }
 .commonPaint {
-    background-image: url("../../images/textures/commonPaint.jpg");
+    background-image: url("../images/textures/commonPaint.jpg");
     color: deeppink;
     border: 3px solid darkslateblue;
 }

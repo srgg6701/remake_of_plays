@@ -31,19 +31,13 @@ body, body * {
 
 #right > div {
     border: 1px solid;
-    font-size: 18px;
     font-family: "Microsoft YaHei UI";
     margin-bottom: 2%;
 }
 
 #preview {
-    padding: 6px;
-    font-size: 18px;
-}
-
-#explain {
-    padding: 10px;
-    /* font-size: 18px; */
+    padding: 9px;
+    font-size: 20px;
 }
 
 #enterButtons div {
@@ -63,13 +57,12 @@ body, body * {
     margin-left: 2%;
 }
 
-#enter > a {
-    font-size: larger;
+#enter {
+    background-color: darkgray;
+    padding: 7px;
 }
 
-#gateDiv > img {
-    margin-top: 5%;
-    margin-bottom: 5%;
-    width: 100%
+#enter > a {
+    font-size: 20px;
 }
 
