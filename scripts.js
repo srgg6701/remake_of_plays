@@ -80,7 +80,7 @@ function fill(container, templ, urlTitle, arr) {
     console.log("arr: ", arr);
     for (var c = 0, len = arr.length; c < len; c++) {
         console.log("num: ", arr[c]["number"]);
-        var ready_element = makeReadyView(templ, {"urlTitle": urlTitle, "num": arr[c]["number"]}).ready_element;
+        var ready_element = new makeReadyView(templ, {"urlTitle": urlTitle, "num": arr[c]["number"]}).ready_element;
         container.append(ready_element);
     }
 }
@@ -261,13 +261,6 @@ var $dynamicContent = $("#dynamicContent"),
                     var choicedPlaysModel = new playsModel(urlTitle);
                     choicedPlaysModel.promisedData.then(
                         function (jsonData) {
-                            /*  0 "There are the following characters in this play:"
-                             1 "3 friends: <b>Helen, Judy and Cassandra</b>;"
-                             2 "<b>Beatrix</b> - Helen's water pet, a little cruise mermaid for an aquarium. But in reality she is a special scavenger and she must live in nature out of an aquarium to <span class="from_vocabulary">comply</span> her <span class="from_vocabulary">grander</span> mission"
-                             3 "<b>Christian</b> - a biologist who is in age of a little child, but he has already been allowed to work as a scientist, because he already understands enough to engage it. He was born with enough amount of knowledges and mental abilities to became a scientist just after he could to speak and move. Christian is learning <u>extra-decomposers</u>"
-                             4 "<u>Extra-decomposers</u> is a new live specie of scavengers which did not exist some times ago."
-                             5 "Also there is such character as Woman-devil. She is a devil,
-                             */
                             var textAboutCharacters = jsonData["About characters"], // array was passed
                                 ready_about_characters = new makeReadyView(about_characters,
                                     {"firstPg": '<p>' + textAboutCharacters.join('</p><p>') + '</p>'}).ready_element,
@@ -279,10 +272,12 @@ var $dynamicContent = $("#dynamicContent"),
                                 },
                                 ready_basement = new makeReadyView(basement, basementData).ready_element;
                             $dynamicContent.html(ready_basement);
+                            console.log(link);
+                            var newLink = new makeReadyView(link, {"num": 1.4, "urlTitle": urlTitle}).ready_element;
+                            console.log(newLink);
                             for (var c= 0, l = jsonData["Parts"].length; c < l; c++) {
                                 var num = jsonData["Parts"][c]["number"],
                                 newPartLink = "<a href = '#in_the_plays/"+urlTitle+"/Part_"+num+"'>Part "+num+"</a>";
-
                                 $("#parts").append(newPartLink);
                             }
                             if ($("#linksSection")[0] !== undefined) {
@@ -328,8 +323,9 @@ var $dynamicContent = $("#dynamicContent"),
                             $dynamicContent.html(ready_basement);
                             for (var c= 0, l = jsonData["Parts"].length; c < l; c++) {
                                 var num = jsonData["Parts"][c]["number"],
-                                    newPartLink = "<a href = '#in_the_plays/"+urlTitle+"/Part_"+num+"'>Part "+num+"</a>";
-                                $("#parts").append(newPartLink);
+                                newLink = "<a href = '#in_the_plays/"+urlTitle+"/Part_"+num+"'>Part "+num+"</a>";
+                                    //  newPartLink = "<a href = '#in_the_plays/"+urlTitle+"/Part_"+num+"'>Part "+num+"</a>";
+                                $("#parts").append(newLink);
                             }
                             for (var runReplics = 0; runReplics < jsonData["Parts"][index]["replics"].length; runReplics++) {
                                 //console.log("index: ", index);
