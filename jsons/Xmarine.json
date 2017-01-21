@@ -6,7 +6,6 @@
       "images": [
         "<img src=\"images/onTheBeginning/possessions.jpg\">",
         "<img src=\"images/onTheBeginning/devil.jpg\">",
-        "<img src=\"images/onTheBeginning/all_3.png\">",
         "<img src=\"images/onTheBeginning/fishes.jpg\">"
       ],
       "playsTitle": "Xmarine",
@@ -23,7 +22,9 @@
       "Also there is such character as Woman-devil. She is a devil, but not evil for most of people despite she is able to kill people. But it is related only to bad very people, murderers, criminals, maniacs and so on. She has a <span class=\"from_vocabulary\">grander</span> mission on human world: creating many perfect wonders including Extrapdecomposers using her magical forces. Anything she creates with defined purpose. So, Extra-decomposers were created to save nature from global poisoning by rotten flesh."
     ],
     "Parts": [
-      {"number": 1.1, "header": "Storie about a peculiar human",
+      {"number": 1.1, 
+        "sharing_roles": ["You may share the 3 roles as you want."],
+        "header": "Storie about a peculiar human",
         "replics": [
           {"Author's words": ["The scene of meeting between three personages, who talk about one unusual event. Helen meets her friends, Judy and Cassandra, and they expect her to share some sensational news."]},
           {"Helen": ["Cassandra, Judy, I am happy to meet you! How do you do?"]},
@@ -89,7 +90,9 @@
           {"Judy": ["I already understood. But where is a proof that all his knowledge is from the past live? Who will allow him to do scientific research, without this?"]},
           {"Helen": ["There is no need for paper documents. The truth that he can <span class=\"from_vocabulary\">afford</span> himself to work is already proved. Everybody who has heard him talking about science, cannot take  Christian for an ordinary child. He claims that he is an adult, and a true scientist, who merely looks like a child, and he claims this in a such way that you cannot but trust him. Well, you listen to this and you see how the general axiom on the impossibility of such events is being  slowly denied. When people listen to him, they understand that they are <span class=\"from_vocabulary\">propelled</span> to his words. As a result, nobody can prohibit Christian to live as an adult professor. In this way, Christian in this life has entered science in an unofficial way, without any documents. He managed to enter science, while having at his disposal merely what he had."]}
         ]},
-      {"number": 1.2, "header": "Acquaintance with new pet",
+      {"number": 1.2,
+        "sharing_roles": ["For 2 players:", "1.  Helen and somebody of Judy and Cassandra", "2. Beatrix and somebody of Judy and Cassandra", "Author's words is not so matter.", "For 3 players:", "1. Helen", "2. Beatrix", "3. Judy and Cassandra", "Author's words also is not so matter."],
+        "header": "Acquaintance with new pet",
         "replics":[
           {"Author's words": ["The <span class=\"from_vocabulary\">venue</span> is at table at Helen’ courtyard. Helen,  Judy and Cassandra came together to talk."]},
           {"Judy": ["Well, I think we have already discussed our plans for the holidays, but if somebody has other ideas, I'm ready to listen."]},
@@ -166,7 +169,9 @@
           {"Cassandra": ["Well, Helen, do you see?"]},
           {"Helen": ["Well, let's go Beatriz, I will tell you in detail, show and explain which zones are permitted and which are prohibited."]}
         ]},
-      {"number": 1.3, "header": "Christian meets Judy and Cassandra the first time",
+      {"number": 1.3, 
+        "sharing_roles": ["..."],
+        "header": "Christian meets Judy and Cassandra the first time",
         "replics":[
           {"Helen": ["Christian!"]},
           {"Christian": ["Hi, Helen. Nice to see you."]},
@@ -231,7 +236,9 @@
           {"Christian": ["I am glad, girls."]},
           {"Christian & Helen": ["See you soon, girls."]}
         ]},
-      {"number": 1.4, "header": "In the acquarium",
+      {"number": 1.4,
+        "sharing_roles": ["..."],
+        "header": "In the acquarium",
         "replics":[
           {"Tortoise female": ["Guys, are you <span class=\"from_vocabulary\">undismayed</span> by this alive object?"]},
           {"Marine star":["This? This is a very interesting new inhabitant. I agree."]},
@@ -330,7 +337,9 @@
           {"Tortoise female": ["Do you wish to return to the ocean or the swamp?"]},
           {"Beatrix":["I will think about it. <span class=\"from_vocabulary\">Somehow</span> I would like to meet Darma again and tell her anything what I have known about the ocean, the river and this aquarium."]}
         ]},
-      {"number": 1.5, "header": "Pity",
+      {"number": 1.5,
+        "sharing_roles": ["..."],
+        "header": "Pity",
         "replics":[
           {
             "Judy": [
@@ -2024,7 +2033,9 @@
             ]
           }
         ]},
-      {"number": 1.9, "header": "Discussion between Helen and Beatrix",
+      {"number": 1.9,
+        "sharing_roles": ["..."],
+        "header": "Discussion between Helen and Beatrix",
         "replics":[
           {
             "Helen": [
@@ -3021,7 +3032,9 @@
             ]
           }
         ]},
-      {"number": 1.12, "header": "Meeting of Helen, Judy and Cassandra with Beatrix",
+      {"number": 1.12,
+        "sharing_roles": ["..."],
+        "header": "Meeting of Helen, Judy and Cassandra with Beatrix",
         "replics":[
           {
             "Author's words": [
@@ -3354,7 +3367,9 @@
             ]
           }
         ]},
-      {"number": 1.13, "header": "Christian gets Beatrix's proposal",
+      {"number": 1.13,
+        "sharing_roles": ["..."],
+        "header": "Christian gets Beatrix's proposal",
         "replics":[
           {
             "Helen": [
@@ -4235,7 +4250,9 @@
             ]
           }
         ]},
-      {"number": 1.15, "header": "Woman-devil's intention",
+      {"number": 1.15,
+        "sharing_roles": ["..."],
+        "header": "Woman-devil's intention",
         "replics":[
           {
             "Author's words": [
@@ -5007,7 +5024,9 @@
               "Timothy turned and went. He came in the train and the door was closed after him."
             ]
           }]},
-      {"number": 1.17, "header": "Christian is relocating for his engagement",
+      {"number": 1.17,
+        "sharing_roles": ["..."],
+        "header": "Christian is relocating for his engagement",
         "replics":[
           {
             "Author's words": [
@@ -5485,7 +5504,9 @@
             ]
           }]
       },
-      {"number": 1.18, "header": "Terrifying discovery",
+      {"number": 1.18,
+        "sharing_roles": ["..."],
+        "header": "Terrifying discovery",
         "replics": [
           {"Author's words": ["Christian arrived to San-Salvador. His work was not bad. He communicated and collaborated with other scientists while the extra-decomposers were existing, but their existance will be ceased soon.",
             "Beatrix wrote Christian a letter where she informed him that there were no more extra-decomposers. Christian was not at home at the moment when the letter came. The letter was gotten by his grandpa. A little time later he called Christian to tell him about this letter and information in it. Christian had <span class=\"from_vocabulary\">dismay</span> in his mind when he had listened that extra-decomposers time had been completed. Soon he returned home and saw the letter. There was something written about past time when extra-decomposers existed in <span class=\"from_vocabulary\">notably</span>. It was written about reasons of their existing such as different <span class=\"from_vocabulary\">litter</span> in water of ocean and swamp where Beatrix had lived earlier. It turned out that Woman-devil created them not just for <span class=\"from_vocabulary\">refinement</span> some places in nature.",
@@ -6259,7 +6280,9 @@
           {"Author's words": ["Beatrix appeared behind the cupboard and dissapeared from Ramon's view."]}
         ]
       },
-      {"number": 2.4, "header": "",
+      {"number": 2.4,
+        "sharing_roles": ["..."],
+        "header": "",
         "replics": [
           {"Author's words": ["Poor Beatrix was not sleeping during the whole night as she was <span class=\"from_vocabulary\"> indcuced</span> to watch out Molly and prevent Ramon's death from her hands if she decided to do it those night. Besides she had not very pleasant thought in her mind. It was the idea to eliminate <span class=\"from_vocabulary\">hazard</span> from Ramon's life, but in the same time do it in such way so that Ramon would not know the real reason of presence of this <span class=\"from_vocabulary\">hazard</span> in his life. Beatrix felt that it would be not easy to realize. Also she felt she didn't like that Ramon did not want to beleive her main hypothesis about Molly's initiative to <span class=\"from_vocabulary\">cease</span> Ramon's life.", "When Ramon had woken up he suddenly remembered what he had to do."]},
           {"Ramon's thought": ["It is good that I had remembered about it before Molly's going off."]},
@@ -6389,7 +6412,9 @@
           {"Author's words'": ["Ramon did it and locked the garage. When he and Beatrix entered in the porch Beatrix reduced in her size and followed Ramon towards to the door of his flat."]}
         ]
       },
-      {"number": 2.5, "header": "",
+      {"number": 2.5,
+        "sharing_roles": ["..."],
+        "header": "",
         "replics": [
           {"Beatrix": [""]},
           {"Ramon": [""]},

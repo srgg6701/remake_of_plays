@@ -2,6 +2,7 @@
  * Created by User on 23.11.2016.
  * Эта функция осуществляет получение данных из jsons и сохраняет их в поля key объекта window
  */
+
 function getData(key, path) {
     if (!path) path = 'jsons/' + key + '.json';
     //console.log('%cpath', 'backgroun-color: lightskyblue', path);
@@ -72,16 +73,22 @@ var config = {
     }
 };
 
-function continueFilling(container, elems){
-    for(var c=1; c<elems.length; c++){
-        container.append(elems[c]);
+function fill(container, templ, urlTitle, arr) {
+    console.log("В теле функции: container: ", container);
+    console.log("templ: ", templ);
+    console.log("urlTitle: ", urlTitle);
+    console.log("arr: ", arr);
+    for (var c = 0, len = arr.length; c < len; c++) {
+        console.log("num: ", arr[c]["number"]);
+        var ready_element = makeReadyView(templ, {"urlTitle": urlTitle, "num": arr[c]["number"]}).ready_element;
+        container.append(ready_element);
     }
 }
 
 var playsModel = Backbone.Model.extend(
     {
-        initialize: function(urlTitle) {
-            this.promisedTemplate = this.getTemplatesContents(urlTitle);
+        initialize: function (urlTitle) {
+            this.promisedData = this.getTemplatesContents(urlTitle);
         },
         // will save promise
         /**
@@ -152,15 +159,15 @@ var settingColors = Backbone.View.extend(
     {
         el: '#dynamicContent',
         // former paintSecondary:
-        initialize: function(urlTitle, otherUrlTitle, secondElems) {
+        initialize: function (urlTitle, otherUrlTitle, secondElems) {
             $("body") // jQuery object, где HTML объект body представлен в поле с ключом 0
                 ['removeClass']("backgroundFor" + otherUrlTitle)
                 .addClass("backgroundFor" + urlTitle);
-            console.log(secondElems);
-            for(var c= 0, l = secondElems.length; c < l; c++){
-                var elem = $("#"+secondElems[c]);
-                elem.removeClass(secondElems[c]+otherUrlTitle);
-                elem.addClass(secondElems[c]+urlTitle);
+            //console.log(secondElems);
+            for (var c = 0, l = secondElems.length; c < l; c++) {
+                var elem = $("#" + secondElems[c]);
+                elem.removeClass(secondElems[c] + otherUrlTitle);
+                elem.addClass(secondElems[c] + urlTitle);
             }
         }
     }
@@ -181,7 +188,7 @@ var $dynamicContent = $("#dynamicContent"),
                 "": "initView",
                 "in_the_secondary/:urlTitle": "loadSecondary",
                 "in_the_plays/:urlTitle/about_characters": "loadPlays",
-                "in_the_plays/:urlTitle/part_:num": "loadPart"
+                "in_the_plays/:urlTitle/Part_:currentNumber": "loadPart"
             },
             initView: function () {
                 var file_path = "templates/primary/", prime_blocks = {prime_blocks: []};
@@ -190,20 +197,17 @@ var $dynamicContent = $("#dynamicContent"),
                 ).done(function (prime_block, prime_wrapper) {
                     var xmarineModel = new playsModel("Xmarine"), // checkJsonData runs asynchronously
                         black_parodyModel = new playsModel("Black_parody");  // checkJsonData runs asynchronousl
-                    /*console.log('promisedTemplate=>', {
-                        'xmarineModel.promisedTemplate':xmarineModel.promisedTemplate
-                    });*/
                     $.when(
                         // wait for promises to be fullfilled
-                        xmarineModel.promisedTemplate,
-                        black_parodyModel.promisedTemplate
+                        xmarineModel.promisedData,
+                        black_parodyModel.promisedData
                     ).done(function (jsonDataXm, jsonDataBp) {
-                        console.log('done', {jsonDataXm:jsonDataXm, jsonDataBp:jsonDataBp});
-                        console.log(xmarineModel["attributes"]);
                         var xmarineView = new makeReadyView(prime_block, jsonDataXm["onTheBeginning"]),
                             black_parodyView = new makeReadyView(prime_block, jsonDataBp["onTheBeginning"]),
-                            ready_prime_wrapper = new makeReadyView(prime_wrapper, {"Xmarine_block": xmarineView.ready_element,
-                            "Black_parody_block": black_parodyView.ready_element});
+                            ready_prime_wrapper = new makeReadyView(prime_wrapper, {
+                                "Xmarine_block": xmarineView.ready_element,
+                                "Black_parody_block": black_parodyView.ready_element
+                            });
                         $dynamicContent.html(ready_prime_wrapper.ready_element);
                         setTimeout(
                             function () {
@@ -220,30 +224,29 @@ var $dynamicContent = $("#dynamicContent"),
                 // Получить оба ready_prime_block через каждый из экземпляров, сложить их в массив и внести в prime_wrapper.
 
             },
-           loadSecondary: function (urlTitle) {
+            loadSecondary: function (urlTitle) {
                 getTemplate("templates/secondary/secondary.html").then(
                     // Определить, какой window[key]
                     // заполнить шаблон соответствующими данными
                     function (secondary) {
                         var choicedPlaysModel = new playsModel(urlTitle);
-                        choicedPlaysModel.getTemplatesContents(urlTitle).then(
-                            function(jsonData){
+                        choicedPlaysModel.promisedData.then(
+                            function (jsonData) {
                                 var arrayImages = jsonData["onTheBeginning"]["images"].join(""),
-                                data = {
+                                    data = {
                                         "arrayImages": arrayImages,
                                         "headerLogotip": jsonData["onTheBeginning"]["headerLogotip"],
                                         "bigImage": jsonData["onTheBeginning"]["images"][0],
                                         "preview": jsonData["onTheBeginning"]["preview"],
                                         "playsTitle": urlTitle
-                                };
+                                    };
                                 var ready_secondary = new makeReadyView(secondary, data);
                                 $dynamicContent.html(ready_secondary.ready_element);
-                                if($("#preview")[0]!==undefined){
+                                if ($("#preview")[0] !== undefined) {
                                     var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"], ['preview']);
                                 }
                                 // xfixme: optimize -- get rid of calling:
                             }
-
                         );
                     }
                 );
@@ -252,52 +255,117 @@ var $dynamicContent = $("#dynamicContent"),
                 console.trace('router: loadPlays');
                 var file_path = "templates/entered/";
                 $.when(getTemplate(file_path + "basement.html"),
-                    getTemplate(file_path + "about_characters.html")
-                ).done(function (basement, about_characters) {
+                    getTemplate(file_path + "about_characters.html"),
+                    getTemplate(file_path + "link.html")
+                ).done(function (basement, about_characters, link) {
                     var choicedPlaysModel = new playsModel(urlTitle);
-                    choicedPlaysModel.getTemplatesContents(urlTitle).then(
-                        function(jsonData) {
+                    choicedPlaysModel.promisedData.then(
+                        function (jsonData) {
                             /*  0 "There are the following characters in this play:"
-                                1 "3 friends: <b>Helen, Judy and Cassandra</b>;"
-                                2 "<b>Beatrix</b> - Helen's water pet, a little cruise mermaid for an aquarium. But in reality she is a special scavenger and she must live in nature out of an aquarium to <span class="from_vocabulary">comply</span> her <span class="from_vocabulary">grander</span> mission"
-                                3 "<b>Christian</b> - a biologist who is in age of a little child, but he has already been allowed to work as a scientist, because he already understands enough to engage it. He was born with enough amount of knowledges and mental abilities to became a scientist just after he could to speak and move. Christian is learning <u>extra-decomposers</u>"
-                                4 "<u>Extra-decomposers</u> is a new live specie of scavengers which did not exist some times ago."
-                                5 "Also there is such character as Woman-devil. She is a devil,
-                            */
+                             1 "3 friends: <b>Helen, Judy and Cassandra</b>;"
+                             2 "<b>Beatrix</b> - Helen's water pet, a little cruise mermaid for an aquarium. But in reality she is a special scavenger and she must live in nature out of an aquarium to <span class="from_vocabulary">comply</span> her <span class="from_vocabulary">grander</span> mission"
+                             3 "<b>Christian</b> - a biologist who is in age of a little child, but he has already been allowed to work as a scientist, because he already understands enough to engage it. He was born with enough amount of knowledges and mental abilities to became a scientist just after he could to speak and move. Christian is learning <u>extra-decomposers</u>"
+                             4 "<u>Extra-decomposers</u> is a new live specie of scavengers which did not exist some times ago."
+                             5 "Also there is such character as Woman-devil. She is a devil,
+                             */
                             var textAboutCharacters = jsonData["About characters"], // array was passed
                                 ready_about_characters = new makeReadyView(about_characters,
-                                {"firstPg":'<p>'+textAboutCharacters.join('</p><p>')+'</p>'}).ready_element,
-                            basementData={
-                                "headerLogotip":jsonData["onTheBeginning"]["headerLogotip"],
-                                "playsTitle": jsonData["onTheBeginning"]["playsTitle"],
-                                "otherUrlTitle": jsonData["otherUrlTitle"],
-                                "ready_content": ready_about_characters
-                            },
-                            ready_basement = new makeReadyView(basement, basementData).ready_element;
+                                    {"firstPg": '<p>' + textAboutCharacters.join('</p><p>') + '</p>'}).ready_element,
+                                basementData = {
+                                    "headerLogotip": jsonData["onTheBeginning"]["headerLogotip"],
+                                    "playsTitle": jsonData["onTheBeginning"]["playsTitle"],
+                                    "otherUrlTitle": jsonData["otherUrlTitle"],
+                                    "ready_content": ready_about_characters
+                                },
+                                ready_basement = new makeReadyView(basement, basementData).ready_element;
                             $dynamicContent.html(ready_basement);
                             for (var c= 0, l = jsonData["Parts"].length; c < l; c++) {
                                 var num = jsonData["Parts"][c]["number"],
-                                newPartLink = "<a href = '#in_the_plays/"+urlTitle+"/part_"+num+"'>Part "+num+"</a>";
+                                newPartLink = "<a href = '#in_the_plays/"+urlTitle+"/Part_"+num+"'>Part "+num+"</a>";
+
                                 $("#parts").append(newPartLink);
                             }
-                            console.log($("#changeable_content"));
-                            if($("#linksSection")[0]!==undefined){
-                                var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"], ['linksSection','about_characters_div']);
+                            if ($("#linksSection")[0] !== undefined) {
+                                var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"], ['linksSection', 'about_characters_div']);
                             }
-                            //, ready_about_characters = choicedPlaysView.render(about_characters, {"firstPg":textAboutCharacters[0]});
-                            //this.continueFilling($("#textAboutCharacters"), textAboutCharacters);
-                            // basement = choicedPlaysView.render(basement, jsonData, {"ready_content": ready_about_characters});
-                            //
                         }
                     );
                 });
             },
-            "loadPart": function(){
+            loadPart: function (urlTitle, currentNumber) {
+                // console.log("Функция вызвана по-новому.");
+                var file_path = "templates/entered/";
                 $.when(getTemplate(file_path + "basement.html"),
-                    getTemplate(file_path + "episode.html")
-                ).done(function (basement, episode) {
+                    getTemplate(file_path + "episode.html"),
+                    getTemplate(file_path + "replic.html"),
+                    getTemplate(file_path + "link.html")
+                ).done(function (basement, episode, replic, link) {
+                    var choicedPlaysModel = new playsModel(urlTitle);
+                    choicedPlaysModel.promisedData.then(
+                        function (jsonData) {
+                            var index = 0;
+                            console.log("currentNumber: ", currentNumber);
+                            console.log("jsonData['Parts'].length: ", jsonData['Parts'].length);
+                            // Определить индекс текущей части в json-объекте.
+                            while (jsonData["Parts"][index]["number"]!=currentNumber) {
+                                index++;
+                            }
+                           // console.log("jsonData['Parts'][index]: ",jsonData["Parts"][index]);
+                          //  console.log("jsonData['Parts'][index]['sharing_roles']: ",jsonData["Parts"][index]["sharing_roles"]);
+                            var allocation_roles = jsonData["Parts"][index]["sharing_roles"];
+                            if (allocation_roles.length > 1) {
+                                allocation_roles = "<p>" + allocation_roles.join("</p><p>") + "</p>";
+                                jsonData["Parts"][index]["sharing_roles"] = allocation_roles;
+                            }
+                            var ready_episode = new makeReadyView(episode, jsonData["Parts"][index]).ready_element,
+                                basementData = {
+                                    "headerLogotip": jsonData["onTheBeginning"]["headerLogotip"],
+                                    "playsTitle": jsonData["onTheBeginning"]["playsTitle"],
+                                    "otherUrlTitle": jsonData["otherUrlTitle"],
+                                    "ready_content": ready_episode
+                                },
+                                ready_basement = new makeReadyView(basement, basementData).ready_element;
+                            $dynamicContent.html(ready_basement);
+                            for (var c= 0, l = jsonData["Parts"].length; c < l; c++) {
+                                var num = jsonData["Parts"][c]["number"],
+                                    newPartLink = "<a href = '#in_the_plays/"+urlTitle+"/Part_"+num+"'>Part "+num+"</a>";
+                                $("#parts").append(newPartLink);
+                            }
+                            for (var runReplics = 0; runReplics < jsonData["Parts"][index]["replics"].length; runReplics++) {
+                                //console.log("index: ", index);
+                                var className, role = Object.keys(jsonData["Parts"][index]["replics"][runReplics])[0],
+                                    words;
+                                if (typeof(jsonData["Parts"][index]["replics"][runReplics][role]) == "object") {
+                                    if (jsonData["Parts"][index]["replics"][runReplics][role].length > 1) {
+                                        words = "<p>" + jsonData["Parts"][index]["replics"][runReplics][role].join("</p><p>") + "</p>";
+                                    }
+                                    else {
+                                        words = jsonData["Parts"][index]["replics"][runReplics][role][0];
+                                    }
+                                }
+                                else {
+                                    words = jsonData["Parts"][index]["replics"][runReplics][role];
+                                }
+                                if (role == "Author's words") {
+                                    className = "authorReplic";
+                                }
+                                else {
+                                    className = "characterReplic" + urlTitle;
+                                }
+                                var ready_replic = new makeReadyView(replic, {
+                                    "className": className,
+                                    "role": role,
+                                    "words": words
+                                }).ready_element;
+                                $("#content_of_part").append(ready_replic);
+                            }
+                            var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"],
+                                ['linksSection', 'top_of_part', 'topText', 'buttons', 'sharing_roles', 'content_of_part']);
 
+                        }
+                    );
                 });
+                /* */
             }
         }
     );

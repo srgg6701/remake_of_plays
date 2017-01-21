@@ -41,3 +41,53 @@
     font-size: 22px;
     margin-left: 6%;
 }
+
+#episodeDiv > div {
+    border: 1px solid;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+#sharing_roles {
+    margin-left: 5%;
+    margin-top: 5%;
+}
+
+#sharing_roles > p {
+    font-size: 20px;
+}
+
+#chooseReplics > button {
+    font-size: 20px;
+    padding: 6px;
+}
+
+form {
+    width: 100%;
+   /* display: none; */
+}
+
+form * {
+    font-size: 18px;
+}
+
+#resultMessage {
+    font-size: 18px;
+    padding: 4px;
+}
+
+#top_of_part > div {
+    border: 1px solid;
+}
+
+#buttons > button {
+    font-size: 20px;
+    padding: 6px;
+}
+
+#content_of_part > div {
+    font-size: 22px;
+    border: 2px solid;
+    border-radius: 6px;
+    padding: 7px;
+}

@@ -1,0 +1,186 @@
+.paintedReplicsOfAuthor_Xmarine {
+    border: 3px dashed darkviolet;
+    border-radius: 4px;
+    background-image: url("../images/textures/buket.jpg");
+}
+.paintedReplicsOfAuthor_Xmarine > h4 {
+    color: black;
+}
+.paintedReplicsOfAuthor_Xmarine > p {
+    color: #0B0B61;
+}
+.paintedReplicsOfAuthor_Black_parody {
+    background-image: url("../images/textures/background.jpg");
+    color: mediumvioletred;
+    border: 1px solid;
+}
+.paintedReplicsOfHelen {
+    background-image: url("../images/textures/calm_water3.jpg");
+    border: 3px solid mediumblue; !important;
+    color: darkmagenta;
+}
+.highlightedOfHelen {
+    background-color: darkviolet;
+    color: lightpink;
+    padding: 6px;
+    text-decoration: underline;
+}
+.paintedReplicsOfJudy {
+    background-image: url("../images/textures/mist.jpg");
+    border: 3px solid mediumblue; !important;
+    color: darkblue;
+}
+.highlightedOfJudy {
+    background-color: aquamarine;
+    color: #0B0B61;
+    padding: 6px;
+    text-decoration: underline;
+}
+.paintedReplicsOfCassandra {
+    background-image: url("../images/textures/ocean.jpg");
+    border: 3px solid mediumblue; !important;
+    color: darkblue;
+}
+.highlightedOfCassandra {
+    background-color: darkorchid;
+    color: beige;
+    padding: 6px;
+    text-decoration: underline;
+}
+.paintedReplicsOfCassandra > p {
+    color: whitesmoke;
+}
+.paintedReplicsOfChristian {
+    background-image: url("../images/textures/gold.jpg");
+    border: 3px solid saddlebrown; !important;
+    color: #61210B;
+}
+.paintedReplicsOfBeatrix {
+    background-image: url("../images/textures/fony_117.jpg");
+    border: 3px solid #0B0B61; !important;
+    color: lightcyan;
+}
+.highlightedOfBeatrix {
+    background-color: cyan;
+    color: blue;
+    padding: 6px;
+    text-decoration: underline;
+}
+.paintedReplicsOfMrsJakins {
+    background-image: url("../images/textures/pink_paper.jpg");
+    border: 3px solid darkblue; !important;
+    color: darkviolet;
+}
+.paintedReplicsOfMrJakins {
+    background-color: darkblue;
+    border: 3px solid darkblue; !important;
+    color: lightsteelblue;
+}
+.paintedReplicsOfJamesMcHein {
+    background-color: lightblue;
+    border: 3px solid darkblue; !important;
+    color: darkslateblue;
+}
+.paintedReplicsOfWomanDevil {
+    background-image: url("../images/textures/bumaga_texture_101.jpg");
+    border: 3px solid firebrick; !important;
+    color: black;
+}
+.paintedReplicsOfTortoiseMale {
+    background-color: lightsteelblue;
+    border: 3px solid darkblue; !important;
+    color: darkblue;
+}
+.paintedReplicsOfTortoiseFemale {
+    background-color: lightpink;
+    border: 3px solid darkblue; !important;
+    color: firebrick;
+}
+.paintedReplicsOfCatfishMale {
+    background-color: gray;
+    border: 3px solid darkblue; !important;
+    color: darkblue;
+}
+.paintedReplicsOfCatfishFemale {
+    background-color: lightgrey;
+    border: 3px solid darkblue; !important;
+    color: black;
+}
+.paintedReplicsOfMarineStar {
+    background-color: lightblue;
+    border: 3px solid darkblue; !important;
+    color: blue;
+}
+.paintedReplicsOfCrab {
+    background-color: lightgreen;
+    border: 3px solid darkgreen; !important;
+    color: green;
+}
+.paintedReplicsOfLilian {
+    background-color: lightblue;
+    border: 3px solid darkblue; !important;
+    color: darkcyan;
+}
+.paintedReplicsOfMedusa {
+    background-color: lightgrey;
+    border: 3px solid darkslategray; !important;
+    color: darkslategrey;
+}
+.paintedReplicsOfTimothy {
+    background-image: url("../images/textures/buket2.jpg");
+    border: 3px solid seagreen; !important;
+    color: lightyellow;
+}
+.paintedReplicsOfGloria {
+    background-image: url("../images/textures/gold.jpg");
+    color: #61210B;
+    border: 3px solid saddlebrown;
+}
+.paintedReplicsOfQuentin {
+    background-image: url("../images/textures/peacock.jpg");
+    border: 3px solid darkslategray; !important;
+    color: lightpink;
+}
+.paintedReplicsOfSophie {
+    background-image: url("../images/textures/images4.jpg");
+    border: 3px solid lightpink; !important;
+    color: lightyellow;
+}
+.paintedReplicsOfNick {
+    background-image: url("../images/textures/green_marble.jpg");
+    color: aliceblue;
+}
+.paintedReplicsOf1 {
+    background-color: lightgreen;
+    border: 3px solid seagreen; !important;
+    color: darkslategrey;
+}
+.paintedReplicsOf2 {
+    background-color: darkcyan;
+    border: 3px solid darkslategrey; !important;
+    color: darkslategrey;
+}
+.paintedReplicsOf3 {
+    background-color: mediumseagreen;
+    border: 3px solid seagreen; !important;
+    color: darkslateblue;
+}
+.paintedWordsFromVocabulary_Xmarine {
+    background-color: indigo;
+    text-decoration: underline;
+    color: aliceblue;
+    padding: 4px;
+}
+.paintedWordsFromVocabulary_Black_parody {
+    /* Фон для раскрашенных слов - светлый, раскраска реплик - темная или цвета, отличного от фона раскраски слов из
+     вокобуляра*/
+    background-color: lightsteelblue;
+    text-decoration: underline;
+    color: darkslategray;
+    padding: 4px;
+}
+.commonPaint {
+    background-image: url("../images/textures/commonPaint.jpg");
+    color: deeppink;
+    border: 3px solid darkslateblue;
+}

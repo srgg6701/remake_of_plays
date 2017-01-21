@@ -1,17 +1,16 @@
 <script type="text/template" id="episode">
-        <div>
-             <div id="sharing_roles">
+        <div class="col-sm-12" id="episodeDiv">
+             <div class="col-sm-11" id="sharing_roles">
                  <p>Здесь можно получить информацию о рациональных способах разделения ролей между игроками.</p>
                  <input type="button" value="показать информацию">
-                 <p><%=allocation_roles%></p>
+                 <p><%=sharing_roles%></p>
              </div>
-             <div id="chooseReplics">
+             <div class="col-sm-10 col-sm-offset-1" id="chooseReplics">
                   <button>Paint by roles</button>
                   <button>Paint by term</button>
-                  <div id="divForForms">
+                  <div class="col-sm-12" id="divForForms">
                       <form>
                           <div id='listOfCheckboxes'>
-                              <%=checkboxes%>
                           </div>
                           <button id='but'>Paint</button>
                       </form>
@@ -23,22 +22,23 @@
                           <button>Paint</button>
                       </form>
                   </div>
-                  <div id="resultMessage"></div>
+                  <div class="col-sm-6 col-sm-offset-3" id="resultMessage"></div>
              </div>
-             <div id="top_of_part">
-                    <div>
-                        <h2 id='headerForPart'>
+             <div class="col-sm-12" id="top_of_part">
+                    <div class="col-sm-10" id="topText">
+                        <h2>
                             <span>Part </span> 
                             <span><%=number%></span>
+                            <span> </span>
                             <span><%=header%></span>
                         </h2>
                     </div>
-                    <div id='buttons'>
-                        <button type='button' value='◄' id='scrollBack'></button>
-                        <button type='button' value='►' id='fscrollFront'></button>
-                        <button type='button' id='paintWordsFromVocab'></button>
+                    <div class="col-sm-2" id='buttons'>
+                        <button type='button' id='paintWordsFromVocab'>Paint words from vocabulary</button>
+                        <button type='button' id='scrollBack'>◄</button>
+                        <button type='button' id='fscrollFront'>►</button>
                     </div>  
              </div>
-             <div id="content_of_part"></div>
+             <div class="col-sm-12" id="content_of_part"></div>
         </div>
 </script>
