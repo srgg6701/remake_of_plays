@@ -73,8 +73,39 @@ var config = {
     }
 };
 
-function fill(container, templ, urlTitle, arr) {
-    console.log("В теле функции: container: ", container);
+function fill(selector, urlTitle, templ, data, arr) {
+    var container = $(selector);
+    for (var c = 0, len = arr.length; c < len; c++) {
+        if("num" in data){
+            data.num = arr[c]['number'];
+            data.urlTitle = urlTitle;
+        }
+        else {
+            data.role = Object.keys(arr[c])[0];
+            // arr[c] - конкретная реплика.
+            if (typeof(arr[c][data.role]) == "object") {
+                if (arr[c][data.role].length > 1) {
+                    data.words = "<p>" + arr[c][data.role].join("</p><p>") + "</p>";
+                }
+                else {
+                    words = arr[c][data.role][0];
+                }
+            }
+            else {
+                words = arr[c][data.role];
+            }
+            if (data.role == "Author's words") {
+                data.className = "authorReplic";
+            }
+            else {
+                data.className = "characterReplic" + urlTitle;
+            }
+        }
+
+        var ready_element = new makeReadyView(templ, data).ready_element;
+        container.append(ready_element);
+    }
+    /*console.log("В теле функции: container: ", container);
     console.log("templ: ", templ);
     console.log("urlTitle: ", urlTitle);
     console.log("arr: ", arr);
@@ -82,7 +113,7 @@ function fill(container, templ, urlTitle, arr) {
         console.log("num: ", arr[c]["number"]);
         var ready_element = new makeReadyView(templ, {"urlTitle": urlTitle, "num": arr[c]["number"]}).ready_element;
         container.append(ready_element);
-    }
+    } */
 }
 
 var playsModel = Backbone.Model.extend(
@@ -272,8 +303,8 @@ var $dynamicContent = $("#dynamicContent"),
                                 },
                                 ready_basement = new makeReadyView(basement, basementData).ready_element;
                             $dynamicContent.html(ready_basement);
-                            console.log(link);
-                            var newLink = new makeReadyView(link, {"num": 1.4, "urlTitle": urlTitle}).ready_element;
+                           fill("#parts", urlTitle, link, {"num": ""}, jsonData["Parts"]);
+                            /*ar newLink = new makeReadyView(link, {"num": 1.4, "urlTitle": urlTitle}).ready_element;
                             console.log(newLink);
                             for (var c= 0, l = jsonData["Parts"].length; c < l; c++) {
                                 var num = jsonData["Parts"][c]["number"],
@@ -282,13 +313,13 @@ var $dynamicContent = $("#dynamicContent"),
                             }
                             if ($("#linksSection")[0] !== undefined) {
                                 var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"], ['linksSection', 'about_characters_div']);
-                            }
+                            }*/
                         }
                     );
                 });
             },
             loadPart: function (urlTitle, currentNumber) {
-                // console.log("Функция вызвана по-новому.");
+                console.log("Функция вызвана по-новому.");
                 var file_path = "templates/entered/";
                 $.when(getTemplate(file_path + "basement.html"),
                     getTemplate(file_path + "episode.html"),
@@ -321,13 +352,16 @@ var $dynamicContent = $("#dynamicContent"),
                                 },
                                 ready_basement = new makeReadyView(basement, basementData).ready_element;
                             $dynamicContent.html(ready_basement);
-                            for (var c= 0, l = jsonData["Parts"].length; c < l; c++) {
+                            fill("#parts", urlTitle, link, {"num": ""}, jsonData["Parts"]);
+                            /*for (var c= 0, l = jsonData["Parts"].length; c < l; c++) {
                                 var num = jsonData["Parts"][c]["number"],
                                 newLink = "<a href = '#in_the_plays/"+urlTitle+"/Part_"+num+"'>Part "+num+"</a>";
                                     //  newPartLink = "<a href = '#in_the_plays/"+urlTitle+"/Part_"+num+"'>Part "+num+"</a>";
                                 $("#parts").append(newLink);
-                            }
-                            for (var runReplics = 0; runReplics < jsonData["Parts"][index]["replics"].length; runReplics++) {
+                            } */
+                            fill("#content_of_part", urlTitle, replic, {"className": "", "role": "", "words": ""},
+                                jsonData["Parts"][index]["replics"]);
+                           /* for (var runReplics = 0; runReplics < jsonData["Parts"][index]["replics"].length; runReplics++) {
                                 //console.log("index: ", index);
                                 var className, role = Object.keys(jsonData["Parts"][index]["replics"][runReplics])[0],
                                     words;
@@ -353,11 +387,12 @@ var $dynamicContent = $("#dynamicContent"),
                                     "role": role,
                                     "words": words
                                 }).ready_element;
+                                fill("#content_of_part", replic, jsonData["Parts"][index]["replics"]);
                                 $("#content_of_part").append(ready_replic);
                             }
                             var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"],
                                 ['linksSection', 'top_of_part', 'topText', 'buttons', 'sharing_roles', 'content_of_part']);
-
+                            */
                         }
                     );
                 });
