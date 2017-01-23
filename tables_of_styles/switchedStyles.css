@@ -44,8 +44,19 @@
     color: lavenderblush;
 }
 
-.sharing_rolesXmarine > p {
+.sharing_rolesXmarine {
+    background-color: rgba(45, 160, 140, 0.55);
+    border-radius: 11px;
+    border: 2px solid blue;
+}
 
+.sharing_rolesXmarine > p {
+    color: #210B61;
+}
+
+.sharing_rolesXmarine > input {
+    color: darkblue;
+    background-color: lightblue;
 }
 
 .sharing_rolesBlack_parody > p {

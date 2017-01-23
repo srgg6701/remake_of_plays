@@ -6,8 +6,10 @@
                  <p><%=sharing_roles%></p>
              </div>
              <div class="col-sm-10 col-sm-offset-1" id="chooseReplics">
-                  <button>Paint by roles</button>
-                  <button>Paint by term</button>
+                 <div class="col-sm-4 col-sm-offset-4">
+                     <button>Paint by roles</button>
+                     <button>Paint by term</button>
+                 </div>
                   <div class="col-sm-12" id="divForForms">
                       <form>
                           <div id='listOfCheckboxes'></div>
@@ -34,8 +36,8 @@
                     </div>
                     <div class="col-sm-2" id='buttons'>
                         <button type='button' id='paintWordsFromVocab'>Paint words from vocabulary</button>
-                        <button type='button' id='scrollBack'>◄</button>
-                        <button type='button' id='fscrollFront'>►</button>
+                        <button type='button' class="arrow">◄</button>
+                        <button type='button' class="arrow">►</button>
                     </div>  
              </div>
              <div class="col-sm-12" id="content_of_part"></div>

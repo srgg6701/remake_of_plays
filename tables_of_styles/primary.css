@@ -1,6 +1,6 @@
 .collapsed{
         height: 0;
-        overflow: hidden;
+        /*overflow: hidden; */
 }
 
 #prime_wrapper_div {
@@ -88,4 +88,8 @@
     font-size: 16px;
     padding: 5px;
 }
+
+
+
+
 

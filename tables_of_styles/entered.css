@@ -8,16 +8,13 @@
     margin-left: 5%;
     margin-top: 10%;
     border-radius: 4px;
+    padding: 8px;
 }
 
 #linksSection > div > a {
     display: block;
     font-size: 24px;
     margin-top: 5%;
-}
-
-#constantLinks > a {
-    margin-left: 8%;
 }
 
 #parts {
@@ -32,10 +29,10 @@
     width: 100%;
 }
 
- h1 {
+h1 {
     margin-left: 9%;
     font-size: 34px;
- }
+}
 
 #textAboutCharacters > p {
     font-size: 22px;
@@ -49,22 +46,34 @@
 }
 
 #sharing_roles {
-    margin-left: 5%;
+    margin-left: 8%;
     margin-top: 5%;
 }
 
 #sharing_roles > p {
-    font-size: 20px;
+    font-size: 24px;
+    margin-left: 5%;
 }
 
-#chooseReplics > button {
+#sharing_roles > input {
+    font-size: 18px;
+    padding: 7px;
+    margin-left: 7%;
+    border-radius: 5px;
+}
+
+#chooseReplics > div {
+    margin-top: 3%;
+}
+
+#chooseReplics > div > button {
     font-size: 20px;
     padding: 6px;
 }
 
 form {
     width: 100%;
-   /* display: none; */
+    /* display: none; */
 }
 
 form * {
