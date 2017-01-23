@@ -93,36 +93,42 @@ function checkJsonData(key) {
     return defer.promise();
 }
 
-function fill(selector, urlTitle, templ, data, arr) {
-    var container = $(selector);
+function fill(selector, templ, data, arr) {
+    var container = $(selector), tmpl;
     for (var c = 0, len = arr.length; c < len; c++) {
         if ("num" in data) {
             data.num = arr[c]['number'];
+            tmpl = templ;
         }
         else {
             data.role = Object.keys(arr[c])[0];
             // arr[c] - конкретная реплика.
-            if (typeof(arr[c][data.role]) == "object") {
-                if (arr[c][data.role].length > 1) {
-                    data.words = "<p>" + arr[c][data.role].join("</p><p>") + "</p>";
+            if(data.role=="image"){
+                tmpl = "<div class='col-sm-8 col-sm-offset-2'><%=image%></div>";
+                data.image = arr[c][data.role];
+            }
+            else {
+                tmpl = templ; // replic
+                if (typeof(arr[c][data.role]) == "object") {
+                    if (arr[c][data.role].length > 1) {
+                        data.words = "<p>" + arr[c][data.role].join("</p><p>") + "</p>";
+                    }
+                    else {
+                        data.words = arr[c][data.role][0];
+                    }
                 }
                 else {
-                    data.words = arr[c][data.role][0];
+                    data.words = arr[c][data.role];
+                }
+                if (data.role == "Author's words") {
+                    data.className = "authorReplic";
+                }
+                else {
+                    data.className = "characterReplic" + data.urlTitle;
                 }
             }
-            else {
-                data.words = arr[c][data.role];
-            }
-            if (data.role == "Author's words") {
-                data.className = "authorReplic";
-            }
-            else {
-                data.className = "characterReplic" + urlTitle;
-            }
         }
-
-        var ready_element = new makeReadyView(templ, data).ready_element;
+        var ready_element = new makeReadyView(tmpl, data).ready_element;
         container.append(ready_element);
     }
-
 }

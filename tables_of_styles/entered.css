@@ -67,21 +67,31 @@ h1 {
 }
 
 #chooseReplics > div > button {
-    font-size: 20px;
+    font-size: 19px;
     padding: 6px;
 }
 
 form {
     width: 100%;
+    background-color: lightblue;
     /* display: none; */
 }
 
-form * {
-    font-size: 18px;
+form button {
+    font-size: 20px;
+    padding: 7px;
+}
+
+form > div > div {
+    font-size: 23px;
+    padding: 4px;
+}
+
+#listOfCheckboxed {
+    font-size: 24px;
 }
 
 #resultMessage {
-    font-size: 18px;
     padding: 4px;
 }
 
@@ -90,7 +100,6 @@ form * {
 }
 
 #buttons > button {
-    font-size: 20px;
     padding: 6px;
 }
 
@@ -99,4 +108,8 @@ form * {
     border: 2px solid;
     border-radius: 6px;
     padding: 7px;
+}
+
+#content_of_part > div > img {
+    width: 100%;
 }

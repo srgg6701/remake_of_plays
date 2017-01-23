@@ -40,20 +40,16 @@ var events = Backbone.View.extend({
 var pages = {};
 
 $('body').on('click', '.arrow', function(event){
-    console.log('%cInitialized, clicked!', 'color:blue', {event:event, this:this});
+    //console.log('%cInitialized, clicked!', 'color:blue', {event:event, this:this});
     var newNumber, urlParams = location.href.split('/'), urlTitle = urlParams[4],
         partName = urlParams[5], currentIndex, newIndex;
     for(var i=0; i < config.pages[urlTitle].length; i++){
-        //console.log("config.pages[urlTitle][i] в цикле: ", config.pages[urlTitle][i]);
         if(config.pages[urlTitle][i]==partName){
             currentIndex=i;
             break;
         }
     }
-    //console.log("После цикла partName: ", partName, " currentIndex: ", currentIndex);
-     //   currentNumber = Number(location.href.split('/').pop().split('_').pop());
-    //console.log(cinfig.pages(urlTitle));
-   /* */switch(event.target.innerText){
+   switch(event.target.innerText){
         case "◄":
             if(currentIndex==0){
                 newIndex = config.pages[urlTitle].length-1;
@@ -73,53 +69,9 @@ $('body').on('click', '.arrow', function(event){
     }
     //console.log("arrow: ", event.target.innerText, ", new index: ", newIndex);
     urlParams[5]=config.pages[urlTitle][newIndex];
-    console.log(urlParams[5]);
+    //console.log(urlParams[5]);
     location.href="#in_the_plays/"+urlTitle+"/"+config.pages[urlTitle][newIndex];
-    /* locationStr = "in_the_plays/", // substr
-        pos = location.href.indexOf(locationStr),
-      http://127.0.0.1:8080/#in_the_plays/Xmarine/Part_1.5
-     var nm = Number(location.href.split('/').pop().split('_').pop())
-     => 1.5
-     *
-        varsString = location.href.substring(pos + locationStr.length),
-        vars = varsString.split("/Part_"),
-        urlTitle = vars[0],
-        currentNumber = vars[1];*/
-    //console.log("%cmakeReadyView instance", 'background-color:yellow', {this:this, 'this.el':this.el, 'this.$el':this.$el, varsString:varsString});
-    /* currentNumber становится равне 1.1, в цикле while сразу при нулевом индексе
-     window[urlTitle]["Parts"][index]["number"] равен 1.1, цикл while не идет.*/
-    /*
-     while (window[urlTitle]["Parts"][index]["number"] != currentNumber) {
-     //console.log(window[urlTitle]["Parts"][index]["number"]);
-     index++;
-     }
-     //console.log("index перед switch: ", index);
-     switch(event.target.innerText){
-     case "◄":
-     if(index==0){
-     index=window[urlTitle]["Parts"].length-1;
-     }else{
-     index--;
-     }
-     console.log("Попали назад.");
-     break;
-     case "►":
-     if(window[urlTitle]["Parts"].length-1){
-     index=0;
-     }
-     else{
-     index++;
-     }
-     console.log("Попали вперед.");
-     break;
-     }
-     console.log("newIndex: ", index); // Всегда 0.
-     //console.log(event.target.innerText);
-     //console.log(index);
-     newNumber = window[urlTitle]["Parts"][index]["number"];
-     location.href = "/#in_the_plays/"+urlTitle+"/Part_"+newNumber;
-     *
-     * */
+
 });
 
 var makeReadyView = Backbone.View.extend(
@@ -268,7 +220,7 @@ var AppRouter = Backbone.Router.extend({
                         ready_basement = new makeReadyView(basement, basementData).ready_element;
                   //  console.log('%cready_basement=>', 'color:blue', ready_basement);
                     $dynamicContent.html(ready_basement);
-                    fill("#parts", urlTitle, link, {"num": "", "urlTitle": urlTitle}, jsonData["Parts"]);
+                    fill("#parts", link, {"num": "", "urlTitle": urlTitle}, jsonData["Parts"]);
                     if ($("#linksSection")[0] !== undefined) {
                         var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"], ['linksSection', 'about_characters_div']);
                     }
@@ -297,6 +249,18 @@ var AppRouter = Backbone.Router.extend({
                             jsonData["Parts"][index]["sharing_roles"] = allocation_roles;
                         }
                     }
+                    var roles = [];
+                    for (var runRoles=0; numbReps = jsonData["Parts"][index]["replics"].length, runRoles < numbReps; runRoles++){
+                        var role = Object.keys(jsonData["Parts"][index]["replics"][runRoles])[0];
+                        if((role!=="Being")&&(role!=="image")&&(roles.indexOf("Monster")==-1)){
+                            if(roles.indexOf(role)==-1){
+                                roles.push(role);
+                            }
+                        }
+                    }
+                    console.log("roles: ", roles);
+                    jsonData["Parts"][index]["rolesList"]="<div><input type='checkbox'>"
+                        +roles.join("</div><div><input type='checkbox'>")+("</div>");
                     var ready_episode = new makeReadyView(episode, jsonData["Parts"][index]).ready_element,
                         basementData = {
                             "headerLogotip": jsonData["onTheBeginning"]["headerLogotip"],
@@ -306,13 +270,15 @@ var AppRouter = Backbone.Router.extend({
                         },
                         ready_basement = new makeReadyView(basement, basementData).ready_element;
                     $dynamicContent.html(ready_basement);
-                    fill("#parts", urlTitle, link, {"num": "", "urlTitle": urlTitle}, jsonData["Parts"]);
+                    fill("#parts", link, {"num": "", "urlTitle": urlTitle}, jsonData["Parts"]);
                     var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"],
                         ['linksSection', 'top_of_part', 'topText', 'buttons', 'sharing_roles', 'content_of_part']);
-                    fill("#content_of_part", urlTitle, replic, {
+                    fill("#content_of_part",replic, {
                         "role": "",
                         "words": "",
-                        "class": ""
+                        "className": "",
+                        "urlTitle": urlTitle,
+                        "image": ""
                     }, jsonData["Parts"][index]["replics"]);
                     //var eventsClicks = new events();
                 }
