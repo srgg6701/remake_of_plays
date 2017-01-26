@@ -60,11 +60,7 @@
 }
 
 .sharing_rolesBlack_parody > p {
-
-}
-
-.top_of_partXmarine {
-    background-color: rgba(57, 16, 145, 0.35);
+    color: lightblue;
 }
 
 .topTextXmarine {
@@ -77,7 +73,7 @@
 }
 
 .buttonsBlack_parody > button {
-    background-color: mediumorchid;
+    background-color: #E2A9F3;
     color: darkviolet;
 }
 

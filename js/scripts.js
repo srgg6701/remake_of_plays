@@ -74,6 +74,39 @@ $('body').on('click', '.arrow', function(event){
 
 });
 
+$('body').on('click', '#showInformationButton', function(event){
+    $("#textSharingRoles").toggleClass("hidden");
+    if(event.target.value=="► show the information"){
+        event.target.value="▼ hide the information";
+    }
+    else {
+        event.target.value="► show the information";
+    }
+});
+
+$('body').on('click', '.showForm', function(event){
+    var clickedButton = this, id = this.getAttribute("id"), number = id[id.length-1],
+    buttonData = {
+        1: {curNumber: "1", otherNumber: "2", text: "Paint by roles"},
+        2: {curNumber: "2", otherNumber: "1", text: "Paint by term"},
+        designedText: clickedButton.innerText
+    };
+    $("#form"+buttonData[number]["curNumber"]).removeClass("hidden");
+    $("#form"+buttonData[number]["otherNumber"]).addClass("hidden");
+    if($("#closeForm").hasClass("hidden")){
+        $("#closeForm").removeClass("hidden")
+    }
+  // console.log(buttonData.designedText);
+});
+
+$('body').on('click', '#closeForm', function(event){
+    console.log(event.target.classList);
+    //event.target.classList;
+    event.target.classList.add("hidden");
+    $("#form1").addClass("hidden");
+    $("#form2").addClass("hidden");
+});
+
 var makeReadyView = Backbone.View.extend(
     {
         events: {
@@ -142,7 +175,7 @@ var AppRouter = Backbone.Router.extend({
         "in_the_plays/:urlTitle/Part_:currentNumber": "loadPart"
     },
     initView: function () {
-        var file_path = "templates/primary/", prime_blocks = {prime_blocks: []};
+        var file_path = "../templates/primary/", prime_blocks = {prime_blocks: []};
         $.when(getTemplate(file_path + "prime_block.html"),
             getTemplate(file_path + "prime_wrapper.html")
         ).done(function (prime_block, prime_wrapper) {
@@ -172,7 +205,7 @@ var AppRouter = Backbone.Router.extend({
 
     },
     loadSecondary: function (urlTitle) {
-        getTemplate("templates/secondary/secondary.html").then(
+        getTemplate("../templates/secondary/secondary.html").then(
             // Определить, какой window[key]
             // заполнить шаблон соответствующими данными
             function (secondary) {
@@ -200,7 +233,7 @@ var AppRouter = Backbone.Router.extend({
     },
     loadPlays: function (urlTitle) {
         console.trace('router: loadPlays');
-        var file_path = "templates/entered/";
+        var file_path = "../templates/entered/";
         $.when(getTemplate(file_path + "basement.html"),
             getTemplate(file_path + "about_characters.html"),
             getTemplate(file_path + "link.html")
@@ -229,7 +262,7 @@ var AppRouter = Backbone.Router.extend({
         });
     },
     loadPart: function (urlTitle, currentNumber) {
-        var file_path = "templates/entered/";
+        var file_path = "../templates/entered/";
         $.when(getTemplate(file_path + "basement.html"),
             getTemplate(file_path + "episode.html"),
             getTemplate(file_path + "replic.html"),
@@ -242,17 +275,18 @@ var AppRouter = Backbone.Router.extend({
                     while (jsonData["Parts"][index]["number"] != currentNumber) {
                         index++;
                     }
-                    var allocation_roles = jsonData["Parts"][index]["sharing_roles"];
-                    if (typeof (allocation_roles) == "object") {
-                        if (allocation_roles.length > 1) {
-                            allocation_roles = "<p>" + allocation_roles.join("</p><p>") + "</p>";
-                            jsonData["Parts"][index]["sharing_roles"] = allocation_roles;
+                    var sharing_roles = jsonData["Parts"][index]["sharing_roles"];
+                    if (typeof (sharing_roles) == "object") {
+                        if (sharing_roles.length > 1) {
+                            sharing_roles = "<p>" + sharing_roles.join("</p><p>") + "</p>";
+                            jsonData["Parts"][index]["sharing_roles"] = sharing_roles;
                         }
                     }
+                    console.log("sharing roles: ", sharing_roles);
                     var roles = [];
                     for (var runRoles=0; numbReps = jsonData["Parts"][index]["replics"].length, runRoles < numbReps; runRoles++){
                         var role = Object.keys(jsonData["Parts"][index]["replics"][runRoles])[0];
-                        if((role!=="Being")&&(role!=="image")&&(roles.indexOf("Monster")==-1)){
+                        if((role!=="Being")&&(role!=="image")&&(roles.indexOf("Monster")==-1)&&(role.indexOf("&")==-1)){
                             if(roles.indexOf(role)==-1){
                                 roles.push(role);
                             }

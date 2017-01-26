@@ -91,7 +91,7 @@
           {"Helen": ["There is no need for paper documents. The truth that he can <span class=\"from_vocabulary\">afford</span> himself to work is already proved. Everybody who has heard him talking about science, cannot take  Christian for an ordinary child. He claims that he is an adult, and a true scientist, who merely looks like a child, and he claims this in a such way that you cannot but trust him. Well, you listen to this and you see how the general axiom on the impossibility of such events is being  slowly denied. When people listen to him, they understand that they are <span class=\"from_vocabulary\">propelled</span> to his words. As a result, nobody can prohibit Christian to live as an adult professor. In this way, Christian in this life has entered science in an unofficial way, without any documents. He managed to enter science, while having at his disposal merely what he had."]}
         ]},
       {"number": 1.2,
-        "sharing_roles": ["For 2 players:", "1.  Helen and somebody of Judy and Cassandra", "2. Beatrix and somebody of Judy and Cassandra", "Author's words is not so matter.", "For 3 players:", "1. Helen", "2. Beatrix", "3. Judy and Cassandra", "Author's words also is not so matter."],
+        "sharing_roles": ["For 2 players:", "1.  Helen and somebody of Judy and Cassandra", "2. Beatrix and somebody of Judy and Cassandra", "Author's words is not so matter.", "<b>For 3 players:</b>", "1. Helen", "2. Beatrix", "3. Judy and Cassandra", "Author's words also is not so matter."],
         "header": "Acquaintance with new pet",
         "replics":[
           {"Author's words": ["The <span class=\"from_vocabulary\">venue</span> is at table at Helen’ courtyard. Helen,  Judy and Cassandra came together to talk."]},
@@ -709,7 +709,7 @@
         ]},
       {"number": 1.7,
         "sharing_roles": ["<b>For 2 players:</b>", "1. Christian", "2. Helen", "Mrs Jakins better to Helen than to Christian",
-          "For 3 players by term"],
+          "<b>For 3 players:</b>", "by term"],
         "header": "Helen is a guest of Chrisian and mrs Jakins",
         "replics":[
           {
@@ -4815,7 +4815,7 @@
           }
         ]},
       {"number": 1.16,
-        "sharing_roles": ["<b>For 2 players:</b>", "1. Timothy and may be somebody else", "2. Snake and may be somebody else", "For 3 players by terms."],
+        "sharing_roles": ["<b>For 2 players:</b>", "1. Timothy and may be somebody else", "2. Snake and may be somebody else", "<b>For 3 players</b>:", "by terms."],
         "header": "Conversation about Beatrix's adoption",
         "replics":[ {
           "Author's words": [
