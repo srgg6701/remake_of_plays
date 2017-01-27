@@ -1,15 +1,15 @@
-.paintedReplicsOfAuthor_Xmarine {
+.paintedReplicsOfAuthor {
     border: 3px dashed darkviolet;
     border-radius: 4px;
     background-image: url("../images/textures/buket.jpg");
 }
-.paintedReplicsOfAuthor_Xmarine > h4 {
+.paintedReplicsOfAuthor > h4 {
     color: black;
 }
-.paintedReplicsOfAuthor_Xmarine > p {
+.paintedReplicsOfAuthor > p {
     color: #0B0B61;
 }
-.paintedReplicsOfAuthor_Black_parody {
+.paintedReplicsOfAuthor {
     background-image: url("../images/textures/background.jpg");
     color: mediumvioletred;
     border: 1px solid;
@@ -58,24 +58,31 @@
 .paintedReplicsOfBeatrix {
     background-image: url("../images/textures/fony_117.jpg");
     border: 3px solid #0B0B61; !important;
+}
+
+.paintedReplicsOfBeatrix > * {
     color: lightcyan;
 }
+
 .highlightedOfBeatrix {
     background-color: cyan;
     color: blue;
     padding: 6px;
     text-decoration: underline;
 }
-.paintedReplicsOfMrsJakins {
+.paintedReplicsOfGrandma {
     background-image: url("../images/textures/pink_paper.jpg");
     border: 3px solid darkblue; !important;
     color: darkviolet;
 }
-.paintedReplicsOfMrJakins {
-    background-color: darkblue;
-    border: 3px solid darkblue; !important;
-    color: lightsteelblue;
+.paintedReplicsOfGrandpa {
+    background-color: lightsteelblue;
 }
+
+.paintedReplicsOfGrandpa > * {
+    color: darkblue;
+}
+
 .paintedReplicsOfJamesMcHein {
     background-color: lightblue;
     border: 3px solid darkblue; !important;
@@ -127,10 +134,14 @@
     color: darkslategrey;
 }
 .paintedReplicsOfTimothy {
-    background-image: url("../images/textures/buket2.jpg");
-    border: 3px solid seagreen; !important;
+    background-color: darkslategray;
+    border: 3px solid darkcyan; !important;
+}
+
+.paintedReplicsOfTimothy > * {
     color: lightyellow;
 }
+
 .paintedReplicsOfGloria {
     background-image: url("../images/textures/gold.jpg");
     color: #61210B;

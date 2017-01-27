@@ -47,6 +47,15 @@ h1 {
 #sharing_roles {
     margin-left: 8%;
     margin-top: 5%;
+    font-size: 23px;
+    padding-left: 4%;
+    padding-right: 3%;
+    font-family: "Candara";
+}
+
+#sharing-roles > p {
+    font-size: 22px;
+    margin-left: 4%;
 }
 
 #textSharingRoles > p {
@@ -117,7 +126,7 @@ form > input {
 }
 
 #top_of_part {
-    margin-left: 6%;
+    margin-left: 8%;
 }
 
 #top_of_part > div {
@@ -136,7 +145,6 @@ form > input {
 #content_of_part > div {
     font-size: 23px;
     margin-bottom: 1%;
-    border: 2px solid;
     border-radius: 6px;
     padding: 20px;
 }

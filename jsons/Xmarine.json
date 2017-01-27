@@ -708,9 +708,9 @@
           }
         ]},
       {"number": 1.7,
-        "sharing_roles": ["<b>For 2 players:</b>", "1. Christian", "2. Helen", "Mrs Jakins better to Helen than to Christian",
+        "sharing_roles": ["<b>For 2 players:</b>", "1. Christian", "2. Helen", "Christian's grandma better to Helen than to Christian",
           "<b>For 3 players:</b>", "by term"],
-        "header": "Helen is a guest of Chrisian and mrs Jakins",
+        "header": "Helen is a guest of Chrisian and his grandma",
         "replics":[
           {
             "Christian": [
@@ -778,7 +778,7 @@
             ]
           },
           {
-            "Mrs Jakins": [
+            "Christian's grandma": [
               "Hi, Helen! Nice to see you. How are you?"
             ]
           },
@@ -788,7 +788,7 @@
             ]
           },
           {
-            "Mrs Jakins": [
+            "Christian's grandma": [
               "I have not been seeing you for a long time, Helen. Will you tell me how are your affairs, about your friends and relatives?"
             ]
           },
@@ -798,7 +798,7 @@
             ]
           },
           {
-            "Mrs Jakins": [
+            "Christian's grandma": [
               "Yes, I did, of course. Mr Jakins found Beatrix in a river and get acquainted with her. He likes her. I see her when he had brought her home. Do you have some other news?"
             ]
           },
@@ -808,7 +808,7 @@
             ]
           },
           {
-            "Mrs Jakins": [
+            "Christian's grandma": [
               "I would like us to talk about anything."
             ]
           },
@@ -883,7 +883,7 @@
             ]
           },
           {
-            "Mrs Jakins": [
+            "Christian's grandma": [
               "I would not <span class=\"from_vocabulary\">tinker</span> with her and this <span class=\"from_vocabulary\">frigging</span> feed at all."
             ]
           },
@@ -913,7 +913,7 @@
             ]
           },
           {
-            "Mrs Jakins": [
+            "Christian's grandma": [
               "Oh, Helen, Helen. Do you not find it nasty? I find it <span class=\"from_vocabulary\">abhorrent</span>!"
             ]
           },
@@ -923,7 +923,7 @@
             ]
           },
           {
-            "Mrs Jakins": [
+            "Christian's grandma": [
               "I would not keep such beings among my pets. I find it a bit strange that there are 2 such properties in one being when it has human mind and in the same time it eats carrion. I listen about such strange creature the first time in my life! I am a bit amazed that Andy likes them."
             ]
           },
@@ -938,7 +938,7 @@
             ]
           },
           {
-            "Mrs Jakins": [
+            "Christian's grandma": [
               "But I am a little <span class=\"from_vocabulary\">daunted</span> in connection with existence of so unusual creatures fact. I would only <span class=\"from_vocabulary\">spurn them from me. To be frankly I am just <span class=\"from_vocabulary\">struck</span> by these species. It is something <span class=\"from_vocabulary\">stunning</span>!"
             ]
           },
@@ -948,7 +948,7 @@
             ]
           },
           {
-            "Mrs Jakins": [
+            "Christian's grandma": [
               "Are you sure you are right?"
             ]
           },
@@ -958,7 +958,7 @@
             ]
           },
           {
-            "Mrs Jakins": [
+            "Christian's grandma": [
               "You said they exist when there is a necessaty in their existence and do not exist when there is no necessaty? Will you say existence of such creatures would not be <span class=\"from_vocabulary\">perpetuated</span>?"
             ]
           },
@@ -978,7 +978,7 @@
             ]
           },
           {
-            "Mrs Jakins": [
+            "Christian's grandma": [
               "Anything of it is very unusual, of course. Frankly I am a little <span class=\"from_vocabulary\">hectic</span> about all these facts. So I was <span class=\"from_vocabulary\">hectic</span> about your features, Christian. I have never seen such kids as you before. Your feature is what <span class=\"from_vocabulary\">transgresses</span> human mind nature! But otherwise it is wonderful you understand why. We had to take care of you only for 3 years. After that you were an adult human instead to be a little kid. You can work and have <span class=\"from_vocabulary\">aptitudes</span> to be responsible for yourself <span class=\"from_vocabulary\">prematurely</span>! It was terrifyingly and wonderful in the same time! It is so <span class=\"from_vocabulary\">jarring</span> that I do not even know how I evaluate it at least."
             ]
           },
@@ -1008,7 +1008,7 @@
             ]
           },
           {
-            "Mrs Jakins": [
+            "Christian's grandma": [
               "Yes, Christian, it seems as it is such grander sensation that you are so amazing kid that you must be famous while you are living and <span class=\"from_vocabulary\">posthumously</span> so much, too."
             ]
           },
@@ -1018,7 +1018,7 @@
             ]
           },
           {
-            "Mrs Jakins": [
+            "Christian's grandma": [
               "Christian! It will only <span class=\"from_vocabulary\">exacerbate</span> my <span class=\"from_vocabulary\">turmoil</span> feelings!"
             ]
           },
@@ -1028,7 +1028,7 @@
             ]
           },
           {
-            "Mrs Jakins": [
+            "Christian's grandma": [
               "Can you never told it me?"
             ]
           },
@@ -5100,7 +5100,7 @@
           },
           {
             "Author's words": [
-              "Christian and Mr Jakins heard voice of Mrs Jakins from outside of this room:"
+              "Christian and Mr Jakins heard voice of Christian's grandma from outside of this room:"
             ]
           },
           {
@@ -5180,7 +5180,7 @@
           },
           {
             "Author's words": [
-              "After these people had finished their breakfast, mrs Jakins gave the dishes and put it in the sell."
+              "After these people had finished their breakfast, Christian's grandma gave the dishes and put it in the sell."
             ]
           },
           {

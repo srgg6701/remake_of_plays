@@ -39,73 +39,6 @@ var events = Backbone.View.extend({
 
 var pages = {};
 
-$('body').on('click', '.arrow', function(event){
-    //console.log('%cInitialized, clicked!', 'color:blue', {event:event, this:this});
-    var newNumber, urlParams = location.href.split('/'), urlTitle = urlParams[4],
-        partName = urlParams[5], currentIndex, newIndex;
-    for(var i=0; i < config.pages[urlTitle].length; i++){
-        if(config.pages[urlTitle][i]==partName){
-            currentIndex=i;
-            break;
-        }
-    }
-   switch(event.target.innerText){
-        case "◄":
-            if(currentIndex==0){
-                newIndex = config.pages[urlTitle].length-1;
-                //currentIndex=window[urlTitle]["Parts"].length-1;
-            }else{
-                newIndex = currentIndex-1;
-            }
-            break;
-        case "►":
-            if(currentIndex==window[urlTitle]["Parts"].length-1){
-                newIndex=0;
-            }
-            else{
-                newIndex = currentIndex+1;
-            }
-            break;
-    }
-    //console.log("arrow: ", event.target.innerText, ", new index: ", newIndex);
-    urlParams[5]=config.pages[urlTitle][newIndex];
-    //console.log(urlParams[5]);
-    location.href="#in_the_plays/"+urlTitle+"/"+config.pages[urlTitle][newIndex];
-
-});
-
-$('body').on('click', '#showInformationButton', function(event){
-    $("#textSharingRoles").toggleClass("hidden");
-    if(event.target.value=="► show the information"){
-        event.target.value="▼ hide the information";
-    }
-    else {
-        event.target.value="► show the information";
-    }
-});
-
-$('body').on('click', '.showForm', function(event){
-    var clickedButton = this, id = this.getAttribute("id"), number = id[id.length-1],
-    buttonData = {
-        1: {curNumber: "1", otherNumber: "2", text: "Paint by roles"},
-        2: {curNumber: "2", otherNumber: "1", text: "Paint by term"},
-        designedText: clickedButton.innerText
-    };
-    $("#form"+buttonData[number]["curNumber"]).removeClass("hidden");
-    $("#form"+buttonData[number]["otherNumber"]).addClass("hidden");
-    if($("#closeForm").hasClass("hidden")){
-        $("#closeForm").removeClass("hidden")
-    }
-  // console.log(buttonData.designedText);
-});
-
-$('body').on('click', '#closeForm', function(event){
-    console.log(event.target.classList);
-    //event.target.classList;
-    event.target.classList.add("hidden");
-    $("#form1").addClass("hidden");
-    $("#form2").addClass("hidden");
-});
 
 var makeReadyView = Backbone.View.extend(
     {
@@ -251,7 +184,6 @@ var AppRouter = Backbone.Router.extend({
                             "ready_content": ready_about_characters
                         },
                         ready_basement = new makeReadyView(basement, basementData).ready_element;
-                  //  console.log('%cready_basement=>', 'color:blue', ready_basement);
                     $dynamicContent.html(ready_basement);
                     fill("#parts", link, {"num": "", "urlTitle": urlTitle}, jsonData["Parts"]);
                     if ($("#linksSection")[0] !== undefined) {
@@ -282,19 +214,23 @@ var AppRouter = Backbone.Router.extend({
                             jsonData["Parts"][index]["sharing_roles"] = sharing_roles;
                         }
                     }
-                    console.log("sharing roles: ", sharing_roles);
+                    //console.log("sharing roles: ", sharing_roles);
                     var roles = [];
                     for (var runRoles=0; numbReps = jsonData["Parts"][index]["replics"].length, runRoles < numbReps; runRoles++){
                         var role = Object.keys(jsonData["Parts"][index]["replics"][runRoles])[0];
-                        if((role!=="Being")&&(role!=="image")&&(roles.indexOf("Monster")==-1)&&(role.indexOf("&")==-1)){
+                        if((role!=="Being")&&(role!=="image")&&(roles.indexOf("Monster")==-1)&&(role.indexOf("&")==-1)
+                        &&(role.indexOf("answer")==-1)){
+                            if(role=="Snake"){
+                                role=role+" (Woman-devil)";
+                            }
                             if(roles.indexOf(role)==-1){
                                 roles.push(role);
                             }
                         }
+
                     }
-                    console.log("roles: ", roles);
-                    jsonData["Parts"][index]["rolesList"]="<div><input type='checkbox'>"
-                        +roles.join("</div><div><input type='checkbox'>")+("</div>");
+                    jsonData["Parts"][index]["rolesList"]="<div class='div'><input class='checkbox' type='checkbox'>"
+                        +roles.join("</div><div class='div'><input class='checkbox' type='checkbox'>")+("</div>");
                     var ready_episode = new makeReadyView(episode, jsonData["Parts"][index]).ready_element,
                         basementData = {
                             "headerLogotip": jsonData["onTheBeginning"]["headerLogotip"],
@@ -306,7 +242,7 @@ var AppRouter = Backbone.Router.extend({
                     $dynamicContent.html(ready_basement);
                     fill("#parts", link, {"num": "", "urlTitle": urlTitle}, jsonData["Parts"]);
                     var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"],
-                        ['linksSection', 'top_of_part', 'topText', 'buttons', 'sharing_roles', 'content_of_part']);
+                        ['linksSection', 'topText', 'buttons', 'sharing_roles', 'content_of_part']);
                     fill("#content_of_part",replic, {
                         "role": "",
                         "words": "",

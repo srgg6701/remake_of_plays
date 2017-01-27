@@ -92,3 +92,19 @@
 .characterReplicXmarine {
     border: 2px solid midnightblue;
 }
+
+.characterReplicBlack_parody {
+    border: 2px solid lightpink;
+}
+
+.paintedVocabWordsXmarine {
+    background-color: midnightblue;
+    color: lightcyan;
+    padding: 4px;
+}
+
+.paintedVocabWordsBlack_parody {
+    background-color: lightsteelblue;
+    color: darkblue;
+    padding: 4px;
+}
