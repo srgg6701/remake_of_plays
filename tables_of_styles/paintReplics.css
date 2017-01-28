@@ -1,18 +1,8 @@
 .paintedReplicsOfAuthor {
-    border: 3px dashed darkviolet;
     border-radius: 4px;
-    background-image: url("../images/textures/buket.jpg");
-}
-.paintedReplicsOfAuthor > h4 {
-    color: black;
-}
-.paintedReplicsOfAuthor > p {
-    color: #0B0B61;
-}
-.paintedReplicsOfAuthor {
     background-image: url("../images/textures/background.jpg");
     color: mediumvioletred;
-    border: 1px solid;
+    border: 1px dashed;
 }
 .paintedReplicsOfHelen {
     background-image: url("../images/textures/calm_water3.jpg");
@@ -58,10 +48,11 @@
 .paintedReplicsOfBeatrix {
     background-image: url("../images/textures/fony_117.jpg");
     border: 3px solid #0B0B61; !important;
+    color: lightcyan;
 }
 
 .paintedReplicsOfBeatrix > * {
-    color: lightcyan;
+
 }
 
 .highlightedOfBeatrix {
@@ -77,10 +68,11 @@
 }
 .paintedReplicsOfGrandpa {
     background-color: lightsteelblue;
+    color: darkblue;
 }
 
 .paintedReplicsOfGrandpa > * {
-    color: darkblue;
+
 }
 
 .paintedReplicsOfJamesMcHein {

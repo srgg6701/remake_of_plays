@@ -1,6 +1,13 @@
 /**
  * Created by User on 26.01.2017.
  */
+
+$('body').on('mouseover', '.littleImage', function(event){
+    var pos = event.target.src.indexOf("/images"),
+        newSrc = event.target.src.substring(pos);
+    $("#bigImage").html("<img src='"+newSrc+"'>");
+});
+
 $('body').on('click', '.arrow', function(event){
     //console.log('%cInitialized, clicked!', 'color:blue', {event:event, this:this});
     var newNumber, urlParams = location.href.split('/'), urlTitle = urlParams[4],
@@ -80,9 +87,7 @@ $('body').on('click', '#paintWordsFromVocab', function(event){
 
 $('body').on('submit', '#form1', function(event){
     var checkboxes = $(".checkbox"), choosenRoles = [], divsChecks = $(".div");
-    //console.log("whole array: ", checkboxes);
     for (var cnt=0; cnt < checkboxes.length; cnt++){
-        //console.log("checkbox: ", checkboxes[cnt], " innerText: ", divsChecks[cnt].innerText);
         if(checkboxes[cnt].checked) {
             if(checkboxes[cnt].innerText=="Snake (Woman-devil)"){
                 choosenRoles.push("Woman-devil");
@@ -97,7 +102,6 @@ $('body').on('submit', '#form1', function(event){
     for(var cnt2=0; cnt2 < h4.length; cnt2++){
         var role = h4[cnt2].innerText;
         if(role.indexOf("&")==-1){
-            // 1. Определить имя в чекбоксе
             switch (role){
                 case "Being":
                 nameInCheck="Beatrix";
@@ -111,9 +115,8 @@ $('body').on('submit', '#form1', function(event){
                 default:
                 if(role.indexOf("answer")!==-1){
                         var posOFAmp = role.indexOf("'s");
-                        nameInCheck = role.innerText.substring(0, posOFAmp);
-                }
-                else {
+                        nameInCheck = role.substring(0, posOFAmp);
+                } else {
                         nameInCheck=role;
                 }
             }
@@ -153,7 +156,6 @@ $('body').on('submit', '#form1', function(event){
                                 nameInClass=nameInCheck;
                             }
                         }
-                        console.log("name in class: ", nameInClass);
                     }
                     divsReplics[cnt2].classList.add("paintedReplicsOf"+nameInClass)
                 }
@@ -164,13 +166,40 @@ $('body').on('submit', '#form1', function(event){
                     }
 
             }
-
-            // 2. Проверить, есть ли это имя среди выбранных ролей
-            // 3. Если есть, но нет раскраски: определить имя в классе раскраски и добавить класс
-            // 4. Иначе: если есть раскраска, определить имя в классе и удалить класс
         }
         else {
-
+            h4[cnt2].innerHTML=="";
+            h4[cnt2].innerText=="";
+            /**
+             * 1. Разбить строку на роли;
+             * 2. В цикле каждую роль проверить на присуствие в массиве выбранных ролей
+             * В случае присутствия: увеличить счетчик, сохранить в переменную роль
+             * После цикла по значению счетчика и переменной, содержащей в себе роль, определить раскраску.
+             * Если этого класса у реплики нет:
+             *  Если есть другой 4-й класс, удалить этот класс;
+             *  В любом случае: добавить нужный класс.
+             */
+            var conjuctedRoles = role.split(" & "), chosenRole, counter= 0, chosenInConjuction = [];
+            for(var runConj=0; runConj<conjuctedRoles.length; runConj++){
+                if(choosenRoles.indexOf(conjuctedRoles[runConj])!==-1){
+                    chosenRole=conjuctedRoles[runConj];
+                    chosenInConjuction.push(chosenRole);
+                    counter++;
+                }
+            }
+            switch(counter){
+                case 0:
+                    if(divsReplics[cnt2].classList.length==4){
+                        var delClass = divsReplics[cnt2].classList[3];
+                        delClass.classList.remove(delClass);
+                    }
+                    break;
+                case 1:
+                    regularClass(divsReplics[cnt2], "paintedReplicsOf"+chosenRole);
+                    break;
+                default:
+                    regularClass(divsReplics[cnt2], "commonPaint");
+            }
         }
     }
 

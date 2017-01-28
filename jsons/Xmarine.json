@@ -4,9 +4,9 @@
       "header": "Cabalistic bewitching hero",
       "imgOnPrimary": "JudyHelenCassandra.jpg\"",
       "images": [
-        "<img src=\"images/onTheBeginning/possessions.jpg\">",
-        "<img src=\"images/onTheBeginning/devil.jpg\">",
-        "<img src=\"images/onTheBeginning/headerLogotipExd.jpg\">"
+        "possessions.jpg",
+        "devil.jpg",
+        "headerLogotipExd.jpg"
       ],
       "playsTitle": "Xmarine",
       "preview": "The plays are about a magic hero who was somebody like a little cruise mermaid and later becomes a mysterious magic superhero. Also there are 3 girls who was percieved as human being, but later it turned out that they are girls-monsters and a special scientist not like all the other scientists.",
@@ -4260,9 +4260,8 @@
             ]
           },
           {
-            "image": [
-              "<img src=\"images/with_characters/Woman-devil%20in%20her%20chair.jpg\">"
-            ]
+            "image": "Woman-devil_in_her chair.jpg"
+
           },
           {
             "Woman-devil": [
@@ -4853,9 +4852,8 @@
             ]
           },
           {
-            "image": [
-              "<img src=\"images/with_characters/Timothy_and_snake.jpg\">"
-            ]
+            "image": "Timothy_and_snake.jpg"
+
           },
           {
             "Snake": [
@@ -5515,7 +5513,7 @@
             "There was one <span class=\"from_vocabulary\">dizzying</span> moment when Christian had returned back. There was one unexpectable meeting. Christian was going home to his grandma and grandpa and when he was not far from Helen's estate he saw a strange creature with scare unfamiliar for him view which popped up from one garden. So he was scared very much. He thought this was Woman-devil appearing very unexpectably, because its imagery was like the imagery of Woman-devil as Christian imagined it by Beatrix's narrative. But creature began talking to him with friendly and good voice as if this was a human, not a monster."]},
           {"Monster": ["Please, sorry me, if you are <span class=\"from_vocabulary\">daunted</span>, Christian. I know, it is my fault."]},
           {"Author's words": ["Christian began speaking not at once as the creature had finished his words. It was because he was scared very much."]},
-          {"image": ["<img src=\"images/with_characters/Helen.jpg\">"]},
+          {"image": "Helen.jpg"},
           {"Christian": ["Who are you!?"]},
           {"Monster": ["It's me, Helen"]},
           {"Author's words": ["As this monster had said she (the same monster) put her tongue in her mouth and Christian almost didn't see it again. He <span class=\"from_vocabulary\">scarcely</span> noticed it in the monster's mouth only when the monster was speaking. Now as the creature had finished his words Christian began speaking at once."]},
@@ -5525,7 +5523,7 @@
           {"Helen": ["I know, I am not very beautiful from human <span class=\"from_vocabulary\">vantage-point</span>, but I look quite normal from <span class=\"from_vocabulary\">vantage-point</span> of monsters. i am sorry in front of you once more. I, Judy and Cassandra are monsters, but we will never <span class=\"from_vocabulary\">claim</span> to harm such people as you, Christian. We <span class=\"from_vocabulary\">purported</span> to reach something absolutely other when we became people and monsters again. I can tell you anything ..."]},
           {"Author's words": ["Christian cried as if he was terrifyed again and Helen did not finish what she wanted to say."]},
           {"Monster 2": ["Please, calm down, Christian. I am not so scary as you think."]},
-          {"image": ["<img src=\"images/with_characters/Judy.jpg\">"]},
+          {"image": "Judy.jpg"},
           {"Author's words": ["Helen turned back and saw Judy in her natural imagery."]},
           {"Judy": ["I am Judy. You are acquainted with me as with Helen and Cassandra. Please, calm down, our dear friend. I can tell why we were turned into people and then you knew that we are monsters not people, but, please, dear friend, don't worry. Your quite <span class=\"from_vocabulary\">resignation</span> is very important for us."]},
           {"Author's words": ["For some time Helen and Judy were looking at Christian and <span class=\"from_vocabulary\">contemplating</span> his mood and expression of his face. Some time later when they had decided that Christian was not so scared as earlier Judy continued speaking."]},
@@ -5544,7 +5542,7 @@
           {"Christian": ["I hope, yes. I hope I will be able to <span class=\"from_vocabulary\">square off</span> my mind anyway."]},
           {"Helen": ["I hope soon there will be <span class=\"from_vocabulary\">humility</span> in the whole world that existance of such monsters as we is quite normal and it is not a reason for sensual <span class=\"from_vocabulary\">tremor</span>. Cassandra, come here, please."]},
           {"Author's words": ["Cassandra appeared. Her imagery seemed Christian prettier than the imageries of Judy and Helen. It was a bit like a human imagery, but more like an <span class=\"from_vocabulary\">immence</span> gigantic toy."]},
-          {"image": ["<img src=\"images/with_characters/Cassandra.jpg\">"]},
+          {"image": "Cassandra.jpg"},
           {"Christian": ["Is this really you, Cassandra?"]},
           {"Cassandra": ["I know now I don't look like those Cassandra who you knew in human imagery. Did Helen or Judy tell you why it had happened?"]},
           {"Christian": ["You mean why you were monsters, turned into people and then turned into monsters again and so it had become known who you are in reality?"]},

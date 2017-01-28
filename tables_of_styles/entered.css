@@ -40,7 +40,6 @@ h1 {
 }
 
 #episodeDiv > div {
-    border: 1px solid;
     margin-bottom: 2%;
 }
 
@@ -69,6 +68,7 @@ h1 {
     padding: 7px;
     margin-left: 7%;
     border-radius: 5px;
+    margin-bottom: 3%;
 }
 
 #chooseReplics > div {
@@ -129,22 +129,25 @@ form > input {
     margin-left: 8%;
 }
 
-#top_of_part > div {
-    border: 1px solid;
+#topText {
+    padding-left: 5%;
 }
 
 #top_of_part span {
-    font-size: 30px;
+    font-size: 34px;
 }
 
 #buttons > button {
-    padding: 6px;
-    font-size: 20px;
+    padding: 7px;
+    font-size: 23px;
+}
+
+#content_of_part > * {
+    margin-top: 2%;
 }
 
 #content_of_part > div {
     font-size: 23px;
-    margin-bottom: 1%;
     border-radius: 6px;
     padding: 20px;
 }

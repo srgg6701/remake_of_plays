@@ -98,37 +98,56 @@ function fill(selector, templ, data, arr) {
     for (var c = 0, len = arr.length; c < len; c++) {
         if ("num" in data) {
             data.num = arr[c]['number'];
-            tmpl = templ;
+            //tmpl = templ;
         }
         else {
-            data.role = Object.keys(arr[c])[0];
-            // arr[c] - конкретная реплика.
-            if(data.role=="image"){
-                tmpl = "<div class='col-sm-8 col-sm-offset-2'><%=image%></div>";
-                data.image = arr[c][data.role];
-            }
-            else {
-                tmpl = templ; // replic
-                if (typeof(arr[c][data.role]) == "object") {
-                    if (arr[c][data.role].length > 1) {
-                        data.words = "<p>" + arr[c][data.role].join("</p><p>") + "</p>";
+            if("littleImage" in data){
+                data.littleImage = arr[c];
+            } else {
+                data.role = Object.keys(arr[c])[0];
+                // arr[c] - конкретная реплика.
+                if(data.role=="image"){
+                    tmpl = "<img class='col-sm-8 col-sm-offset-2' src='../images/with_characters/<%=imgName%>'>";
+                    data.imgName = arr[c][data.role];
+                }
+                else {
+                    //tmpl = templ; // replic
+                    if (typeof(arr[c][data.role]) == "object") {
+                        if (arr[c][data.role].length > 1) {
+                            data.words = "<p>" + arr[c][data.role].join("</p><p>") + "</p>";
+                        }
+                        else {
+                            data.words = arr[c][data.role][0];
+                        }
                     }
                     else {
-                        data.words = arr[c][data.role][0];
+                        data.words = arr[c][data.role];
+                    }
+                    if (data.role == "Author's words") {
+                        data.className = "authorReplic";
+                    }
+                    else {
+                        data.className = "characterReplic" + data.urlTitle;
                     }
                 }
-                else {
-                    data.words = arr[c][data.role];
-                }
-                if (data.role == "Author's words") {
-                    data.className = "authorReplic";
-                }
-                else {
-                    data.className = "characterReplic" + data.urlTitle;
-                }
             }
+
         }
-        var ready_element = new makeReadyView(tmpl, data).ready_element;
+        var ready_element = new makeReadyView(templ, data).ready_element;
         container.append(ready_element);
+    }
+}
+
+function regularClass(replic, neededClass){
+    switch(replic.classList.length){
+        case 4:
+            if(replic.classList[3]!==neededClass){
+                replic.classList.remove(replic.classList[3]);
+                replic.classList.add(neededClass);
+            }
+            break;
+        case 3:
+            replic.classList.add(neededClass);
+            break;
     }
 }

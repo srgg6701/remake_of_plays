@@ -17,7 +17,7 @@ body, body * {
 }
 
 #left img {
-    width: 100%;
+   /* width: 100%; */
 }
 
 #middle h1 {

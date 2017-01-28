@@ -145,16 +145,19 @@ var AppRouter = Backbone.Router.extend({
                 var choicedPlaysModel = new playsModel(urlTitle);
                 choicedPlaysModel.promisedData.then(
                     function (jsonData) {
-                        var arrayImages = jsonData["onTheBeginning"]["images"].join(""),
+                        /**/var arrayImages = jsonData["onTheBeginning"]["images"].join(""),
                             data = {
-                                "arrayImages": arrayImages,
                                 "headerLogotip": jsonData["onTheBeginning"]["headerLogotip"],
                                 "bigImage": jsonData["onTheBeginning"]["images"][0],
                                 "preview": jsonData["onTheBeginning"]["preview"],
                                 "playsTitle": urlTitle
                             };
+                        //console.log("jsonData: ", jsonData);
+                        data["bigImage"]="<img src='../images/onTheBeginning/"+data["bigImage"]+"'>";
                         var ready_secondary = new makeReadyView(secondary, data);
                         $dynamicContent.html(ready_secondary.ready_element);
+                        var templ="<img class='col-md-10 col-md-offset-1 littleImage' src='../images/onTheBeginning/<%=littleImage%>'>";
+                        fill("#left", templ, {"littleImage": ""}, jsonData["onTheBeginning"]["images"]);
                         if ($("#preview")[0] !== undefined) {
                             var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"], ['preview']);
                         }
@@ -218,7 +221,7 @@ var AppRouter = Backbone.Router.extend({
                     var roles = [];
                     for (var runRoles=0; numbReps = jsonData["Parts"][index]["replics"].length, runRoles < numbReps; runRoles++){
                         var role = Object.keys(jsonData["Parts"][index]["replics"][runRoles])[0];
-                        if((role!=="Being")&&(role!=="image")&&(roles.indexOf("Monster")==-1)&&(role.indexOf("&")==-1)
+                        if((role!=="Being")&&(role!=="image")&&(role.indexOf("Monster")==-1)&&(role.indexOf("&")==-1)
                         &&(role.indexOf("answer")==-1)){
                             if(role=="Snake"){
                                 role=role+" (Woman-devil)";
@@ -242,13 +245,13 @@ var AppRouter = Backbone.Router.extend({
                     $dynamicContent.html(ready_basement);
                     fill("#parts", link, {"num": "", "urlTitle": urlTitle}, jsonData["Parts"]);
                     var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"],
-                        ['linksSection', 'topText', 'buttons', 'sharing_roles', 'content_of_part']);
+                        ['linksSection', 'topText', 'buttons', 'sharing_roles', 'chooseReplics', 'content_of_part']);
                     fill("#content_of_part",replic, {
                         "role": "",
                         "words": "",
                         "className": "",
                         "urlTitle": urlTitle,
-                        "image": ""
+                        "imgName": ""
                     }, jsonData["Parts"][index]["replics"]);
                     //var eventsClicks = new events();
                 }

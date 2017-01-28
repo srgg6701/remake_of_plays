@@ -50,7 +50,7 @@
     border: 2px solid blue;
 }
 
-.sharing_rolesXmarine > p {
+.sharing_rolesXmarine > p, .sharing_rolesXmarine > div > p {
     color: #210B61;
 }
 
@@ -59,8 +59,20 @@
     background-color: lightblue;
 }
 
-.sharing_rolesBlack_parody > p {
+.sharing_rolesBlack_parody {
+    border: 2px solid lightsteelblue;
+}
+
+.sharing_rolesBlack_parody > p, .sharing_rolesBlack_parody > div > p {
     color: lightblue;
+}
+
+.chooseReplicsXmarine {
+    border: 2px solid darkblue;
+}
+
+.chooseReplicsBlack_parody {
+    border: 2px solid lavenderblush;
 }
 
 .topTextXmarine {
@@ -81,11 +93,11 @@
     color: lightpink;
 }
 
-.content_of_partXmarine > div {
+.content_of_partXmarine {
     color: black;
 }
 
-.content_of_partBlack_parody > div {
+.content_of_partBlack_parody {
     color: linen;
 }
 
