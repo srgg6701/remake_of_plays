@@ -244,8 +244,8 @@ var AppRouter = Backbone.Router.extend({
                         ready_basement = new makeReadyView(basement, basementData).ready_element;
                     $dynamicContent.html(ready_basement);
                     fill("#parts", link, {"num": "", "urlTitle": urlTitle}, jsonData["Parts"]);
-                    var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"],
-                        ['linksSection', 'topText', 'buttons', 'sharing_roles', 'chooseReplics', 'content_of_part']);
+                    var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"], ['linksSection',
+                        'topText', 'buttons', 'sharing_roles', 'chooseReplics', 'content_of_part', 'resultMessage']);
                     fill("#content_of_part",replic, {
                         "role": "",
                         "words": "",

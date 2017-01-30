@@ -2,6 +2,12 @@
  * Created by User on 26.01.2017.
  */
 
+var resultMessages = {
+    success: "<p style='color: green'>Painted!</p>",
+    error: "<p style='color: firebrick'>One or both of parameters were inputed incorrectly!</p>"
+
+};
+
 $('body').on('mouseover', '.littleImage', function(event){
     var pos = event.target.src.indexOf("/images"),
         newSrc = event.target.src.substring(pos);
@@ -9,7 +15,6 @@ $('body').on('mouseover', '.littleImage', function(event){
 });
 
 $('body').on('click', '.arrow', function(event){
-    //console.log('%cInitialized, clicked!', 'color:blue', {event:event, this:this});
     var newNumber, urlParams = location.href.split('/'), urlTitle = urlParams[4],
         partName = urlParams[5], currentIndex, newIndex;
     for(var i=0; i < config.pages[urlTitle].length; i++){
@@ -36,9 +41,7 @@ $('body').on('click', '.arrow', function(event){
             }
             break;
     }
-    //console.log("arrow: ", event.target.innerText, ", new index: ", newIndex);
     urlParams[5]=config.pages[urlTitle][newIndex];
-    //console.log(urlParams[5]);
     location.href="#in_the_plays/"+urlTitle+"/"+config.pages[urlTitle][newIndex];
 
 });
@@ -68,19 +71,15 @@ $('body').on('click', '.showForm', function(event){
 });
 
 $('body').on('click', '#closeForm', function(event){
-    //console.log(event.target.classList);
-    //event.target.classList;
     event.target.classList.add("hidden");
     $("#form1").addClass("hidden");
     $("#form2").addClass("hidden");
+    regularMessage($("#resultMessage"), "none", "");
 });
 
 $('body').on('click', '#paintWordsFromVocab', function(event){
-    //console.log($(".from_vocabulary"));
     var elems = location.href.split("/"), playsName = elems[4];
-    //console.log("$('.from_vocabulary'): ", $('.from_vocabulary'));
-   /**/ for (var cnt=0; cnt < $('.from_vocabulary').length; cnt++) {
-       // console.log($('.from_vocabulary')[cnt].classList);
+    for (var cnt=0; cnt < $('.from_vocabulary').length; cnt++) {
         $('.from_vocabulary')[cnt].classList.toggle("paintedVocabWords"+playsName);
     }
 });
@@ -168,8 +167,6 @@ $('body').on('submit', '#form1', function(event){
             }
         }
         else {
-            h4[cnt2].innerHTML=="";
-            h4[cnt2].innerText=="";
             /**
              * 1. Разбить строку на роли;
              * 2. В цикле каждую роль проверить на присуствие в массиве выбранных ролей
@@ -194,13 +191,89 @@ $('body').on('submit', '#form1', function(event){
                         delClass.classList.remove(delClass);
                     }
                     break;
-                case 1:
+                 case 1:
                     regularClass(divsReplics[cnt2], "paintedReplicsOf"+chosenRole);
                     break;
                 default:
                     regularClass(divsReplics[cnt2], "commonPaint");
             }
+            var spans = h4[cnt2].getElementsByTagName("span");
+            //console.log("spans: ", spans);
+            /* Если counter не равен 0 или длине массива - что-то должно быть раскрашено.
+                * Если длина нулевая, тегов span нет в h4, ничего в заголовке не раскрашено. Очистить innerText/
+                * Иначе: очистить innerHTML.
+                * В любом случае: вставить теги с ролями и классы в теги с нужными ролями.
+            *  Если counter равен 0 или длине массива, ничего не должно быть раскрашено.
+                * Если есть теги span, пробег по ним, если есть класс, то он удаляется.
+            * */
+            if((counter>0)&&(counter<conjuctedRoles.length)){
+                if(spans.length==0){
+                    h4[cnt2].innerText="";
+                }
+                else {
+                    h4[cnt2].innerHTML="";
+                }
+                for (var cntRoles=0; cntRoles<conjuctedRoles.length; cntRoles++){
+                    if(chosenInConjuction.indexOf(conjuctedRoles[cntRoles])==-1){
+                        h4[cnt2].innerHTML+="<span>"+conjuctedRoles[cntRoles]+"</span>";
+                    }
+                    else {
+                        h4[cnt2].innerHTML+="<span class='highlightedOf"+conjuctedRoles[cntRoles]+"'>"+conjuctedRoles[cntRoles]+"</span>";
+                    }
+                    if(cntRoles<conjuctedRoles.length-1){
+                        h4[cnt2].innerHTML+="<span> & </span>";
+                    }
+                }
+            }
+            else {
+                if(spans.length>0){
+                    for(var cntSpans=0; cntSpans < spans.length; cntSpans++){
+                        if(spans[cntSpans].classList.length==1){
+                            var deletedClass=spans[cntSpans].classList[0];
+                            spans[cntSpans].classList.remove(deletedClass);
+                        }
+                    }
+                }
+            }
         }
-    }
 
+    }
+    regularMessage($("#resultMessage"), "block", resultMessages.success);
+});
+
+$('body').on('submit', '#form2', function(event){
+    var values = {
+        firstNumber: [1, 2, 3, 4],
+        periodicNumber: [2, 3, 4]
+    };
+    var inputedNumber1=+($("#firstNumber").val()), inputedNumber2=+($("#periodicNumber").val());
+    if((values.firstNumber.indexOf(inputedNumber1)!==-1)&&(values.periodicNumber.indexOf(inputedNumber2)!==-1)){
+        var divsReplics = $("#content_of_part").find("div"), indexesPainting=[];
+        // индекс 1-й реплики, которая должна быть раскрашена: inputedNumber1-1, счетчик из periodicNumber.
+        for (var countPainter=inputedNumber1-1; countPainter<divsReplics.length; countPainter+=inputedNumber2) {
+            indexesPainting.push(countPainter);
+        }
+        for (var runDivs=0; runDivs<divsReplics.length; runDivs++){
+            if(indexesPainting.indexOf(runDivs)==-1){
+                if(divsReplics[runDivs].classList.length==4){
+                    if(divsReplics[runDivs].classList[4]!=="paintedByTerm"){
+                        var delClass=divsReplics[runDivs].classList[4];
+                        divsReplics[runDivs].classList.remove("paintedByTerm");
+                    }
+                }
+            }
+            else {
+                if(!(divsReplics[runDivs].classList.contains("paintedByTerm"))){
+                    divsReplics[runDivs].classList.add("paintedByTerm");
+                }
+                if(divsReplics[runDivs].classList.length==5){
+                    var delClass=divsReplics[runDivs].classList[3];
+                    divsReplics[runDivs].classList.remove(delClass);
+                }
+            }
+        }
+        regularMessage($("#resultMessage"), "block", resultMessages.success);
+    }else {
+        regularMessage($("#resultMessage"), "block", resultMessages.error);
+    }
 });

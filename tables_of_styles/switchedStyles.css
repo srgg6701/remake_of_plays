@@ -33,7 +33,7 @@
 }
 
 .linksSectionBlack_parody > div {
-    background-color: cornsilk;
+    background-color: #D0A9F5;
 }
 
 .about_characters_divXmarine * {
@@ -63,6 +63,11 @@
     border: 2px solid lightsteelblue;
 }
 
+.sharing_rolesBlack_parody > input {
+    background-color: violet;
+    color: darkblue;
+}
+
 .sharing_rolesBlack_parody > p, .sharing_rolesBlack_parody > div > p {
     color: lightblue;
 }
@@ -73,6 +78,15 @@
 
 .chooseReplicsBlack_parody {
     border: 2px solid lavenderblush;
+}
+
+.resultMessageXmarine {
+    background-color: lightsteelblue;
+    border: 2px solid mediumblue;
+}
+
+.resultMessageBlack_parody {
+    border: 2px solid violet;
 }
 
 .topTextXmarine {

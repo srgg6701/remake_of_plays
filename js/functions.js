@@ -97,8 +97,10 @@ function fill(selector, templ, data, arr) {
     var container = $(selector), tmpl;
     for (var c = 0, len = arr.length; c < len; c++) {
         if ("num" in data) {
-            data.num = arr[c]['number'];
-            //tmpl = templ;
+            console.log("c: ", c);
+            console.log("arr[c]['number']: ", arr[c]['number']);
+            data["num"] = arr[c]['number'];
+            //console.log("data[num]", data["num"]);
         }
         else {
             if("littleImage" in data){
@@ -133,8 +135,13 @@ function fill(selector, templ, data, arr) {
             }
 
         }
+        /*if(!("num" in data)){
+           console.log("data[num]", data["num"]);
+        }*/
         var ready_element = new makeReadyView(templ, data).ready_element;
         container.append(ready_element);
+
+
     }
 }
 
@@ -149,5 +156,16 @@ function regularClass(replic, neededClass){
         case 3:
             replic.classList.add(neededClass);
             break;
+    }
+}
+
+
+function regularMessage (resultMessage, displayProperty, content){
+    //console.log("display property: ", displayProperty);
+    if(resultMessage.css("display")!==displayProperty){
+        resultMessage.css("display", displayProperty);
+    }
+    if(resultMessage.html()!==content){
+        resultMessage.html(content);
     }
 }
