@@ -246,15 +246,12 @@ var AppRouter = Backbone.Router.extend({
                     fill("#parts", link, {"num": "", "urlTitle": urlTitle}, jsonData["Parts"]);
                     var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"], ['linksSection',
                         'topText', 'buttons', 'sharing_roles', 'chooseReplics', 'content_of_part', 'resultMessage']);
-                    fill("#content_of_part",replic, {
-                        "role": "",
-                        "words": "",
-                        "className": "",
-                        "urlTitle": urlTitle,
-                        "imgName": ""
-                    }, jsonData["Parts"][index]["replics"]);
+                    var data={"role": "", "words": "", "className": "", "urlTitle": urlTitle, "image": ""},
+                        image="<img class='col-sm-8 col-sm-offset-2' src='../images/with_characters/<%=image%>'>";
+                    fill("#content_of_part", [replic, image], data, jsonData["Parts"][index]["replics"]);
                     //var eventsClicks = new events();
                 }
+
             )
         })
     }

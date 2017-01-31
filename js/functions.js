@@ -5,8 +5,8 @@ var config = {
     viewInit: {
         file_names: ['Black_parody', 'Xmarine']
     },
-    pages:{
-        'Black_parody':[], 'Xmarine':[]
+    pages: {
+        'Black_parody': [], 'Xmarine': []
     }
 };
 
@@ -30,20 +30,12 @@ function getData(key, path) {
             // save pages
             $(window[key].Parts).each(function (index, part) { // ['Black_parody', 'Xmarine']
                 //console.log('window[key].Parts=>', {index:index, parts:part});
-               //console.log("index : ", index, " part: ", part);
-                var partName = 'Part_'+part['number'];
+                //console.log("index : ", index, " part: ", part);
+                var partName = 'Part_' + part['number'];
                 //console.log(typeof(part['number']));
-                if(config.pages[key].indexOf(partName)==-1) config.pages[key].push(partName);
+                if (config.pages[key].indexOf(partName) == -1) config.pages[key].push(partName);
                 //console.log("partName in functions: ", partName);
             });
-            //console.log('%cconfig.pages[key]=>', 'background-color:orange', config.pages[key]);
-            /*$(config.viewInit.file_names).each(function(pageName){
-             $.get('jsons/'+pageName+'.json', function(numbers){
-             var partName = 'Part_'+currentNumber;
-             if(!pages[urlTitle]) pages[urlTitle]=[];
-             if(pages[urlTitle].indexOf(partName)==-1) pages[urlTitle].push(partName);
-             });
-             });*/
 
             return data;
         }
@@ -96,59 +88,43 @@ function checkJsonData(key) {
 function fill(selector, templ, data, arr) {
     var container = $(selector), tmpl;
     for (var c = 0, len = arr.length; c < len; c++) {
-        if ("num" in data) {
-            console.log("c: ", c);
-            console.log("arr[c]['number']: ", arr[c]['number']);
-            data["num"] = arr[c]['number'];
-            //console.log("data[num]", data["num"]);
-        }
-        else {
-            if("littleImage" in data){
-                data.littleImage = arr[c];
+        if (typeof (templ) == "object") {
+            // реплики с изображениями
+            var key = Object.keys(arr[c])[0];
+            if (key == "image") {
+                tmpl = templ[1];
+                data.image = arr[c][key];
             } else {
-                data.role = Object.keys(arr[c])[0];
-                // arr[c] - конкретная реплика.
-                if(data.role=="image"){
-                    tmpl = "<img class='col-sm-8 col-sm-offset-2' src='../images/with_characters/<%=imgName%>'>";
-                    data.imgName = arr[c][data.role];
+                tmpl = templ[0];
+                data.role = key;
+                data.words = arr[c][key];
+                if (key == "Author's words") {
+                    data.className = "authorReplic";
                 }
                 else {
-                    //tmpl = templ; // replic
-                    if (typeof(arr[c][data.role]) == "object") {
-                        if (arr[c][data.role].length > 1) {
-                            data.words = "<p>" + arr[c][data.role].join("</p><p>") + "</p>";
-                        }
-                        else {
-                            data.words = arr[c][data.role][0];
-                        }
-                    }
-                    else {
-                        data.words = arr[c][data.role];
-                    }
-                    if (data.role == "Author's words") {
-                        data.className = "authorReplic";
-                    }
-                    else {
-                        data.className = "characterReplic" + data.urlTitle;
-                    }
+                    data.className = "characterReplic" + data.urlTitle;
                 }
             }
-
+        } else {
+            if ("num" in data) {
+                data.num = arr[c]["number"];
+            } else {
+                if ("littleImage" in data) {
+                    data.littleImage = arr[c];
+                }
+            }
+            tmpl = templ;
         }
-        /*if(!("num" in data)){
-           console.log("data[num]", data["num"]);
-        }*/
-        var ready_element = new makeReadyView(templ, data).ready_element;
+        var ready_element = new makeReadyView(tmpl, data).ready_element;
         container.append(ready_element);
-
-
     }
 }
 
-function regularClass(replic, neededClass){
-    switch(replic.classList.length){
+
+function regularClass(replic, neededClass) {
+    switch (replic.classList.length) {
         case 4:
-            if(replic.classList[3]!==neededClass){
+            if (replic.classList[3] !== neededClass) {
                 replic.classList.remove(replic.classList[3]);
                 replic.classList.add(neededClass);
             }
@@ -160,12 +136,12 @@ function regularClass(replic, neededClass){
 }
 
 
-function regularMessage (resultMessage, displayProperty, content){
+function regularMessage(resultMessage, displayProperty, content) {
     //console.log("display property: ", displayProperty);
-    if(resultMessage.css("display")!==displayProperty){
+    if (resultMessage.css("display") !== displayProperty) {
         resultMessage.css("display", displayProperty);
     }
-    if(resultMessage.html()!==content){
+    if (resultMessage.html() !== content) {
         resultMessage.html(content);
     }
 }

@@ -45,9 +45,9 @@
 }
 
 .sharing_rolesXmarine {
-    background-color: rgba(45, 160, 140, 0.55);
+    background-color: rgba(25, 130, 179, 0.26);
     border-radius: 11px;
-    border: 2px solid blue;
+    border: 3px solid blue;
 }
 
 .sharing_rolesXmarine > p, .sharing_rolesXmarine > div > p {
@@ -56,11 +56,11 @@
 
 .sharing_rolesXmarine > input {
     color: darkblue;
-    background-color: lightblue;
+    background-color: #CEF6EC;
 }
 
 .sharing_rolesBlack_parody {
-    border: 2px solid lightsteelblue;
+    border: 3px solid lightsteelblue;
 }
 
 .sharing_rolesBlack_parody > input {
@@ -73,11 +73,58 @@
 }
 
 .chooseReplicsXmarine {
-    border: 2px solid darkblue;
+    border: 3px solid darkblue;
 }
 
 .chooseReplicsBlack_parody {
-    border: 2px solid lavenderblush;
+    border: 3px solid lavenderblush;
+}
+
+.chooseReplicsXmarine form > div > div {
+    border: 2px solid darkorchid;
+    color: darkmagenta;
+    background-color: rgba(50, 220, 250, 0.4);
+}
+
+.chooseReplicsBlack_parody form > div > div {
+    border: 2px solid #F1C4F7;
+    color: antiquewhite;
+}
+
+.chooseReplicsXmarine > div > button, .chooseReplicsXmarine > #closeForm {
+    background-color: #D8CEF6;
+    color: #210B61;
+}
+
+.chooseReplicsBlack_parody > div > button, .chooseReplicsXmarine > #closeForm {
+    background-color: #D8CEF6;
+    color: #210B61;
+}
+
+.chooseReplicsXmarine form {
+    background-image: url("../images/textures/calm_water3.jpg");
+}
+
+.chooseReplicsBlack_parody form {
+    background-image: url("../images/textures/purple_paper_texture.jpg");
+}
+
+.chooseReplicsXmarine #form2 {
+    color: #210B61;
+}
+
+.chooseReplicsBlack_parody #form2 {
+    color: #F6CEF5;
+}
+
+.chooseReplicsXmarine form > button {
+    background-color: mediumblue;
+    color: lightcyan;
+}
+
+.chooseReplicsBlack_parody form > button {
+    background-color: #F8DAEE;
+    color: darkviolet;
 }
 
 .resultMessageXmarine {

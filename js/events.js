@@ -140,7 +140,13 @@ $('body').on('submit', '#form1', function(event){
                                     nameInClass=partsOfName[0];
                             }
                         }else{
-                            if(nameInCheck.indexOf(" ")!==-1){
+                            if(nameInCheck.indexOf(" ")==-1){
+                                nameInClass=nameInCheck;
+                            }
+                            else {
+                                if(nameInCheck=="Fake Jessie"){
+                                    nameInClass="WomanDevil";
+                                }
                                 partsOfName=nameInCheck.split(" ");
                                 nameInClass='';
                                 for (var runParts=0; runParts < partsOfName.length; runParts++){
@@ -150,9 +156,7 @@ $('body').on('submit', '#form1', function(event){
                                         nameInClass+=partsOfName[runParts][runSymbs];
                                     }
                                 }
-                            }
-                            else {
-                                nameInClass=nameInCheck;
+
                             }
                         }
                     }
@@ -188,7 +192,7 @@ $('body').on('submit', '#form1', function(event){
                 case 0:
                     if(divsReplics[cnt2].classList.length==4){
                         var delClass = divsReplics[cnt2].classList[3];
-                        delClass.classList.remove(delClass);
+                        divsReplics[cnt2].classList.remove(delClass);
                     }
                     break;
                  case 1:

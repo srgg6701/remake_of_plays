@@ -136,6 +136,25 @@
     color: #61210B;
     border: 3px solid saddlebrown;
 }
+
+.paintedReplicsOfRamon {
+    background-image: url("../images/textures/purple-marble-background.jpg");
+    color: lightyellow;
+    border: 3px solid darkviolet;
+}
+
+.paintedReplicsOfStranger {
+    background-color: #D0A9F5;
+    color: #0B0B61;
+    border: 3px solid darkred;
+}
+
+.paintedReplicsOfKiller {
+    background-color: darkslateblue;
+    color: lightblue;
+    border: 3px solid deepskyblue;
+}
+
 .paintedReplicsOfQuentin {
     background-image: url("../images/textures/peacock.jpg");
     border: 3px solid darkslategray; !important;
