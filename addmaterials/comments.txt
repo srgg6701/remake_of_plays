@@ -11,91 +11,11 @@
  .then(Накрутить_бигуди);
 http://vremenno.net/js/jquery-deferred-object/
 
-
-
-
-
-
-  loadPart: function (urlTitle, currentNumber) {
-            // console.log("Функция вызвана по-новому.");
-            var file_path = "templates/entered/";
-            $.when(getTemplate(file_path + "basement.html"),
-                getTemplate(file_path + "episode.html"),
-                getTemplate(file_path + "replic.html"),
-                getTemplate(file_path + "link.html")
-            ).done(function (basement, episode, replic, link) {
-                    var choicedPlaysModel = new playsModel(urlTitle);
-                    choicedPlaysModel.promisedData.then(
-                        function (jsonData) {
-                            var index = 0;
-                            console.log("currentNumber: ", currentNumber);
-                            console.log("jsonData['Parts'].length: ", jsonData['Parts'].length);
-                            // Определить индекс текущей части в json-объекте.
-                            while (jsonData["Parts"][index]["number"] != currentNumber) {
-                                index++;
-                            }
-                            // console.log("jsonData['Parts'][index]: ",jsonData["Parts"][index]);
-                            //  console.log("jsonData['Parts'][index]['sharing_roles']: ",jsonData["Parts"][index]["sharing_roles"]);
-                            var allocation_roles = jsonData["Parts"][index]["sharing_roles"];
-                            if (allocation_roles.length > 1) {
-                                allocation_roles = "<p>" + allocation_roles.join("</p><p>") + "</p>";
-                                jsonData["Parts"][index]["sharing_roles"] = allocation_roles;
-                            }
-                            var ready_episode = new makeReadyView(episode, jsonData["Parts"][index]).ready_element,
-                                basementData = {
-                                    "headerLogotip": jsonData["onTheBeginning"]["headerLogotip"],
-                                    "playsTitle": jsonData["onTheBeginning"]["playsTitle"],
-                                    "otherUrlTitle": jsonData["otherUrlTitle"],
-                                    "ready_content": ready_episode
-                                },
-                                ready_basement = new makeReadyView(basement, basementData).ready_element;
-                            $dynamicContent.html(ready_basement);
-                            fill("#parts", urlTitle, link, {"num": ""}, jsonData["Parts"]);
-                            /*for (var c= 0, l = jsonData["Parts"].length; c < l; c++) {
-                             var num = jsonData["Parts"][c]["number"],
-                             newLink = "<a href = '#in_the_plays/"+urlTitle+"/Part_"+num+"'>Part "+num+"</a>";
-                             //  newPartLink = "<a href = '#in_the_plays/"+urlTitle+"/Part_"+num+"'>Part "+num+"</a>";
-                             $("#parts").append(newLink);
-                             } */
-                            fill("#content_of_part", urlTitle, replic, {"className": "", "role": "", "words": ""},
-                                jsonData["Parts"][index]["replics"]);
-                            /* for (var runReplics = 0; runReplics < jsonData["Parts"][index]["replics"].length; runReplics++) {
-                             //console.log("index: ", index);
-                             var className, role = Object.keys(jsonData["Parts"][index]["replics"][runReplics])[0],
-                             words;
-                             if (typeof(jsonData["Parts"][index]["replics"][runReplics][role]) == "object") {
-                             if (jsonData["Parts"][index]["replics"][runReplics][role].length > 1) {
-                             words = "<p>" + jsonData["Parts"][index]["replics"][runReplics][role].join("</p><p>") + "</p>";
-                             }
-                             else {
-                             words = jsonData["Parts"][index]["replics"][runReplics][role][0];
-                             }
-                             }
-                             else {
-                             words = jsonData["Parts"][index]["replics"][runReplics][role];
-                             }
-                             if (role == "Author's words") {
-                             className = "authorReplic";
-                             }
-                             else {
-                             className = "characterReplic" + urlTitle;
-                             }
-                             var ready_replic = new makeReadyView(replic, {
-                             "className": className,
-                             "role": role,
-                             "words": words
-                             }).ready_element;
-                             $("#content_of_part").append(ready_replic);
-                             }
-                             var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"],
-                             ['linksSection', 'top_of_part', 'topText', 'buttons', 'sharing_roles', 'content_of_part']);
-
-                             }
-                             );
-                             });
-                             /* */
-                        }
-                }
-
-            );
-        }
+Алгоритм порограммы по подсчету количества реплик по каждой из ролей:
+1. Создать пустой объект
+2. Пробежать по чекбоксам. Для каждого из них сделать пустой массив в объекте и вставить html в нужный
+ html-элемент: "<p>"+роль из чекбокса+"</p>";
+3. Пробежать по репликам. При наступлению на каждую из них, определить с какой ролью из чекбоксов 
+соотносится данная реплика и увеличить длину соответствующего массива на 1.
+4. После цикла: В каждый из абзацсев вставить текст: длина соответствующего массива + "/" + сумма всех
+реплик текущего эпизода.

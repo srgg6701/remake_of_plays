@@ -84,6 +84,68 @@ $('body').on('click', '#paintWordsFromVocab', function(event){
     }
 });
 
+$('body').on('click', '#showInformationButton2', function(event){
+    if(event.target.value=="► show the information"){
+        event.target.value="▼ hide the information";
+    }
+    else {
+        event.target.value="► show the information";
+    }
+    var divsRoles=$("#listOfCheckboxes").find("div");
+    var roles={};
+    for (var cnt=0; cnt<divsRoles.length; cnt++){
+       // console.log(" cnt: ", cnt, " divsRoles[cnt]: ", divsRoles[cnt], " divsRoles[cnt].innerText:", divsRoles[cnt].innerText);
+        var keyRole=divsRoles[cnt].innerText;
+        roles[keyRole]=0;
+        $("#numbersOfReplics").append("<p>"+keyRole+"</p>");
+    }
+    var divsReplics=$("#content_of_part").find("div"), nameInCheck, h4 = $('#content_of_part').find('h4');
+    //console.log("h4: ", h4);
+    for(var runDivsReplics=0; runDivsReplics < divsReplics.length; runDivsReplics++){
+        // role - из h4
+        var role=h4[runDivsReplics].innerText;
+        if(role.indexOf("&")==-1){
+           switch (role){
+               case "Being":
+                   nameInCheck="Beatrix";
+                   break;
+               case "Monster":
+                   nameInCheck="Helen";
+                   break;
+               case "Monster 2":
+                   nameInCheck="Judy";
+                   break;
+               default:
+                   if(role.indexOf("answer")!==-1){
+                       var posOFAmp = role.indexOf("'s");
+                       nameInCheck = role.substring(0, posOFAmp);
+                   } else {
+                       nameInCheck=role;
+                   }
+           }
+            roles[nameInCheck]++;
+            console.log("nameInCheck: ", nameInCheck /*,"role: ", role*/);
+       }else {
+           var conjuctedRoles=role.split(" & ");
+           for(var runConjRoles=0; runConjRoles<conjuctedRoles.length; runConjRoles++){
+               nameInCheck=conjuctedRoles[runConjRoles];
+               roles[nameInCheck]++;
+               console.log("nameInCheck: ", nameInCheck);
+           }
+       }
+
+
+    }
+    var prgs=$("#numbersOfReplics").find("p");
+    //console.log("prgs: ", prgs);
+     for(var cnt=0; cnt<divsRoles.length; cnt++) {
+        var searchedRole=prgs[cnt].innerText;
+        console.log("searchedRole: ", searchedRole);
+        prgs[cnt].innerText+=": "+roles[searchedRole]+"/"+divsReplics.length;
+    }/* */
+
+});
+
 $('body').on('submit', '#form1', function(event){
     var checkboxes = $(".checkbox"), choosenRoles = [], divsChecks = $(".div");
     for (var cnt=0; cnt < checkboxes.length; cnt++){
@@ -144,9 +206,9 @@ $('body').on('submit', '#form1', function(event){
                                 nameInClass=nameInCheck;
                             }
                             else {
-                                if(nameInCheck=="Fake Jessie"){
+                               /* if(nameInCheck=="Fake Jessie"){
                                     nameInClass="WomanDevil";
-                                }
+                                } */
                                 partsOfName=nameInCheck.split(" ");
                                 nameInClass='';
                                 for (var runParts=0; runParts < partsOfName.length; runParts++){

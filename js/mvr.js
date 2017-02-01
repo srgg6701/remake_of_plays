@@ -221,7 +221,8 @@ var AppRouter = Backbone.Router.extend({
                     var roles = [];
                     for (var runRoles=0; numbReps = jsonData["Parts"][index]["replics"].length, runRoles < numbReps; runRoles++){
                         var role = Object.keys(jsonData["Parts"][index]["replics"][runRoles])[0];
-                        if((role!=="Being")&&(role!=="image")&&(role.indexOf("Monster")==-1)&&(role.indexOf("&")==-1)
+                        if((role!=="Being")&&(role!=="image")&&(role.indexOf("thoughts")==-1)&&
+                        (role.indexOf("Monster")==-1)&&(role.indexOf("&")==-1)
                         &&(role.indexOf("answer")==-1)){
                             if(role=="Snake"){
                                 role=role+" (Woman-devil)";
@@ -249,7 +250,7 @@ var AppRouter = Backbone.Router.extend({
                     var data={"role": "", "words": "", "className": "", "urlTitle": urlTitle, "image": ""},
                         image="<img class='col-sm-8 col-sm-offset-2' src='../images/with_characters/<%=image%>'>";
                     fill("#content_of_part", [replic, image], data, jsonData["Parts"][index]["replics"]);
-                    //var eventsClicks = new events();
+
                 }
 
             )

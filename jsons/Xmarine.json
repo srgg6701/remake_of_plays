@@ -6,7 +6,7 @@
       "images": [
         "possessions.jpg",
         "devil.jpg",
-        "headerLogotipExd.jpg"
+        "all_3.png"
       ],
       "playsTitle": "Xmarine",
       "preview": "The plays are about a magic hero who was somebody like a little cruise mermaid and later becomes a mysterious magic superhero. Also there are 3 girls who was percieved as human being, but later it turned out that they are girls-monsters and a special scientist not like all the other scientists.",
@@ -90,7 +90,7 @@
           {"Helen": ["There is no need for paper documents. The truth that he can <span class=\"from_vocabulary\">afford</span> himself to work is already proved. Everybody who has heard him talking about science, cannot take  Christian for an ordinary child. He claims that he is an adult, and a true scientist, who merely looks like a child, and he claims this in a such way that you cannot but trust him. Well, you listen to this and you see how the general axiom on the impossibility of such events is being  slowly denied. When people listen to him, they understand that they are <span class=\"from_vocabulary\">propelled</span> to his words. As a result, nobody can prohibit Christian to live as an adult professor. In this way, Christian in this life has entered science in an unofficial way, without any documents. He managed to enter science, while having at his disposal merely what he had."]}
         ]},
       {"number": 1.2,
-        "sharing_roles": ["For 2 players:", "1.  Helen and somebody of Judy and Cassandra", "2. Beatrix and somebody of Judy and Cassandra", "Author's words is not so matter.", "<b>For 3 players:</b>", "1. Helen", "2. Beatrix", "3. Judy and Cassandra", "Author's words also is not so matter."],
+        "sharing_roles": ["<b>For 2 players:</b>", "1.  Helen and somebody of Judy and Cassandra", "2. Beatrix and somebody of Judy and Cassandra", "Author's words is not so matter.", "<b>For 3 players:</b>", "1. Helen", "2. Beatrix", "3. Judy and Cassandra", "Author's words also is not so matter."],
         "header": "Acquaintance with new pet",
         "replics":[
           {"Author's words": ["The <span class=\"from_vocabulary\">venue</span> is at table at Helen’ courtyard. Helen,  Judy and Cassandra came together to talk."]},
@@ -169,7 +169,7 @@
           {"Helen": ["Well, let's go Beatriz, I will tell you in detail, show and explain which zones are permitted and which are prohibited."]}
         ]},
       {"number": 1.3,
-        "sharing_roles": ["<b>For 2 players:</b>", "1. Beatrix and 2-3 animals", "2. Other 3-4 animals", "Author's words is not so matter."],
+        "sharing_roles": ["<b>For 2 players:</b>", "1. Beatrix and 2-3 animals", "2. Other 3-4 animals", "Author's words is not so matter.", "<b>For 3 players:</b>", "1. Beatrix", "Other players: see the information about which character how many replics has and share roles according to this."],
         "header": "In the acquarium",
         "replics":[
           {"Tortoise female": ["Guys, are you <span class=\"from_vocabulary\">undismayed</span> by this alive object?"]},
@@ -6407,13 +6407,36 @@
           {"Ramon": ["By the way, may I stand my car in the garage?"]},
           {"Beatrix": ["Of course."]},
           {"Ramon": ["Thank you."]},
-          {"Author's words": ["Ramon did it and locked the garage. When he and Beatrix entered in the porch Beatrix reduced in her size and followed Ramon towards to the door of his flat."]}
+          {"Author's words": ["Ramon did it and locked the garage. When he and Beatrix entered in the porch Beatrix reduced in her size and followed Ramon towards to the door of his flat.", "When Ramon and Beatrix had appeared near Ramon's door, Ramon began speaking again."]},
+          {"Ramon": ["Are you sure your words about Molly are not <span class=\"from_vocabulary\">slander</span>?"]},
+          {"Beatrix": ["You must trust your saving hero. My <span class=\"from_vocabulary\">contemplation</span> shows that Molly is initiator in the idea to kill you. I know it because I saw her face-expression when she talked to you. I heard the intonnation of her voice. So it was seen that she was not glad that you were alive."]},
+          {"Ramon": ["Anyway, I don't like that you are <span class=\"from_vocabulary\">defendanting</span> her. I would like more such hypothesis as if there are just some gits which are trying to kill me just to <span class=\"from_vocabulary\">plunder</span> me. Also I would be glad to hear from you that you are going to protect me always in any moment when there is something <span class=\"from_vocabulary\">menacing</span> for my life and I can be calm always."]},
+          {"Beatrix": ["I have to oversee your Molly. I must <span class=\"from_vocabulary\">imbue</span> into her life and into what she will be doing while she won't be near you. Moreover I will need to involve somebody who is capable to help me find out everything in our deal."]},
+          {"Ramon": ["Who is this?"]},
+          {"Beatrix": ["This is one my good <span class=\"from_vocabulary\">acquaintance</span>. We will oversee Molly together: me and her."]},
+          {"Ramon": ["Why together, not only you? Who is she?"]},
+          {"Beatrix": ["She can do what I cannot. She is somebody wonderful like me, but more wonderful. I know she can do something great for us to complete this story about your extremal situation successfully."]},
+          {"Ramon": ["I am interested to hear about her more."]},
+          {"Beatrix": ["Mr Perkins, I will tell you about her later. It will be after we will have completed our <span class=\"from_vocabulary\">scrutiny</span>. Now you have to enter in your flat and I have to fly for my helper."]},
+          {"Ramon": ["All right. If you are <span class=\"from_vocabulary\">rushing</span> I cannot to <span class=\"from_vocabulary\">incite</span> you to <span class=\"from_vocabulary\">linger</span>. I wish you lucky flying and spying."]},
+          {"Beatrix": ["thank you. Good luck and good buy, mr Perkins."]},
+          {"Ramon": ["The same from me to you."]},
+          {"Author's words'": ["Xmarine knew the address of the location of the Molly's shop where she was at those moment. After that Ramon openned the door and entered", "Xmarine went on her way."]}
         ]
       },
       {"number": 2.5,
         "sharing_roles": ["..."],
         "header": "",
         "replics": [
+          {"Author's words": ["Molly was sitting in her shop and talking to her friend Jessie by phone. There were nobody in the shop except her. She was very nervous. Molly breathed heavily."]},
+          {"Molly": ["This man is a <span class=\"from_vocabulary\">redundant</span> thing in my life! It is apparently! Our flat is his brilliant <span class=\"from_vocabulary\">refuge</span>."]},
+          {"Jessie": ["You have made a great mistake by getting married him. He is not your man. I see it very well too."]},
+          {"Molly": ["The most unpleasant is the fact that Ramon <span class=\"from_vocabulary\">fonds gambling </span> and so some money are spent literally for nothing!"]},
+          {"Jessie": ["I understand you very well, but what can we do except killing this <span class=\"from_vocabulary\">frigging</span> encumbrance?"]},
+          {"Molly": ["I tried to reach his permittion about divorse, I also tried to get rid of him throught the killers, but anything was useless. I can't understand why the peple who took on themselves <span class=\"from_vocabulary\">obligement</span> to kill this alive yack haven't <span class=\"from_vocabulary\">coped with</span> it and hidden somewhere besides this?"]},
+          {"Jessie": ["I don't know it, too."]},
+          {"Beatrix": [""]},
+          {"Ramon": [""]},
           {"Beatrix": [""]},
           {"Ramon": [""]},
           {"Beatrix": [""]}

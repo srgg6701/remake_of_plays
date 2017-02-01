@@ -81,6 +81,11 @@ h1 {
     margin-bottom: 3%;
 }
 
+#numbersOfReplics > p {
+    font-family: consolas;
+    font-size: 20px;
+}
+
 #chooseReplics, #sharing_roles {
     border-radius: 9px;
     margin-left: 18%;
@@ -152,6 +157,7 @@ form > input {
     padding: 8px;
     border-radius: 7px;
     display: none;
+    margin-bottom: 2%;
 }
 
 #resultMessage > p {

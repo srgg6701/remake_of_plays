@@ -1,0 +1,39 @@
+.paintedWordsFromVocabulary_Black_parody {
+    /* Фон для раскрашенных слов - светлый, раскраска реплик - темная или цвета, отличного от фона раскраски слов из
+     вокобуляра*/
+    background-color: lightsteelblue;
+    text-decoration: underline;
+    color: darkslategray;
+    padding: 4px;
+}
+
+.paintedReplicsOfQuentin {
+    background-image: url("../images/textures/peacock.jpg");
+    border: 3px solid darkslategray; !important;
+    color: lightpink;
+}
+.paintedReplicsOfSophie {
+    background-image: url("../images/textures/images4.jpg");
+    border: 3px solid lightpink; !important;
+    color: lightyellow;
+}
+.paintedReplicsOfNick {
+    background-image: url("../images/textures/green_marble.jpg");
+    color: aliceblue;
+    border: 3px lightcyan;
+}
+.paintedReplicsOf1 {
+    background-color: lightgreen;
+    border: 3px solid seagreen; !important;
+    color: darkslategrey;
+}
+.paintedReplicsOf2 {
+    background-color: darkcyan;
+    border: 3px solid darkslategrey; !important;
+    color: darkslategrey;
+}
+.paintedReplicsOf3 {
+    background-color: mediumseagreen;
+    border: 3px solid seagreen; !important;
+    color: darkslateblue;
+}
