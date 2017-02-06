@@ -198,6 +198,8 @@ var AppRouter = Backbone.Router.extend({
     },
     loadPart: function (urlTitle, currentNumber) {
         var file_path = "../templates/entered/";
+        //console.log("currentNumber: ", currentNumber);
+        //console.log("type of currentNumber: ", typeof(currentNumber));
         $.when(getTemplate(file_path + "basement.html"),
             getTemplate(file_path + "episode.html"),
             getTemplate(file_path + "replic.html"),
@@ -210,6 +212,10 @@ var AppRouter = Backbone.Router.extend({
                     while (jsonData["Parts"][index]["number"] != currentNumber) {
                         index++;
                     }
+                    console.log("jsonData['Parts'][index]['number']: ", jsonData["Parts"][index]["number"]);
+                    console.log("type of number from object: ", typeof(jsonData['Parts'][index]['number']));
+                    console.log("currentNumber: ", currentNumber);
+                    console.log("type of currentNumber: ", typeof(currentNumber));
                     var sharing_roles = jsonData["Parts"][index]["sharing_roles"];
                     if (typeof (sharing_roles) == "object") {
                         if (sharing_roles.length > 1) {
