@@ -1,7 +1,8 @@
 <script type="text/template" id="episode">
         <div class="col-sm-12" id="episodeDiv">
              <div class="col-sm-9" id="sharing_roles">
-                 <p>Здесь можно получить информацию о рациональных способах разделения ролей между игроками.</p>
+                 <h3>Где можно посмотреть информацию по распределению ролей?</h3>
+                 <p>Здесь можно получить информацию о рациональных способах разделения ролей между игроками. См. кнопку ниже.</p>
                  <input type="button" value="► show the information" id="showInformationButton">
                  <div class="hidden" id="textSharingRoles"><%=sharing_roles%></div>
                  <p>Так же можно получить информацию о том, в каких ролях какое количество реплик</p>
@@ -9,9 +10,15 @@
                  <div class="col-sm-8 col-sm-offset-2" id="numbersOfReplics"></div>
              </div>
              <div class="col-sm-9" id="chooseReplics">
-                 <div class="col-sm-4 col-sm-offset-4">
-                     <button class="showForm" id="regularVisForm1">Paint by roles</button>
-                     <button class="showForm" id="regularVisForm2">Paint by term</button>
+                 <div class="col-sm-10 col-sm-offset-1">
+                     <div class="col-sm-12">
+                          <h2>Как раскрасить реплики?</h2>
+                          <p>Следующие кнопки для того, чтобы открыть одну из 2-х форм, с помощью которых можно раскрасить реплики.</p>
+                     </div>
+                     <div class="col-sm-6 col-sm-offset-3" id="divForButtons">
+                          <button class="showForm" id="regularVisForm1">Paint by roles</button>
+                          <button class="showForm" id="regularVisForm2">Paint by term</button>
+                     </div>
                  </div>
                   <div class="col-sm-6 col-sm-offset-3" id="divForForms">
                       <form class="col-sm-12 hidden" id="form1">

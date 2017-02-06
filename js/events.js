@@ -107,7 +107,7 @@ $('body').on('click', '#showInformationButton2', function(event){
         if(role.indexOf("&")==-1){
            switch (role){
                case "Being":
-                   nameInCheck="Beatrix";
+                   nameInCheck="X-marine";
                    break;
                case "Monster":
                    nameInCheck="Helen";
@@ -165,7 +165,7 @@ $('body').on('submit', '#form1', function(event){
         if(role.indexOf("&")==-1){
             switch (role){
                 case "Being":
-                nameInCheck="Beatrix";
+                nameInCheck="X-marine";
                 break;
                 case "Monster":
                 nameInCheck="Helen";

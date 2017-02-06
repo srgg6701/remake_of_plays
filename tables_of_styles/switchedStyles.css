@@ -68,16 +68,42 @@
     color: darkblue;
 }
 
+.sharing_rolesXmarine > p, .sharing_rolesXmarine > h2, .sharing_rolesXmarine > div > p {
+    color: darkgreen;
+}
+
 .sharing_rolesBlack_parody > p, .sharing_rolesBlack_parody > div > p {
     color: lightblue;
 }
 
+.sharing_rolesBlack_parody h3 {
+    color: #CED8F6;
+}
+
 .chooseReplicsXmarine {
     border: 3px solid darkblue;
+    background-color: rgba(20, 47, 69, 0.2);
 }
 
 .chooseReplicsBlack_parody {
     border: 3px solid lavenderblush;
+}
+
+.chooseReplicsXmarine h2 {
+    color: darkblue;
+    font-size: 26px;
+}
+
+.chooseReplicsXmarine p {
+    color: #0431B4;
+}
+
+.chooseReplicsBlack_parody h2 {
+    color: lightpink;
+}
+
+.chooseReplicsBlack_parody p {
+    color: lightyellow;
 }
 
 .chooseReplicsXmarine form > div > div {
@@ -91,12 +117,12 @@
     color: antiquewhite;
 }
 
-.chooseReplicsXmarine > div > button, .chooseReplicsXmarine > #closeForm {
-    background-color: #D8CEF6;
+.chooseReplicsXmarine #divForButtons > button, .chooseReplicsXmarine #closeForm {
+    background-color: #BCA9F5;
     color: #210B61;
 }
 
-.chooseReplicsBlack_parody > div > button, .chooseReplicsXmarine > #closeForm {
+.chooseReplicsBlack_parody #divForButtons > button, .chooseReplicsBlack_parody #closeForm {
     background-color: #D8CEF6;
     color: #210B61;
 }

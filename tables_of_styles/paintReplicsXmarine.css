@@ -9,34 +9,19 @@
     border: 3px solid mediumblue; !important;
     color: darkmagenta;
 }
-.highlightedOfHelen {
-    background-color: darkviolet;
-    color: lightpink;
-    padding: 6px;
-    text-decoration: underline;
-}
+
 .paintedReplicsOfJudy {
     background-image: url("../images/textures/mist.jpg");
     border: 3px solid mediumblue; !important;
     color: darkblue;
 }
-.highlightedOfJudy {
-    background-color: aquamarine;
-    color: #0B0B61;
-    padding: 6px;
-    text-decoration: underline;
-}
+
 .paintedReplicsOfCassandra {
     background-image: url("../images/textures/ocean.jpg");
     border: 3px solid mediumblue; !important;
     color: darkblue;
 }
-.highlightedOfCassandra {
-    background-color: darkorchid;
-    color: beige;
-    padding: 6px;
-    text-decoration: underline;
-}
+
 .paintedReplicsOfCassandra > p {
     color: whitesmoke;
 }
@@ -45,22 +30,12 @@
     border: 3px solid saddlebrown; !important;
     color: #61210B;
 }
-.paintedReplicsOfBeatrix {
+.paintedReplicsOfX-marine {
     background-image: url("../images/textures/fony_117.jpg");
     border: 3px solid #0B0B61; !important;
     color: lightcyan;
 }
 
-.paintedReplicsOfBeatrix > * {
-
-}
-
-.highlightedOfBeatrix {
-    background-color: cyan;
-    color: blue;
-    padding: 6px;
-    text-decoration: underline;
-}
 .paintedReplicsOfGrandma {
     background-image: url("../images/textures/pink_paper.jpg");
     border: 3px solid darkblue; !important;
@@ -143,6 +118,21 @@
     border: 3px solid darkviolet;
 }
 
+.paintedReplicsOfCarl {
+    background-color: darkblue;
+    color: lightcyan;
+    border: 3px solid darkblue;  !important;
+}
+.paintedReplicsOfMartin {
+    background-color: cyan;
+    color: indigo;
+    border: 3px solid darkblue;  !important;
+}
+.paintedReplicsOfTraves {
+    background-color: darkseagreen;
+    color: green;
+    border: 3px solid green;  !important;
+}
 .paintedReplicsOfStranger {
     background-color: #D0A9F5;
     color: #0B0B61;
@@ -167,6 +157,59 @@
     border: 3px solid deepskyblue;
 }
 
+.highlightedOfHelen {
+    background-color: darkviolet;
+    color: lightpink;
+    padding: 6px;
+    text-decoration: underline;
+}
+.highlightedOfX-marine {
+    background-color: cyan;
+    color: blue;
+    padding: 6px;
+    text-decoration: underline;
+}
+.highlightedOfJudy {
+    background-color: aquamarine;
+    color: #0B0B61;
+    padding: 6px;
+    text-decoration: underline;
+}
+
+.highlightedOfCassandra {
+    background-color: darkorchid;
+    color: beige;
+    padding: 6px;
+    text-decoration: underline;
+}
+
+.highlightedOfMartin {
+    background-color: darkgreen;
+    color: beige;
+    padding: 6px;
+    text-decoration: underline;
+}
+
+.highlightedOfJoe {
+    background-color: lightskyblue;
+    color: lightyellow;
+    padding: 6px;
+    text-decoration: underline;
+}
+
+.highlightedOfCarl {
+    background-color: lightsteelblue;
+    color: darkblue;
+    padding: 6px;
+    text-decoration: underline;
+}
+
+.highlightedOfTraves {
+    background-color: darkviolet;
+    color: lightyellow;
+    padding: 6px;
+    text-decoration: underline;
+}
 .paintedWordsFromVocabulary_Xmarine {
     background-color: indigo;
     text-decoration: underline;
