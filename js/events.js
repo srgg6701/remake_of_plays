@@ -94,13 +94,11 @@ $('body').on('click', '#showInformationButton2', function(event){
     var divsRoles=$("#listOfCheckboxes").find("div");
     var roles={};
     for (var cnt=0; cnt<divsRoles.length; cnt++){
-       // console.log(" cnt: ", cnt, " divsRoles[cnt]: ", divsRoles[cnt], " divsRoles[cnt].innerText:", divsRoles[cnt].innerText);
         var keyRole=divsRoles[cnt].innerText;
         roles[keyRole]=0;
         $("#numbersOfReplics").append("<p>"+keyRole+"</p>");
     }
     var divsReplics=$("#content_of_part").find("div"), nameInCheck, h4 = $('#content_of_part').find('h4');
-    //console.log("h4: ", h4);
     for(var runDivsReplics=0; runDivsReplics < divsReplics.length; runDivsReplics++){
         // role - из h4
         var role=h4[runDivsReplics].innerText;
@@ -124,25 +122,21 @@ $('body').on('click', '#showInformationButton2', function(event){
                    }
            }
             roles[nameInCheck]++;
-            console.log("nameInCheck: ", nameInCheck /*,"role: ", role*/);
        }else {
            var conjuctedRoles=role.split(" & ");
            for(var runConjRoles=0; runConjRoles<conjuctedRoles.length; runConjRoles++){
                nameInCheck=conjuctedRoles[runConjRoles];
                roles[nameInCheck]++;
-               console.log("nameInCheck: ", nameInCheck);
            }
        }
 
 
     }
     var prgs=$("#numbersOfReplics").find("p");
-    //console.log("prgs: ", prgs);
      for(var cnt=0; cnt<divsRoles.length; cnt++) {
         var searchedRole=prgs[cnt].innerText;
-        console.log("searchedRole: ", searchedRole);
         prgs[cnt].innerText+=": "+roles[searchedRole]+"/"+divsReplics.length;
-    }/* */
+    }
 
 });
 
@@ -264,14 +258,6 @@ $('body').on('submit', '#form1', function(event){
                     regularClass(divsReplics[cnt2], "commonPaint");
             }
             var spans = h4[cnt2].getElementsByTagName("span");
-            //console.log("spans: ", spans);
-            /* Если counter не равен 0 или длине массива - что-то должно быть раскрашено.
-                * Если длина нулевая, тегов span нет в h4, ничего в заголовке не раскрашено. Очистить innerText/
-                * Иначе: очистить innerHTML.
-                * В любом случае: вставить теги с ролями и классы в теги с нужными ролями.
-            *  Если counter равен 0 или длине массива, ничего не должно быть раскрашено.
-                * Если есть теги span, пробег по ним, если есть класс, то он удаляется.
-            * */
             if((counter>0)&&(counter<conjuctedRoles.length)){
                 if(spans.length==0){
                     h4[cnt2].innerText="";

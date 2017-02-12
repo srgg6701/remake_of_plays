@@ -61,7 +61,6 @@ var makeReadyView = Backbone.View.extend(
         el:'#dynamicContent',
         ready_element:'',
         initialize:function (templ, data) {
-            //console.trace('makeReadyView.initialize, arguments=>', {templ:templ, data:data, this: this});
             this.render(templ, data);
         },
         render: function (templ, data) {
@@ -80,7 +79,6 @@ var settingColors = Backbone.View.extend(
             $("body") // jQuery object, где HTML объект body представлен в поле с ключом 0
                 ['removeClass']("backgroundFor" + otherUrlTitle)
                 .addClass("backgroundFor" + urlTitle);
-            //console.log(secondElems);
             for (var c = 0, l = secondElems.length; c < l; c++) {
                 var elem = $("#" + secondElems[c]);
                 elem.removeClass(secondElems[c] + otherUrlTitle);
@@ -145,14 +143,13 @@ var AppRouter = Backbone.Router.extend({
                 var choicedPlaysModel = new playsModel(urlTitle);
                 choicedPlaysModel.promisedData.then(
                     function (jsonData) {
-                        /**/var arrayImages = jsonData["onTheBeginning"]["images"].join(""),
+                            var arrayImages = jsonData["onTheBeginning"]["images"].join(""),
                             data = {
                                 "headerLogotip": jsonData["onTheBeginning"]["headerLogotip"],
                                 "bigImage": jsonData["onTheBeginning"]["images"][0],
                                 "preview": jsonData["onTheBeginning"]["preview"],
                                 "playsTitle": urlTitle
                             };
-                        //console.log("jsonData: ", jsonData);
                         data["bigImage"]="<img src='../images/onTheBeginning/"+data["bigImage"]+"'>";
                         var ready_secondary = new makeReadyView(secondary, data);
                         $dynamicContent.html(ready_secondary.ready_element);
@@ -168,7 +165,6 @@ var AppRouter = Backbone.Router.extend({
         );
     },
     loadPlays: function (urlTitle) {
-        console.trace('router: loadPlays');
         var file_path = "../templates/entered/";
         $.when(getTemplate(file_path + "basement.html"),
             getTemplate(file_path + "about_characters.html"),
@@ -198,8 +194,6 @@ var AppRouter = Backbone.Router.extend({
     },
     loadPart: function (urlTitle, currentNumber) {
         var file_path = "../templates/entered/";
-        //console.log("currentNumber: ", currentNumber);
-        //console.log("type of currentNumber: ", typeof(currentNumber));
         $.when(getTemplate(file_path + "basement.html"),
             getTemplate(file_path + "episode.html"),
             getTemplate(file_path + "replic.html"),
@@ -212,10 +206,6 @@ var AppRouter = Backbone.Router.extend({
                     while (jsonData["Parts"][index]["number"] != currentNumber) {
                         index++;
                     }
-                    console.log("jsonData['Parts'][index]['number']: ", jsonData["Parts"][index]["number"]);
-                    console.log("type of number from object: ", typeof(jsonData['Parts'][index]['number']));
-                    console.log("currentNumber: ", currentNumber);
-                    console.log("type of currentNumber: ", typeof(currentNumber));
                     var sharing_roles = jsonData["Parts"][index]["sharing_roles"];
                     if (typeof (sharing_roles) == "object") {
                         if (sharing_roles.length > 1) {
@@ -223,7 +213,6 @@ var AppRouter = Backbone.Router.extend({
                             jsonData["Parts"][index]["sharing_roles"] = sharing_roles;
                         }
                     }
-                    //console.log("sharing roles: ", sharing_roles);
                     var roles = [];
                     for (var runRoles=0; numbReps = jsonData["Parts"][index]["replics"].length, runRoles < numbReps; runRoles++){
                         var role = Object.keys(jsonData["Parts"][index]["replics"][runRoles])[0];
