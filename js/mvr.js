@@ -64,6 +64,7 @@ var makeReadyView = Backbone.View.extend(
             this.render(templ, data);
         },
         render: function (templ, data) {
+            //console.log(templ);
             this.ready_element = _.template(templ)(data); // templ = prime_block снаружи этой функции
             return this;
         }

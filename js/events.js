@@ -175,9 +175,8 @@ $('body').on('submit', '#form1', function(event){
                         nameInCheck=role;
                 }
             }
-            if(choosenRoles.indexOf(nameInCheck)!==-1){
-                if(divsReplics[cnt2].classList.length=3){
-                    // Определить имя в классе для раскраски по имени в чекбоксе и добавить этот класс в div.
+            if(choosenRoles.indexOf(nameInCheck)!==-1){ // та реплика
+                    // Определить имя в классе для раскраски по имени в чекбоксе
                     if(nameInCheck=="Woman-devil"){
                         nameInClass="WomanDevil";
                     }
@@ -200,9 +199,6 @@ $('body').on('submit', '#form1', function(event){
                                 nameInClass=nameInCheck;
                             }
                             else {
-                               /* if(nameInCheck=="Fake Jessie"){
-                                    nameInClass="WomanDevil";
-                                } */
                                 partsOfName=nameInCheck.split(" ");
                                 nameInClass='';
                                 for (var runParts=0; runParts < partsOfName.length; runParts++){
@@ -216,26 +212,25 @@ $('body').on('submit', '#form1', function(event){
                             }
                         }
                     }
-                    divsReplics[cnt2].classList.add("paintedReplicsOf"+nameInClass)
-                }
-            }else {
+                    if((divsReplics[cnt2].classList==4)&&(divsReplics[cnt2].classList[3]=="paintedByTerm")){
+                        //delClass=divsReplics[cnt2].classList[3];
+                        divsReplics.classList.remove("paintedByTerm");
+                    }
+                    if(!(divsReplics[cnt2].classList.contains("paintedReplicsOf"+nameInClass))){
+                        divsReplics[cnt2].classList.add("paintedReplicsOf"+nameInClass);
+                    }
+            }else { // не та реплика
                     if(divsReplics[cnt2].classList.length==4){
-                        var deletedClass = divsReplics[cnt2].classList[3];
-                        divsReplics[cnt2].classList.remove(deletedClass);
+                        delClass = divsReplics[cnt2].classList[3];
+                        divsReplics[cnt2].classList.remove(delClass);
                     }
 
             }
         }
         else {
-            /**
-             * 1. Разбить строку на роли;
-             * 2. В цикле каждую роль проверить на присуствие в массиве выбранных ролей
-             * В случае присутствия: увеличить счетчик, сохранить в переменную роль
-             * После цикла по значению счетчика и переменной, содержащей в себе роль, определить раскраску.
-             * Если этого класса у реплики нет:
-             *  Если есть другой 4-й класс, удалить этот класс;
-             *  В любом случае: добавить нужный класс.
-             */
+            if(divsReplics[cnt2].classList.contains("paintedByTerm")){
+                divsReplics[cnt2].classList.remove("paintedByTerm");
+            }
             var conjuctedRoles = role.split(" & "), chosenRole, counter= 0, chosenInConjuction = [];
             for(var runConj=0; runConj<conjuctedRoles.length; runConj++){
                 if(choosenRoles.indexOf(conjuctedRoles[runConj])!==-1){
@@ -289,12 +284,15 @@ $('body').on('submit', '#form1', function(event){
             }
         }
 
+        if(divsReplics[cnt2].classList.contains("paintedByTerm")){
+            divsReplics[cnt2].classList.remove("paintedByTerm");
+        }
     }
     regularMessage($("#resultMessage"), "block", resultMessages.success);
 });
 
 $('body').on('submit', '#form2', function(event){
-    var values = {
+    var delClass, h4 = $('#content_of_part').find('h4'), values = {
         firstNumber: [1, 2, 3, 4],
         periodicNumber: [2, 3, 4]
     };
@@ -306,20 +304,30 @@ $('body').on('submit', '#form2', function(event){
             indexesPainting.push(countPainter);
         }
         for (var runDivs=0; runDivs<divsReplics.length; runDivs++){
-            if(indexesPainting.indexOf(runDivs)==-1){
-                if(divsReplics[runDivs].classList.length==4){
-                    if(divsReplics[runDivs].classList[4]!=="paintedByTerm"){
-                        var delClass=divsReplics[runDivs].classList[4];
-                        divsReplics[runDivs].classList.remove("paintedByTerm");
-                    }
+            var ifSpansExist=h4[runDivs].getElementsByTagName("Span");
+            //console.log("Spans:ifSpansExist ", ifSpansExist);
+            if(ifSpansExist!==[]){
+                for (var cnt=0; cnt<ifSpansExist.length; cnt++){
+                    delClass=ifSpansExist[cnt].classList[0];
+                    ifSpansExist[cnt].classList.remove(delClass);
                 }
             }
-            else {
+            if(indexesPainting.indexOf(runDivs)==-1){ // не та реплика
+                if(divsReplics[runDivs].classList.length==4){
+                    if(divsReplics[runDivs].classList[3]!=="paintedByTerm"){
+                       // console.log("divsReplics[runDivs]: ", divsReplics[runDivs], "classList: ", divsReplics[runDivs].classList);
+                        //console.log("delClass: ", delClass);
+                    }
+                    delClass=divsReplics[runDivs].classList[3];
+                    divsReplics[runDivs].classList.remove(delClass);
+                }
+            }
+            else { // та реплика
                 if(!(divsReplics[runDivs].classList.contains("paintedByTerm"))){
                     divsReplics[runDivs].classList.add("paintedByTerm");
                 }
                 if(divsReplics[runDivs].classList.length==5){
-                    var delClass=divsReplics[runDivs].classList[3];
+                    delClass=divsReplics[runDivs].classList[3];
                     divsReplics[runDivs].classList.remove(delClass);
                 }
             }
