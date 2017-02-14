@@ -315,11 +315,9 @@ $('body').on('submit', '#form2', function(event){
             if(indexesPainting.indexOf(runDivs)==-1){ // не та реплика
                 if(divsReplics[runDivs].classList.length==4){
                     if(divsReplics[runDivs].classList[3]!=="paintedByTerm"){
-                       // console.log("divsReplics[runDivs]: ", divsReplics[runDivs], "classList: ", divsReplics[runDivs].classList);
-                        //console.log("delClass: ", delClass);
+                        delClass=divsReplics[runDivs].classList[3];
+                        divsReplics[runDivs].classList.remove(delClass);
                     }
-                    delClass=divsReplics[runDivs].classList[3];
-                    divsReplics[runDivs].classList.remove(delClass);
                 }
             }
             else { // та реплика
