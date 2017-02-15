@@ -107,10 +107,10 @@ var AppRouter = Backbone.Router.extend({
         "in_the_plays/:urlTitle/Part_:currentNumber": "loadPart"
     },
     initView: function () {
-        var file_path = "../templates/primary/", prime_blocks = {prime_blocks: []};
+        var file_path = "templates/primary/", prime_blocks = {prime_blocks: []};
         $.when(getTemplate(file_path + "prime_block.html"),
             getTemplate(file_path + "prime_wrapper.html")
-        ).done(function (prime_block, prime_wrapper) {
+        ).done(function (prime_block, prime_wrapper) { console.log('done=>',{prime_block:prime_block, prime_wrapper:prime_wrapper});
             var xmarineModel = new playsModel("Xmarine"), // checkJsonData runs asynchronously
                 black_parodyModel = new playsModel("Black_parody");  // checkJsonData runs asynchronousl
             $.when(
