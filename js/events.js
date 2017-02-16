@@ -9,8 +9,8 @@ var resultMessages = {
 };
 
 $('body').on('mouseover', '.littleImage', function(event){
-    var pos = event.target.src.indexOf("/images"),
-        newSrc = event.target.src.substring(pos);
+    var pos = event.target.src.lastIndexOf("/"),
+        newSrc = "images/onTheBeginning"+event.target.src.substring(pos);
     $("#bigImage").html("<img src='"+newSrc+"'>");
 });
 
