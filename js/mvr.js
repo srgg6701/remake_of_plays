@@ -137,7 +137,7 @@ var AppRouter = Backbone.Router.extend({
 
     },
     loadSecondary: function (urlTitle) {
-        getTemplate("../templates/secondary/secondary.html").then(
+        getTemplate("templates/secondary/secondary.html").then(
             // Определить, какой window[key]
             // заполнить шаблон соответствующими данными
             function (secondary) {
@@ -166,7 +166,7 @@ var AppRouter = Backbone.Router.extend({
         );
     },
     loadPlays: function (urlTitle) {
-        var file_path = "../templates/entered/";
+        var file_path = "templates/entered/";
         $.when(getTemplate(file_path + "basement.html"),
             getTemplate(file_path + "about_characters.html"),
             getTemplate(file_path + "link.html")
@@ -194,7 +194,7 @@ var AppRouter = Backbone.Router.extend({
         });
     },
     loadPart: function (urlTitle, currentNumber) {
-        var file_path = "../templates/entered/";
+        var file_path = "templates/entered/";
         $.when(getTemplate(file_path + "basement.html"),
             getTemplate(file_path + "episode.html"),
             getTemplate(file_path + "replic.html"),
