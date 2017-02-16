@@ -5502,7 +5502,7 @@
           }]
       },
       {"number": 1.18,
-        "sharing_roles": ["<b>For 2 players:</b>", "2:3", "<b>Is not the best:</b>", "1. Author and Cassandra", "2. All the others", "<b>For 3 players:<b>", "2:2:1", "Who has Author's words should have somebody else."],
+        "sharing_roles": ["<b>For 2 players:</b>", "2:3", "<b>Is not the best:</b>", "1. Author and Cassandra", "2. All the others", "<b>For 3 players:</b>", "2:2:1", "Who has Author's words should have somebody else."],
         "header": "Terrifying discovery",
         "replics": [
           {"Author's words": ["Christian arrived to San-Salvador. His work was not bad. He communicated and collaborated with other scientists while the extra-decomposers were existing, but their existance will be ceased soon.",

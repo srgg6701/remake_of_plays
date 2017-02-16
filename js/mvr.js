@@ -151,10 +151,10 @@ var AppRouter = Backbone.Router.extend({
                                 "preview": jsonData["onTheBeginning"]["preview"],
                                 "playsTitle": urlTitle
                             };
-                        data["bigImage"]="<img src='../images/onTheBeginning/"+data["bigImage"]+"'>";
+                        data["bigImage"]="<img src='images/onTheBeginning/"+data["bigImage"]+"'>";
                         var ready_secondary = new makeReadyView(secondary, data);
                         $dynamicContent.html(ready_secondary.ready_element);
-                        var templ="<img class='col-md-10 col-md-offset-1 littleImage' src='../images/onTheBeginning/<%=littleImage%>'>";
+                        var templ="<img class='col-md-10 col-md-offset-1 littleImage' src='images/onTheBeginning/<%=littleImage%>'>";
                         fill("#left", templ, {"littleImage": ""}, jsonData["onTheBeginning"]["images"]);
                         if ($("#preview")[0] !== undefined) {
                             var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"], ['preview']);
@@ -244,7 +244,7 @@ var AppRouter = Backbone.Router.extend({
                     var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"], ['linksSection',
                         'topText', 'buttons', 'sharing_roles', 'chooseReplics', 'content_of_part', 'resultMessage']);
                     var data={"role": "", "words": "", "className": "", "urlTitle": urlTitle, "image": ""},
-                        image="<img class='col-sm-8 col-sm-offset-2' src='../images/with_characters/<%=image%>'>";
+                        image="<img class='col-sm-8 col-sm-offset-2' src='images/with_characters/<%=image%>'>";
                     fill("#content_of_part", [replic, image], data, jsonData["Parts"][index]["replics"]);
 
                 }
