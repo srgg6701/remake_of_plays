@@ -53,7 +53,7 @@ function getData(key, path) {
 
 function getTemplate(fileWay) {
     var defer = $.Deferred();
-    // ...
+    //
     $.get(fileWay, function (template_file) { // все содержимое файла по данному запросу в одну строку
         // преобразует строку в html-элемент
         var tmplHTML = $.parseHTML(template_file), // все содержимое тегов script в файле
