@@ -50,10 +50,6 @@ h1 {
     margin-left: 6%;
 }
 
-#episodeDiv > div {
-    margin-bottom: 2%;
-}
-
 #sharing_roles {
     margin-top: 5%;
     font-size: 23px;
@@ -89,6 +85,7 @@ h1 {
 #chooseReplics, #sharing_roles {
     border-radius: 9px;
     margin-left: 18%;
+    margin-bottom: 2%;
 }
 
 #chooseReplics > div {
@@ -177,6 +174,7 @@ form > input {
 
 #top_of_part {
     margin-left: 8%;
+    margin-bottom: 1%;
 }
 
 #topText {
