@@ -17,6 +17,7 @@ $('body').on('mouseover', '.littleImage', function(event){
 $('body').on('click', '.arrow', function(event){
     var newNumber, urlParams = location.href.split('/'), urlTitle = urlParams[4],
         partName = urlParams[5], currentIndex, newIndex;
+    console.log("config.pages[urlTitle]: ", config.pages[urlTitle]);
     for(var i=0; i < config.pages[urlTitle].length; i++){
         if(config.pages[urlTitle][i]==partName){
             currentIndex=i;
