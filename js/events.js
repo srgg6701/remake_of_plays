@@ -102,12 +102,14 @@ $sels.body.on('click', '#showInformationButton2', function (event) {
     }
     var divsRoles = $("#listOfCheckboxes").find("div");
     var roles = {};
+    $sels.numbersOfReplics=$("#numbersOfReplics");
     for (var cnt = 0; cnt < divsRoles.length; cnt++) {
         var keyRole = divsRoles[cnt].innerText;
         roles[keyRole] = 0;
-        $("#numbersOfReplics").append("<p>" + keyRole + "</p>");
+        $sels.numbersOfReplics.append("<p>" + keyRole + "</p>");
     }
-    var divsReplics = $("#content_of_part").find("div"), nameInCheck, h4 = $("#content_of_part").find('h4');
+    $sels.content_of_part=$("#content_of_part");
+    var divsReplics = $sels.content_of_part.find("div"), nameInCheck, h4 = $sels.content_of_part.find('h4');
    // console.log("divsReplics: ", divsReplics);
     for (var runDivsReplics = 0; runDivsReplics < divsReplics.length; runDivsReplics++) {
         // role - из h4
@@ -140,7 +142,7 @@ $sels.body.on('click', '#showInformationButton2', function (event) {
             }
         }
     }
-    var prgs = $("#numbersOfReplics").find("p");
+    var prgs = $sels.numbersOfReplics.find("p");
     for (var cntPrgs = 0; cntPrgs < divsRoles.length; cntPrgs++) {
         var searchedRole = prgs[cntPrgs].innerText;
         prgs[cntPrgs].innerText += ": " + roles[searchedRole] + "/" + divsReplics.length;
@@ -160,7 +162,6 @@ $sels.body.on('submit', '#form1', function (event) {
             }
         }
     }
-    $sels.content_of_part=$("#content_of_part");
     var divsReplics =  $sels.content_of_part.children("div"), h4 = $sels.content_of_part.find('h4');
     var nameInCheck, nameInClass;
     for (var cnt2 = 0; cnt2 < h4.length; cnt2++) {

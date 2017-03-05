@@ -133,6 +133,13 @@
     color: green;
     border: 3px solid green;  !important;
 }
+
+.paintedReplicsOfKillers {
+    background-color: lightseagreen;
+    color: lightcyan;
+    border: 3px solid blue;  !important;
+}
+
 .paintedReplicsOfStranger {
     background-color: #D0A9F5;
     color: #0B0B61;
