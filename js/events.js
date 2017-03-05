@@ -102,12 +102,13 @@ $sels.body.on('click', '#showInformationButton2', function (event) {
     }
     var divsRoles = $("#listOfCheckboxes").find("div");
     var roles = {};
-    for ($sels.cnt = 0; cnt < divsRoles.length; cnt++) {
+    for (var cnt = 0; cnt < divsRoles.length; cnt++) {
         var keyRole = divsRoles[cnt].innerText;
         roles[keyRole] = 0;
-        $sels.numbersOfReplics.append("<p>" + keyRole + "</p>");
+        $("#numbersOfReplics").append("<p>" + keyRole + "</p>");
     }
-    var divsReplics = $("#content_of_part").find("div"), nameInCheck, h4 = $sels.content_of_part.find('h4');
+    var divsReplics = $("#content_of_part").find("div"), nameInCheck, h4 = $("#content_of_part").find('h4');
+   // console.log("divsReplics: ", divsReplics);
     for (var runDivsReplics = 0; runDivsReplics < divsReplics.length; runDivsReplics++) {
         // role - из h4
         var role = h4[runDivsReplics].innerText;
@@ -138,10 +139,8 @@ $sels.body.on('click', '#showInformationButton2', function (event) {
                 roles[nameInCheck]++;
             }
         }
-
-
     }
-    var prgs = $sels.numbersOfReplics.find("p");
+    var prgs = $("#numbersOfReplics").find("p");
     for (var cntPrgs = 0; cntPrgs < divsRoles.length; cntPrgs++) {
         var searchedRole = prgs[cntPrgs].innerText;
         prgs[cntPrgs].innerText += ": " + roles[searchedRole] + "/" + divsReplics.length;
@@ -151,21 +150,21 @@ $sels.body.on('click', '#showInformationButton2', function (event) {
 
 $sels.body.on('submit', '#form1', function (event) {
     var checkboxes = $(".checkbox"), choosenRoles = [], divsChecks = $(".div");
-    for ($sels.cnt = 0; $sels.cnt < checkboxes.length; $sels.cnt++) {
-        if (checkboxes[$sels.cnt].checked) {
-            if (checkboxes[$sels.cnt].innerText == "Snake (Woman-devil)") {
+    for (var cnt = 0; cnt < checkboxes.length; cnt++) {
+        if (checkboxes[cnt].checked) {
+            if (checkboxes[cnt].innerText == "Snake (Woman-devil)") {
                 choosenRoles.push("Woman-devil");
             }
             else {
-                choosenRoles.push(divsChecks[$sels.cnt].innerText);
+                choosenRoles.push(divsChecks[cnt].innerText);
             }
         }
     }
-    var divsReplics = $("#content_of_part").children("div"), h4 = $sels.content_of_part.find('h4');
+    $sels.content_of_part=$("#content_of_part");
+    var divsReplics =  $sels.content_of_part.children("div"), h4 = $sels.content_of_part.find('h4');
     var nameInCheck, nameInClass;
-    /* */
-    for ($sels.cnt = 0; $sels.cnt < h4.length; $sels.cnt++) {
-        var role = h4[$sels.cnt].innerText;
+    for (var cnt2 = 0; cnt2 < h4.length; cnt2++) {
+        var role = h4[cnt2].innerText;
         if (role.indexOf("&") == -1) {
             switch (role) {
                 case "Being":
@@ -221,24 +220,26 @@ $sels.body.on('submit', '#form1', function (event) {
 
                         }
                     }
+                    //console.log("name in class: ", nameInClass);
                 }
-                if ((divsReplics[$sels.cnt].classList == 4) && (divsReplics[$sels.cnt].classList[3] == "paintedByTerm")) {
+                if ((divsReplics[cnt2].classList == 4) && (divsReplics[cnt2].classList[3] == "paintedByTerm")) {
+                    //delClass=divsReplics[cnt2].classList[3];
                     divsReplics.classList.remove("paintedByTerm");
                 }
-                if (!(divsReplics[$sels.cnt].classList.contains("paintedReplicsOf" + nameInClass))) {
-                    divsReplics[$sels.cnt].classList.add("paintedReplicsOf" + nameInClass);
+                if (!(divsReplics[cnt2].classList.contains("paintedReplicsOf" + nameInClass))) {
+                    divsReplics[cnt2].classList.add("paintedReplicsOf" + nameInClass);
                 }
             } else { // не та реплика
-                if (divsReplics[$sels.cnt].classList.length == 4) {
-                    delClass = divsReplics[$sels.cnt].classList[3];
-                    divsReplics[$sels.cnt].classList.remove(delClass);
+                if (divsReplics[cnt2].classList.length == 4) {
+                    delClass = divsReplics[cnt2].classList[3];
+                    divsReplics[cnt2].classList.remove(delClass);
                 }
 
             }
         }
         else {
-            if (divsReplics[$sels.cnt].classList.contains("paintedByTerm")) {
-                divsReplics[$sels.cnt].classList.remove("paintedByTerm");
+            if (divsReplics[cnt2].classList.contains("paintedByTerm")) {
+                divsReplics[cnt2].classList.remove("paintedByTerm");
             }
             var conjuctedRoles = role.split(" & "), chosenRole, counter = 0, chosenInConjuction = [];
             for (var runConj = 0; runConj < conjuctedRoles.length; runConj++) {
@@ -250,34 +251,34 @@ $sels.body.on('submit', '#form1', function (event) {
             }
             switch (counter) {
                 case 0:
-                    if (divsReplics[$sels.cnt].classList.length == 4) {
-                        var delClass = divsReplics[$sels.cnt].classList[3];
-                        divsReplics[$sels.cnt].classList.remove(delClass);
+                    if (divsReplics[cnt2].classList.length == 4) {
+                        var delClass = divsReplics[cnt2].classList[3];
+                        divsReplics[cnt2].classList.remove(delClass);
                     }
                     break;
                 case 1:
-                    regularClass(divsReplics[$sels.cnt], "paintedReplicsOf" + chosenRole);
+                    regularClass(divsReplics[cnt2], "paintedReplicsOf" + chosenRole);
                     break;
                 default:
-                    regularClass(divsReplics[$sels.cnt], "commonPaint");
+                    regularClass(divsReplics[cnt2], "commonPaint");
             }
-            var spans = h4[$sels.cnt].getElementsByTagName("span");
+            var spans = h4[cnt2].getElementsByTagName("span");
             if ((counter > 0) && (counter < conjuctedRoles.length)) {
                 if (spans.length == 0) {
-                    h4[$sels.cnt].innerText = "";
+                    h4[cnt2].innerText = "";
                 }
                 else {
-                    h4[$sels.cnt].innerHTML = "";
+                    h4[cnt2].innerHTML = "";
                 }
                 for (var cntRoles = 0; cntRoles < conjuctedRoles.length; cntRoles++) {
                     if (chosenInConjuction.indexOf(conjuctedRoles[cntRoles]) == -1) {
-                        h4[$sels.cnt].innerHTML += "<span>" + conjuctedRoles[cntRoles] + "</span>";
+                        h4[cnt2].innerHTML += "<span>" + conjuctedRoles[cntRoles] + "</span>";
                     }
                     else {
-                        h4[$sels.cnt].innerHTML += "<span class='highlightedOf" + conjuctedRoles[cntRoles] + "'>" + conjuctedRoles[cntRoles] + "</span>";
+                        h4[cnt2].innerHTML += "<span class='highlightedOf" + conjuctedRoles[cntRoles] + "'>" + conjuctedRoles[cntRoles] + "</span>";
                     }
                     if (cntRoles < conjuctedRoles.length - 1) {
-                        h4[$sels.cnt].innerHTML += "<span> & </span>";
+                        h4[cnt2].innerHTML += "<span> & </span>";
                     }
                 }
             }
@@ -293,8 +294,8 @@ $sels.body.on('submit', '#form1', function (event) {
             }
         }
 
-        if (divsReplics[$sels.cnt].classList.contains("paintedByTerm")) {
-            divsReplics[$sels.cnt].classList.remove("paintedByTerm");
+        if (divsReplics[cnt2].classList.contains("paintedByTerm")) {
+            divsReplics[cnt2].classList.remove("paintedByTerm");
         }
     }
     regularMessage($("#resultMessage"), "block", resultMessages.success);
@@ -307,7 +308,7 @@ $sels.body.on('submit', '#form2', function (event) {
     };
     var inputedNumber1 = +($("#firstNumber").val()), inputedNumber2 = +($("#periodicNumber").val());
     if ((values.firstNumber.indexOf(inputedNumber1) !== -1) && (values.periodicNumber.indexOf(inputedNumber2) !== -1)) {
-        var divsReplics = $("#content_of_part").find("div"), indexesPainting = [];
+        var divsReplics = $sels.content_of_part.find("div"), indexesPainting = [];
         // индекс 1-й реплики, которая должна быть раскрашена: inputedNumber1-1, счетчик из periodicNumber.
         for (var countPainter = inputedNumber1 - 1; countPainter < divsReplics.length; countPainter += inputedNumber2) {
             indexesPainting.push(countPainter);
@@ -316,7 +317,7 @@ $sels.body.on('submit', '#form2', function (event) {
             var ifSpansExist = h4[runDivs].getElementsByTagName("Span");
             //console.log("Spans:ifSpansExist ", ifSpansExist);
             if (ifSpansExist !== []) {
-                for ($sels.cnt = 0; cnt < ifSpansExist.length; cnt++) {
+                for (var cnt = 0; cnt < ifSpansExist.length; cnt++) {
                     delClass = ifSpansExist[cnt].classList[0];
                     ifSpansExist[cnt].classList.remove(delClass);
                 }
