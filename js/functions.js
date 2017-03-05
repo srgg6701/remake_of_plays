@@ -9,7 +9,18 @@ var config = {
         'Black_parody': [], 'Xmarine': []
     }
 };
-
+function defineUrlTitle(classes){
+    var urlParams = location.href.split('/'),
+        partName = urlParams.pop(), // отрезается Part_number
+        urlTitle = urlParams[urlParams.length - 1],
+        returnedData={};
+    returnedData.urlTitle=urlTitle;
+    if(classes.contains("arrow")){
+        returnedData.urlParams=urlParams;
+        returnedData.partName=partName;
+    }
+    return returnedData;
+}
 function getData(key, path) {
     if (!path) path = 'jsons/' + key + '.json';
     //console.trace('%cpath', 'backgroun-color: lightskyblue', {key: key, path: path});
@@ -76,7 +87,7 @@ function checkJsonData(key) {
             defer.resolve(this.play_object);
             clearInterval(sttm);
         }
-        if (cnt >= 50) {
+        if (cnt >= 60) {
             console.warn('Cannot get file');
             defer.reject("The content is not here yet.");
             clearInterval(sttm);
