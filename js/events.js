@@ -162,9 +162,14 @@ $sels.body.on('submit', '#form1', function (event) {
             }
         }
     }
-    var divsReplics =  $sels.content_of_part.children("div"), h4 = $sels.content_of_part.find('h4');
+    var divsReplics =  $("#content_of_part").children("div"), h4 = $("#content_of_part").find('h4');
     var nameInCheck, nameInClass;
+    // Пробег по ролям, определение nameInCheck;
+    // Пробег по чекбоксам, определение, чекнутый чекбокс или нет.
+    console.log("h4 ", h4);
     for (var cnt2 = 0; cnt2 < h4.length; cnt2++) {
+        //console.log("choosenRoles: ", choosenRoles);
+        //console.log("divsReplics: ", divsReplics);
         var role = h4[cnt2].innerText;
         if (role.indexOf("&") == -1) {
             switch (role) {
@@ -178,52 +183,35 @@ $sels.body.on('submit', '#form1', function (event) {
                     nameInCheck = "Judy";
                     break;
                 default:
-                    if (role.indexOf("answer") !== -1) {
-                        var posOFAmp = role.indexOf("'s");
-                        nameInCheck = role.substring(0, posOFAmp);
-                    } else {
+                    if (role.indexOf("'s ") == -1) {
                         nameInCheck = role;
-                    }
-            }
-            if (choosenRoles.indexOf(nameInCheck) !== -1) { // та реплика
-                // Определить имя в классе для раскраски по имени в чекбоксе
-                if (nameInCheck == "Woman-devil") {
-                    nameInClass = "WomanDevil";
-                }
-                else {
-                    var partsOfName;
-                    if (nameInCheck.indexOf("'s ") !== -1) {
-                        partsOfName = nameInCheck.split("'s ");
-                        switch (partsOfName[1]) {
-                            case "grandma":
-                                nameInClass = "Grandma";
-                                break;
-                            case "grandpa":
-                                nameInClass = "Grandpa";
-                                break;
-                            default:
-                                nameInClass = partsOfName[0];
-                        }
                     } else {
-                        if (nameInCheck.indexOf(" ") == -1) {
-                            nameInClass = nameInCheck;
+                        var els=role.split("'s ");
+                        if((els[0]=="Helen")||(els[0]=="Ramon")||(els[0]=="Nick")){
+                            nameInCheck=els[0]
                         }
                         else {
-                            partsOfName = nameInCheck.split(" ");
-                            nameInClass = '';
-                            for (var runParts = 0; runParts < partsOfName.length; runParts++) {
-                                var firstSym = partsOfName[runParts][0].toUpperCase();
-                                nameInClass += firstSym;
-                                for (var runSymbs = 1; runSymbs < partsOfName[runParts].length; runSymbs++) {
-                                    nameInClass += partsOfName[runParts][runSymbs];
-                                }
-                            }
-
+                            nameInCheck=role;
                         }
                     }
-                    //console.log("name in class: ", nameInClass);
-                }
-                if ((divsReplics[cnt2].classList == 4) && (divsReplics[cnt2].classList[3] == "paintedByTerm")) {
+            }
+            console.log("name in check: ", nameInCheck);
+            if (choosenRoles.indexOf(nameInCheck) !== -1) { // та реплика
+                // Определить имя в классе для раскраски по имени в чекбоксе
+               if(nameInCheck.indexOf("'s ")==-1){
+                   nameInClass=nameInCheck;
+               }
+               else {
+                   var els=nameInCheck.split("'s ");
+                   if(els[0]=="Christian"){
+                       var restSymbs=els[1].substring(1);
+                       nameInClass="G"+restSymbs;
+                   }
+                   else {
+                       nameInClass=els[0];
+                   }
+               }
+                if ((divsReplics[cnt2].classList.length == 4) && (divsReplics[cnt2].classList[3] == "paintedByTerm")) {
                     //delClass=divsReplics[cnt2].classList[3];
                     divsReplics.classList.remove("paintedByTerm");
                 }

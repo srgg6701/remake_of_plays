@@ -217,7 +217,39 @@ var AppRouter = Backbone.Router.extend({
                     var roles = [];
                     for (var runRoles=0; numbReps = jsonData["Parts"][index]["replics"].length, runRoles < numbReps; runRoles++){
                         var role = Object.keys(jsonData["Parts"][index]["replics"][runRoles])[0];
-                        if((role!=="Being")&&(role!=="image")&&(role.indexOf("thoughts")==-1)&&
+                        if((role.indexOf("&")==-1)&&(role!=="image")){
+                           var nameInCheck;
+                            switch (role) {
+                                case "Being":
+                                    nameInCheck = "X-marine";
+                                    break;
+                                case "Monster":
+                                    nameInCheck = "Helen";
+                                    break;
+                                case "Monster 2":
+                                    nameInCheck = "Judy";
+                                    break;
+                                default:
+                                    if (role.indexOf("'s ") == -1) {
+                                        nameInCheck = role;
+                                    } else {
+                                        var els=role.split("'s ");
+                                        if((els[0]=="Helen")||(els[0]=="Ramon")||(els[0]=="Nick")){
+                                            nameInCheck=els[0]
+                                        }
+                                        else {
+                                            nameInCheck=role;
+                                        }
+                                        //console.log("els: ", els);
+                                    }
+                            }
+                            if(roles.indexOf(nameInCheck)==-1){
+                                roles.push(nameInCheck);
+                            }
+
+                        }
+                        //console.log("roles: ", roles);
+                        /*if((role!=="Being")&&(role!=="image")&&(role.indexOf("thoughts")==-1)&&
                         (role.indexOf("Monster")==-1)&&(role.indexOf("&")==-1)
                         &&(role.indexOf("answer")==-1)){
                             if(role=="Snake"){
@@ -226,9 +258,9 @@ var AppRouter = Backbone.Router.extend({
                             if(roles.indexOf(role)==-1){
                                 roles.push(role);
                             }
-                        }
+                        } */
 
-                    }
+                    } // rolesListHTML
                     jsonData["Parts"][index]["rolesList"]="<div class='div'><input class='checkbox' type='checkbox'>"
                         +roles.join("</div><div class='div'><input class='checkbox' type='checkbox'>")+("</div>");
                     var ready_episode = new makeReadyView(episode, jsonData["Parts"][index]).ready_element,
