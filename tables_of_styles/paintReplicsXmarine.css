@@ -118,6 +118,13 @@
     border: 3px solid darkviolet;
 }
 
+.paintedReplicsOfMolly {
+    background-image: url("../images/textures/pinktum47.jpg");
+    color: darkblue;
+    border: 3px solid darkviolet;
+}
+
+
 .paintedReplicsOfCarl {
     background-color: darkblue;
     color: lightcyan;
