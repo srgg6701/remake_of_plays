@@ -248,19 +248,8 @@ var AppRouter = Backbone.Router.extend({
                             }
 
                         }
-                        //console.log("roles: ", roles);
-                        /*if((role!=="Being")&&(role!=="image")&&(role.indexOf("thoughts")==-1)&&
-                        (role.indexOf("Monster")==-1)&&(role.indexOf("&")==-1)
-                        &&(role.indexOf("answer")==-1)){
-                            if(role=="Snake"){
-                                role=role+" (Woman-devil)";
-                            }
-                            if(roles.indexOf(role)==-1){
-                                roles.push(role);
-                            }
-                        } */
 
-                    } // rolesListHTML
+                    }
                     jsonData["Parts"][index]["rolesList"]="<div class='div'><input class='checkbox' type='checkbox'>"
                         +roles.join("</div><div class='div'><input class='checkbox' type='checkbox'>")+("</div>");
                     var ready_episode = new makeReadyView(episode, jsonData["Parts"][index]).ready_element,
@@ -277,6 +266,7 @@ var AppRouter = Backbone.Router.extend({
                         'topText', 'buttons', 'sharing_roles', 'chooseReplics', 'content_of_part', 'resultMessage']);
                     var data={"role": "", "words": "", "className": "", "urlTitle": urlTitle, "image": ""},
                         image="<img class='col-sm-8 col-sm-offset-2' src='images/with_characters/<%=image%>'>";
+
                     fill("#content_of_part", [replic, image], data, jsonData["Parts"][index]["replics"]);
 
                 }

@@ -108,7 +108,8 @@ function fill(selector, templ, data, arr) {
             } else {
                 tmpl = templ[0];
                 data.role = key;
-                data.words = arr[c][key];
+                data.words = "<p>"+arr[c][key].join("</p><p>")+"</p>";
+                //console.log("words: ", data.words);
                 if (key == "Author's words") {
                     data.className = "authorReplic";
                 }

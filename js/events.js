@@ -162,7 +162,8 @@ $sels.body.on('submit', '#form1', function (event) {
             }
         }
     }
-    var divsReplics =  $("#content_of_part").children("div"), h4 = $("#content_of_part").find('h4');
+    var divsReplics =  document.getElementById("#content_of_part").getElementsByTagName("div"),
+        h4 = $("#content_of_part").find('h4');
     var nameInCheck, nameInClass;
     // Пробег по ролям, определение nameInCheck;
     // Пробег по чекбоксам, определение, чекнутый чекбокс или нет.
