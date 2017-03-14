@@ -135,6 +135,13 @@
     color: indigo;
     border: 3px solid darkblue;  !important;
 }
+
+.paintedReplicsOfJoe {
+    background-color: lightgray;
+    color: indigo;
+    border: 3px solid darkslategray;  !important;
+}
+
 .paintedReplicsOfTraves {
     background-color: darkseagreen;
     color: green;
