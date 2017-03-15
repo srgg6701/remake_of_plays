@@ -15,7 +15,7 @@ function defineUrlTitle(classes){
         urlTitle = urlParams[urlParams.length - 1],
         returnedData={};
     returnedData.urlTitle=urlTitle;
-    if(classes.contains("arrow")){
+    if/*((classes!==undefined)&&*/(classes.contains("arrow"))/*)*/{
         returnedData.urlParams=urlParams;
         returnedData.partName=partName;
     }

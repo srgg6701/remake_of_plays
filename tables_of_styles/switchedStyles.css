@@ -185,6 +185,10 @@
     color: black;
 }
 
+.content_of_partXmarine > div {
+    background-color: rgba(87, 166, 140, 0.20);
+}
+
 .content_of_partBlack_parody {
     color: linen;
 }
@@ -201,10 +205,12 @@
     background-color: midnightblue;
     color: lightcyan;
     padding: 4px;
+    text-decoration: underline;
 }
 
 .paintedVocabWordsBlack_parody {
     background-color: lightsteelblue;
     color: darkblue;
     padding: 4px;
+    text-decoration: underline;
 }

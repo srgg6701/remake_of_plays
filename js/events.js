@@ -9,8 +9,7 @@ var resultMessages = {
     },
     $sels={
         body: $('body'),
-        numbersOfReplics: $("#numbersOfReplics"),
-        from_vocabulary: $('.from_vocabulary')
+        numbersOfReplics: $("#numbersOfReplics")
     };
 
 $sels.body.on('mouseover', '.littleImage', function (event) {
@@ -86,9 +85,10 @@ $sels.body.on('click', '#closeForm', function (event) {
 });
 
 $sels.body.on('click', '#paintWordsFromVocab', function (event) {
-    var urlTitle=defineUrlTitle(this.classList).urlTitle;
-    for ($sels.cnt = 0; cnt < $sels.from_vocabulary.length; cnt++) {
-        $sels.from_vocabulary[cnt].classList.toggle("paintedVocabWords" + playsName);
+    var urlTitle=defineUrlTitle(this.classList).urlTitle, from_vocabulary=$(".from_vocabulary");
+    console.log("sels.from_vocabulary: ", from_vocabulary);
+    for (var cnt = 0; cnt < from_vocabulary.length; cnt++) {
+        from_vocabulary[cnt].classList.toggle("paintedVocabWords" + urlTitle);
     }
 });
 
