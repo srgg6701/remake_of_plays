@@ -26,16 +26,6 @@
     margin-left: 4%;
 }
 
-#parts > a:hover {
-    color: lightcyan;
-    background-color: darkturquoise;
-}
-
-#constantLinks > a:hover {
-    color: #CEF6E3;
-    background-color: #0489B1;
-}
-
 #headerLogotip > img {
     width: 100%;
 }

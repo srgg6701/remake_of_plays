@@ -47,7 +47,6 @@ function getData(key, path) {
                 if (config.pages[key].indexOf(partName) == -1) config.pages[key].push(partName);
                 //console.log("partName in functions: ", partName);
             });
-
             return data;
         }
     };
@@ -92,11 +91,12 @@ function checkJsonData(key) {
             defer.reject("The content is not here yet.");
             clearInterval(sttm);
         }
-    }.bind(this), 100);
+    }.bind(this), 200);
     return defer.promise();
 }
 
 function fill(selector, templ, data, arr) {
+    //console.log("Попали, selector = ", selector);
     var container = $(selector), tmpl;
     for (var c = 0, len = arr.length; c < len; c++) {
         if (typeof (templ) == "object") {
@@ -129,6 +129,9 @@ function fill(selector, templ, data, arr) {
         }
         var ready_element = new makeReadyView(tmpl, data).ready_element;
         container.append(ready_element);
+    }
+    if(selector=="#menu_links"){
+        console.log("ready_element = ", ready_element);
     }
 }
 

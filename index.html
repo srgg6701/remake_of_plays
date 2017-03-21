@@ -10,12 +10,23 @@
     <link rel="stylesheet" href="tables_of_styles/switchedStyles.css">
     <link rel="stylesheet" href="tables_of_styles/paintReplicsXmarine.css">
     <link rel="stylesheet" href="tables_of_styles/paintReplicsBlack_parody.css">
+    <link rel="stylesheet" href="tables_of_styles/navigation.css">
     <script src="js/libs/underscore/underscore-min.js"></script>
     <script src="js/libs/jquery/dist/jquery.min.js"></script>
     <script src="js/libs/backbone/backbone-min.js"></script>
 </head>
 <body>
-    <div id="dynamicContent" style="width: 100%" class="container"></div>
+    <div class="col-md-3" id="navigation">
+        <p>Choose the plays to see the menu and read:</p>
+        <a href="#in_the_secondary/Xmarine">X-marine</a>
+        <a href="#in_the_secondary/Black_parody">Black parody</a>
+        <hr>
+        <a href="">Landing page</a>
+        <div id="dynamicLinks"></div>
+        <input type="hidden" id="checkPlaysName">
+    </div>
+    <div class="col-md-9 container" id="dynamicContent">
+    </div>
     <script src="js/functions.js"></script>
     <script src="js/mvr.js"></script>
     <script src="js/events.js"></script>

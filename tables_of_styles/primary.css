@@ -11,7 +11,6 @@
 #par {
     font-size: 20px;
     font-family: "Yu Gothic UI";
-    border: 1px solid;
     margin-top: 2%;
 }
 
@@ -19,6 +18,7 @@
     border: 2px solid steelblue;
     border-radius: 10px;
     background-color: lightcyan;
+    margin-left: 4%;
 }
 
 @media(min-width:993px){

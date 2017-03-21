@@ -1,0 +1,36 @@
+#navigation {
+    background-color: lightsteelblue;
+    padding-bottom: 4%;
+}
+
+#navigation > * {
+    font-size: 21px;
+    margin-left: 6%;
+}
+
+#navigation a {
+    padding: 5px;
+}
+
+#navigation > p {
+    margin-right: 3%;
+    font-weight: bold;
+    color: darkslateblue;
+    font-size: 24px;
+}
+
+#navigation > a:hover {
+    color: #CEF6E3;
+    background-color: #0489B1;
+}
+
+#containerLinksEpisodes > a {
+    display: block;
+    margin-top: 5%;
+}
+
+#containerLinksEpisodes > a:hover {
+    color: lightcyan;
+    background-color: darkturquoise;
+}
+

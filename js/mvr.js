@@ -110,7 +110,7 @@ var AppRouter = Backbone.Router.extend({
         var file_path = "templates/primary/", prime_blocks = {prime_blocks: []};
         $.when(getTemplate(file_path + "prime_block.html"),
             getTemplate(file_path + "prime_wrapper.html")
-        ).done(function (prime_block, prime_wrapper) { console.log('done=>',{prime_block:prime_block, prime_wrapper:prime_wrapper});
+        ).done(function (prime_block, prime_wrapper) { /*console.log('done=>',{prime_block:prime_block, prime_wrapper:prime_wrapper});*/
             var xmarineModel = new playsModel("Xmarine"), // checkJsonData runs asynchronously
                 black_parodyModel = new playsModel("Black_parody");  // checkJsonData runs asynchronousl
             $.when(
@@ -134,13 +134,15 @@ var AppRouter = Backbone.Router.extend({
             });
 
         });
-
     },
     loadSecondary: function (urlTitle) {
-        getTemplate("templates/secondary/secondary.html").then(
+        var lastPlaysTitle=$("#checkPlaysName").val();
+        //console.log("value: ",  $("#checkPlaysName").val());
+        $.when(getTemplate("templates/secondary/secondary.html"), getTemplate("templates/menu_links.html"),
+            getTemplate("templates/entered/link.html")).done(
             // Определить, какой window[key]
             // заполнить шаблон соответствующими данными
-            function (secondary) {
+            function (secondary, menu_links, link) {
                 var choicedPlaysModel = new playsModel(urlTitle);
                 choicedPlaysModel.promisedData.then(
                     function (jsonData) {
@@ -159,6 +161,14 @@ var AppRouter = Backbone.Router.extend({
                         if ($("#preview")[0] !== undefined) {
                             var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"], ['preview']);
                         }
+                        var dynamicLinks=$("#dynamicLinks");
+                        if(lastPlaysTitle!==urlTitle){
+                            var partOfLinks= new makeReadyView(menu_links, {"urlTitle": urlTitle}).ready_element;
+                            //console.log("partOfLinks: ", partOfLinks);
+                            dynamicLinks.html(partOfLinks);
+                            fill("#containerLinksEpisodes", link, {"num": "", "urlTitle": urlTitle}, jsonData["Parts"]);
+                            //console.log("config.pages.urlTitle", config.pages[urlTitle]);
+                        }
                         // xfixme: optimize -- get rid of calling:
                     }
                 );
@@ -167,39 +177,39 @@ var AppRouter = Backbone.Router.extend({
     },
     loadPlays: function (urlTitle) {
         var file_path = "templates/entered/";
-        $.when(getTemplate(file_path + "basement.html"),
+        $.when(getTemplate(file_path + "after_enter.html"),
             getTemplate(file_path + "about_characters.html"),
             getTemplate(file_path + "link.html")
-        ).done(function (basement, about_characters, link) {
+        ).done(function (after_enter, about_characters, link) {
             var choicedPlaysModel = new playsModel(urlTitle);
             choicedPlaysModel.promisedData.then(
                 function (jsonData) {
                     var textAboutCharacters = jsonData["About characters"], // array was passed
                         ready_about_characters = new makeReadyView(about_characters,
                             {"firstPg": '<p>' + textAboutCharacters.join('</p><p>') + '</p>'}).ready_element,
-                        basementData = {
+                        data = {
                             "headerLogotip": jsonData["onTheBeginning"]["headerLogotip"],
                             "playsTitle": jsonData["onTheBeginning"]["playsTitle"],
                             "otherUrlTitle": jsonData["otherUrlTitle"],
                             "ready_content": ready_about_characters
                         },
-                        ready_basement = new makeReadyView(basement, basementData).ready_element;
-                    $dynamicContent.html(ready_basement);
-                    fill("#parts", link, {"num": "", "urlTitle": urlTitle}, jsonData["Parts"]);
-                    if ($("#linksSection")[0] !== undefined) {
-                        var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"], ['linksSection', 'about_characters_div']);
+                        ready_entering = new makeReadyView(after_enter, data).ready_element;
+                    $dynamicContent.html(ready_entering);
+                    /**/if ($("#changeable_content")[0] !== undefined) {
+                        var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"], ['about_characters_div'])
                     }
                 }
             );
+            //var choicedPlaysSettingColors = new settingColors();
         });
     },
     loadPart: function (urlTitle, currentNumber) {
         var file_path = "templates/entered/";
-        $.when(getTemplate(file_path + "basement.html"),
+        $.when(getTemplate(file_path + "after_enter.html"),
             getTemplate(file_path + "episode.html"),
             getTemplate(file_path + "replic.html"),
             getTemplate(file_path + "link.html")
-        ).done(function (basement, episode, replic, link) {
+        ).done(function (after_enter, episode, replic, link) {
             var choicedPlaysModel = new playsModel(urlTitle);
             choicedPlaysModel.promisedData.then(
                 function (jsonData) {
@@ -253,20 +263,19 @@ var AppRouter = Backbone.Router.extend({
                     jsonData["Parts"][index]["rolesList"]="<div class='div'><input class='checkbox' type='checkbox'>"
                         +roles.join("</div><div class='div'><input class='checkbox' type='checkbox'>")+("</div>");
                     var ready_episode = new makeReadyView(episode, jsonData["Parts"][index]).ready_element,
-                        basementData = {
+                        data = {
                             "headerLogotip": jsonData["onTheBeginning"]["headerLogotip"],
                             "playsTitle": jsonData["onTheBeginning"]["playsTitle"],
                             "otherUrlTitle": jsonData["otherUrlTitle"],
                             "ready_content": ready_episode
                         },
-                        ready_basement = new makeReadyView(basement, basementData).ready_element;
-                    $dynamicContent.html(ready_basement);
+                        ready_after_enter = new makeReadyView(after_enter, data).ready_element;
+                    $dynamicContent.html(ready_after_enter);
                     fill("#parts", link, {"num": "", "urlTitle": urlTitle}, jsonData["Parts"]);
                     var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"], ['linksSection',
                         'topText', 'buttons', 'sharing_roles', 'chooseReplics', 'content_of_part', 'resultMessage']);
                     var data={"role": "", "words": "", "className": "", "urlTitle": urlTitle, "image": ""},
                         image="<img class='col-sm-8 col-sm-offset-2' src='images/with_characters/<%=image%>'>";
-
                     fill("#content_of_part", [replic, image], data, jsonData["Parts"][index]["replics"]);
 
                 }
