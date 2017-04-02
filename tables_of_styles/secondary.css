@@ -7,18 +7,6 @@ body, body * {
     margin-right: -15px;
 }
 
-#dynamicContent {
-    margin-top: 2%;
-}
-
-#secondaryDiv > div {
-    border: 1px solid;
-}
-
-#left img {
-   /* width: 100%; */
-}
-
 #middle h1 {
     border: 1px solid;
     font-size: 22px;

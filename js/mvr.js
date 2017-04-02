@@ -156,7 +156,7 @@ var AppRouter = Backbone.Router.extend({
                         data["bigImage"]="<img src='images/onTheBeginning/"+data["bigImage"]+"'>";
                         var ready_secondary = new makeReadyView(secondary, data);
                         $dynamicContent.html(ready_secondary.ready_element);
-                        var templ="<img class='col-md-10 col-md-offset-1 littleImage' src='images/onTheBeginning/<%=littleImage%>'>";
+                        var templ="<img class='col-md-12 littleImage' src='images/onTheBeginning/<%=littleImage%>'>";
                         fill("#left", templ, {"littleImage": ""}, jsonData["onTheBeginning"]["images"]);
                         if ($("#preview")[0] !== undefined) {
                             var choicedPlaysSettingColors = new settingColors(urlTitle, jsonData["otherUrlTitle"], ['preview']);

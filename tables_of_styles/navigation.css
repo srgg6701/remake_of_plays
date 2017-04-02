@@ -1,15 +1,22 @@
+body > * {
+    margin-top: 1%;
+}
+
 #navigation {
     background-color: lightsteelblue;
     padding-bottom: 4%;
+    padding-top: 2%;
 }
 
 #navigation > * {
     font-size: 21px;
     margin-left: 6%;
+    margin-right: 7%;
 }
 
 #navigation a {
     padding: 5px;
+    display: block;
 }
 
 #navigation > p {
@@ -25,7 +32,6 @@
 }
 
 #containerLinksEpisodes > a {
-    display: block;
     margin-top: 5%;
 }
 
